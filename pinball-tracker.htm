@@ -263,6 +263,19 @@
             padding: 12px 20px;
         }
 
+        .file-input {
+            display: none;
+        }
+
+        .btn-import {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-import:hover {
+            background: #218838;
+        }
+
         @media (max-width: 480px) {
             .container {
                 padding: 10px;
@@ -316,11 +329,6 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="ballTime">Ball Time (minutes)</label>
-                        <input type="number" id="ballTime" step="0.1" placeholder="e.g. 8.5">
-                    </div>
-
-                    <div class="form-group">
                         <label for="extraBalls">Extra Balls</label>
                         <input type="number" id="extraBalls" placeholder="Number of extra balls" min="0">
                     </div>
@@ -343,7 +351,9 @@
 
             <div id="history-tab" class="tab-content">
                 <div id="gamesList"></div>
-                <button onclick="exportData()" class="btn btn-secondary">Export Data as CSV</button>
+                <button onclick="exportData()" class="btn btn-secondary">Export Data as JSON</button>
+                <input type="file" id="fileInput" class="file-input" accept=".json" onchange="importData(event)">
+                <button onclick="document.getElementById('fileInput').click()" class="btn btn-import">Import Data as JSON</button>
                 <button onclick="clearAllData()" class="btn btn-secondary" style="background: #dc3545; color: white;">Clear All Data</button>
             </div>
 
@@ -599,7 +609,6 @@
                 machine: document.getElementById('machine').value,
                 strategy: document.getElementById('strategy').value,
                 score: parseInt(document.getElementById('score').value),
-                ballTime: parseFloat(document.getElementById('ballTime').value) || null,
                 extraBalls: parseInt(document.getElementById('extraBalls').value) || 0,
                 location: document.getElementById('location').value,
                 notes: document.getElementById('notes').value
@@ -627,7 +636,6 @@
                     <p><strong>Score:</strong> ${game.score.toLocaleString()}</p>
                     <p><strong>Strategy:</strong> ${game.strategy}</p>
                     <p><strong>Date:</strong> ${game.date} | <strong>Location:</strong> ${game.location}</p>
-                    ${game.ballTime ? `<p><strong>Ball Time:</strong> ${game.ballTime}min</p>` : ''}
                     ${game.extraBalls ? `<p><strong>Extra Balls:</strong> ${game.extraBalls}</p>` : ''}
                     ${game.notes ? `<p><strong>Notes:</strong> ${game.notes}</p>` : ''}
                 </div>
@@ -692,28 +700,73 @@
                 return;
             }
 
-            const headers = ['Date', 'Machine', 'Strategy', 'Score', 'Ball Time', 'Extra Balls', 'Location', 'Notes'];
-            const csvContent = [
-                headers.join(','),
-                ...games.map(game => [
-                    game.date,
-                    `"${game.machine}"`,
-                    `"${game.strategy}"`,
-                    game.score,
-                    game.ballTime || '',
-                    game.extraBalls,
-                    `"${game.location}"`,
-                    `"${(game.notes || '').replace(/"/g, '""')}"`
-                ].join(','))
-            ].join('\n');
+            const exportData = {
+                games: games,
+                config: config,
+                exportDate: new Date().toISOString()
+            };
 
-            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const jsonContent = JSON.stringify(exportData, null, 2);
+            const blob = new Blob([jsonContent], { type: 'application/json' });
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `pinball-scores-${new Date().toISOString().split('T')[0]}.csv`;
+            a.download = `pinball-data-${new Date().toISOString().split('T')[0]}.json`;
             a.click();
             window.URL.revokeObjectURL(url);
+        }
+
+        function importData(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const importedData = JSON.parse(e.target.result);
+                    
+                    // Validate the data structure
+                    if (!importedData.games || !Array.isArray(importedData.games)) {
+                        alert('Invalid JSON file format. Missing or invalid games data.');
+                        return;
+                    }
+
+                    // Show confirmation dialog
+                    const gameCount = importedData.games.length;
+                    const currentGameCount = games.length;
+                    
+                    const confirmMessage = `Import ${gameCount} games from JSON file?\n\n` +
+                        `This will overwrite your current data (${currentGameCount} games).\n` +
+                        `This action cannot be undone.`;
+                    
+                    if (confirm(confirmMessage)) {
+                        // Import games
+                        games = importedData.games;
+                        localStorage.setItem('pinballGames', JSON.stringify(games));
+                        
+                        // Import config if available
+                        if (importedData.config) {
+                            config = importedData.config;
+                            saveConfig();
+                        }
+                        
+                        // Refresh all displays
+                        populateDropdowns();
+                        displayGames();
+                        displayAnalysis();
+                        displayConfig();
+                        
+                        alert(`Successfully imported ${gameCount} games!`);
+                    }
+                } catch (error) {
+                    alert('Error reading JSON file. Please make sure it\'s a valid JSON file exported from this app.');
+                    console.error('Import error:', error);
+                }
+            };
+            reader.readAsText(file);
+            
+            // Reset file input
+            event.target.value = '';
         }
 
         function clearAllData() {
