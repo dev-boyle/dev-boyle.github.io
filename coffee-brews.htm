@@ -313,7 +313,7 @@
                 
                 <div class="brew-card">
                     <div class="form-grid">
-                        <div class="form-group">
+                        <div class="form-group" style="grid-column: 1 / -1;">
                             <label for="brewName">Name</label>
                             <input type="text" id="brewName" placeholder="Morning Blend">
                         </div>
@@ -325,7 +325,14 @@
                         
                         <div class="form-group">
                             <label for="brand">Brand</label>
-                            <select id="brand"></select>
+                            <select id="brand" onchange="updateRoastOptions()"></select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="roast">Roast</label>
+                            <select id="roast">
+                                <option value="">Select brand first...</option>
+                            </select>
                         </div>
                         
                         <div class="form-group">
@@ -427,6 +434,23 @@
                     </div>
                     <div id="filtersList" class="dropdown-list"></div>
                 </div>
+                
+                <div class="setup-section">
+                    <h3>Manage Brand Roasts</h3>
+                    <div class="dropdown-manager">
+                        <select id="brandRoastSelector" onchange="showBrandRoasts()" style="flex: 1; padding: 12px; border: 2px solid #BCAAA4; border-radius: 8px; margin-right: 10px;">
+                            <option value="">Select brand to manage roasts...</option>
+                        </select>
+                    </div>
+                    <div id="selectedBrandRoasts" style="display: none;">
+                        <h4 id="brandRoastTitle" style="margin: 15px 0 10px 0; color: #3E2723;"></h4>
+                        <div class="dropdown-manager">
+                            <input type="text" id="newBrandRoast" placeholder="Add new roast for this brand..." style="flex: 1; padding: 12px; border: 2px solid #BCAAA4; border-radius: 8px;">
+                            <button class="button button-primary" onclick="addBrandRoast()">Add Roast</button>
+                        </div>
+                        <div id="brandRoastsList" class="dropdown-list"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -437,7 +461,14 @@
         let dropdownData = {
             methods: ['Espresso', 'French Press', 'Pour Over', 'Aeropress', 'Cold Brew'],
             brands: ['Starbucks', 'Blue Bottle', 'Intelligentsia', 'Counter Culture', 'Stumptown'],
-            filterTypes: ['Paper', 'Metal', 'Cloth', 'None']
+            filterTypes: ['Paper', 'Metal', 'Cloth', 'None'],
+            brandRoasts: {
+                'Starbucks': ['Blonde', 'Pike Place', 'Verona', 'Sumatra', 'French Roast'],
+                'Blue Bottle': ['Hayes Valley', 'Giant Steps', 'Bella Donovan', 'Three Africans'],
+                'Intelligentsia': ['Black Cat', 'House Blend', 'El Diablo', 'Frequency'],
+                'Counter Culture': ['Hologram', 'Fast Forward', 'Big Trouble', 'Forty-Six'],
+                'Stumptown': ['Hair Bender', 'Holler Mountain', 'Founder\'s Blend', 'Guatemala Antigua']
+            }
         };
         let currentBrewId = null;
 
@@ -500,6 +531,42 @@
                 option.textContent = filter;
                 filterSelect.appendChild(option);
             });
+            
+            // Populate brand selector in setup
+            const brandRoastSelector = document.getElementById('brandRoastSelector');
+            if (brandRoastSelector) {
+                brandRoastSelector.innerHTML = '<option value="">Select brand to manage roasts...</option>';
+                dropdownData.brands.forEach(brand => {
+                    const option = document.createElement('option');
+                    option.value = brand;
+                    option.textContent = brand;
+                    brandRoastSelector.appendChild(option);
+                });
+            }
+        }
+        
+        // Update roast options based on selected brand
+        function updateRoastOptions() {
+            const brandSelect = document.getElementById('brand');
+            const roastSelect = document.getElementById('roast');
+            const selectedBrand = brandSelect.value;
+            
+            // Clear roast options
+            roastSelect.innerHTML = '<option value="">Select...</option>';
+            
+            if (selectedBrand && dropdownData.brandRoasts[selectedBrand]) {
+                dropdownData.brandRoasts[selectedBrand].forEach(roast => {
+                    const option = document.createElement('option');
+                    option.value = roast;
+                    option.textContent = roast;
+                    roastSelect.appendChild(option);
+                });
+            } else if (selectedBrand) {
+                // Brand exists but no roasts defined
+                roastSelect.innerHTML = '<option value="">No roasts defined for this brand</option>';
+            } else {
+                roastSelect.innerHTML = '<option value="">Select brand first...</option>';
+            }
         }
 
         // Update brew selector
@@ -537,6 +604,8 @@
                     input.value = '';
                 }
             });
+            // Reset roast dropdown to default state
+            document.getElementById('roast').innerHTML = '<option value="">Select brand first...</option>';
         }
 
         // Load brew
@@ -560,6 +629,14 @@
                     element.value = brew[key] || '';
                 }
             });
+            
+            // Update roast options after loading brand
+            updateRoastOptions();
+            
+            // Set roast value after updating options
+            if (brew.roast) {
+                document.getElementById('roast').value = brew.roast;
+            }
         }
 
         // Save brew
@@ -576,6 +653,7 @@
                 name: name,
                 method: document.getElementById('method').value,
                 brand: document.getElementById('brand').value,
+                roast: document.getElementById('roast').value,
                 weight: document.getElementById('weight').value,
                 grindSize: document.getElementById('grindSize').value,
                 filterType: document.getElementById('filterType').value,
@@ -630,6 +708,12 @@
             if (!dropdownData[category].includes(value)) {
                 dropdownData[category].push(value);
                 dropdownData[category].sort();
+                
+                // If adding a new brand, initialize its roasts array
+                if (category === 'brands') {
+                    dropdownData.brandRoasts[value] = [];
+                }
+                
                 populateDropdowns();
                 updateSetupLists();
                 saveToStorage();
@@ -643,9 +727,95 @@
             const index = dropdownData[category].indexOf(item);
             if (index > -1) {
                 dropdownData[category].splice(index, 1);
+                
+                // If removing a brand, also remove its roasts
+                if (category === 'brands' && dropdownData.brandRoasts[item]) {
+                    delete dropdownData.brandRoasts[item];
+                }
+                
                 populateDropdowns();
                 updateSetupLists();
                 saveToStorage();
+            }
+        }
+        
+        // Show brand roasts management
+        function showBrandRoasts() {
+            const selector = document.getElementById('brandRoastSelector');
+            const selectedBrand = selector.value;
+            const container = document.getElementById('selectedBrandRoasts');
+            const title = document.getElementById('brandRoastTitle');
+            const list = document.getElementById('brandRoastsList');
+            
+            if (selectedBrand) {
+                container.style.display = 'block';
+                title.textContent = `Roasts for ${selectedBrand}`;
+                
+                // Initialize brand roasts if not exists
+                if (!dropdownData.brandRoasts[selectedBrand]) {
+                    dropdownData.brandRoasts[selectedBrand] = [];
+                }
+                
+                // Update the list
+                list.innerHTML = '';
+                dropdownData.brandRoasts[selectedBrand].forEach(roast => {
+                    const div = document.createElement('div');
+                    div.className = 'dropdown-item';
+                    div.innerHTML = `
+                        <span>${roast}</span>
+                        <button class="remove-item" onclick="removeBrandRoast('${selectedBrand}', '${roast}')">Remove</button>
+                    `;
+                    list.appendChild(div);
+                });
+            } else {
+                container.style.display = 'none';
+            }
+        }
+        
+        // Add brand roast
+        function addBrandRoast() {
+            const brandSelector = document.getElementById('brandRoastSelector');
+            const selectedBrand = brandSelector.value;
+            const input = document.getElementById('newBrandRoast');
+            const value = input.value.trim();
+            
+            if (!selectedBrand || !value) return;
+            
+            if (!dropdownData.brandRoasts[selectedBrand]) {
+                dropdownData.brandRoasts[selectedBrand] = [];
+            }
+            
+            if (!dropdownData.brandRoasts[selectedBrand].includes(value)) {
+                dropdownData.brandRoasts[selectedBrand].push(value);
+                dropdownData.brandRoasts[selectedBrand].sort();
+                showBrandRoasts();
+                saveToStorage();
+                
+                // Update roast dropdown if this brand is currently selected
+                const currentBrand = document.getElementById('brand').value;
+                if (currentBrand === selectedBrand) {
+                    updateRoastOptions();
+                }
+            }
+            
+            input.value = '';
+        }
+        
+        // Remove brand roast
+        function removeBrandRoast(brand, roast) {
+            if (dropdownData.brandRoasts[brand]) {
+                const index = dropdownData.brandRoasts[brand].indexOf(roast);
+                if (index > -1) {
+                    dropdownData.brandRoasts[brand].splice(index, 1);
+                    showBrandRoasts();
+                    saveToStorage();
+                    
+                    // Update roast dropdown if this brand is currently selected
+                    const currentBrand = document.getElementById('brand').value;
+                    if (currentBrand === brand) {
+                        updateRoastOptions();
+                    }
+                }
             }
         }
 
@@ -741,7 +911,14 @@
                 dropdownData = data.dropdownData || {
                     methods: ['Espresso', 'French Press', 'Pour Over', 'Aeropress', 'Cold Brew'],
                     brands: ['Starbucks', 'Blue Bottle', 'Intelligentsia', 'Counter Culture', 'Stumptown'],
-                    filterTypes: ['Paper', 'Metal', 'Cloth', 'None']
+                    filterTypes: ['Paper', 'Metal', 'Cloth', 'None'],
+                    brandRoasts: {
+                        'Starbucks': ['Blonde', 'Pike Place', 'Verona', 'Sumatra', 'French Roast'],
+                        'Blue Bottle': ['Hayes Valley', 'Giant Steps', 'Bella Donovan', 'Three Africans'],
+                        'Intelligentsia': ['Black Cat', 'House Blend', 'El Diablo', 'Frequency'],
+                        'Counter Culture': ['Hologram', 'Fast Forward', 'Big Trouble', 'Forty-Six'],
+                        'Stumptown': ['Hair Bender', 'Holler Mountain', 'Founder\'s Blend', 'Guatemala Antigua']
+                    }
                 };
             }
         }
