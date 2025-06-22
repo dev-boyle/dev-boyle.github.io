@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Brew Manager</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #8B4513 0%, #D2691E 50%, #F4A460 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #2F1B14;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(45deg, #3E2723, #5D4037);
+            color: #EFEBE9;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header::before {
+            content: '☕';
+            font-size: 40px;
+            position: absolute;
+            left: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .tabs {
+            display: flex;
+            background: #4E342E;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            background: #6D4C41;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .tab:hover {
+            background: #5D4037;
+        }
+
+        .tab.active {
+            background: #3E2723;
+            box-shadow: inset 0 3px 0 #8D6E63;
+        }
+
+        .tab-content {
+            padding: 30px;
+            min-height: 600px;
+        }
+
+        .tab-panel {
+            display: none;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        .brew-selector {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            align-items: center;
+            padding: 20px;
+            background: #FFF8E1;
+            border-radius: 12px;
+            border: 2px solid #8D6E63;
+        }
+
+        .brew-card {
+            background: linear-gradient(145deg, #FFFFFF, #F5F5F5);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 2px solid #8D6E63;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #3E2723;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 12px;
+            border: 2px solid #BCAAA4;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #8D6E63;
+            box-shadow: 0 0 0 3px rgba(141, 110, 99, 0.2);
+        }
+
+        .button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .button-primary {
+            background: linear-gradient(45deg, #8D6E63, #A1887F);
+            color: white;
+        }
+
+        .button-primary:hover {
+            background: linear-gradient(45deg, #6D4C41, #8D6E63);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .button-danger {
+            background: linear-gradient(45deg, #D32F2F, #F44336);
+            color: white;
+        }
+
+        .button-danger:hover {
+            background: linear-gradient(45deg, #B71C1C, #D32F2F);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .button-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            justify-content: center;
+        }
+
+        .setup-section {
+            background: #FFF8E1;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border: 2px solid #8D6E63;
+        }
+
+        .setup-section h3 {
+            color: #3E2723;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+        }
+
+        .dropdown-manager {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .dropdown-list {
+            background: white;
+            border: 2px solid #BCAAA4;
+            border-radius: 8px;
+            padding: 15px;
+            min-height: 100px;
+            margin-top: 10px;
+        }
+
+        .dropdown-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px;
+            margin: 5px 0;
+            background: #F5F5F5;
+            border-radius: 6px;
+        }
+
+        .remove-item {
+            background: #F44336;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 4px 8px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .remove-item:hover {
+            background: #D32F2F;
+        }
+
+        .import-export {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        #fileInput {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 15px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .brew-selector {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .dropdown-manager {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Coffee Brew Manager</h1>
+            <p>Perfect brews, every time</p>
+        </div>
+        
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('brews')">My Brews</button>
+            <button class="tab" onclick="switchTab('setup')">Setup</button>
+        </div>
+        
+        <div class="tab-content">
+            <div id="brews" class="tab-panel active">
+                <div class="brew-selector">
+                    <select id="brewSelector" onchange="loadBrew()" style="flex: 1; padding: 12px; font-size: 16px; border-radius: 8px; border: 2px solid #8D6E63;">
+                        <option value="">Select a brew...</option>
+                    </select>
+                    <button class="button button-primary" onclick="createNewBrew()">Add New Brew</button>
+                </div>
+                
+                <div class="brew-card">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="brewName">Name</label>
+                            <input type="text" id="brewName" placeholder="Morning Blend">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="method">Method</label>
+                            <select id="method"></select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="brand">Brand</label>
+                            <select id="brand"></select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="weight">Weight (grams)</label>
+                            <input type="number" id="weight" placeholder="20" step="0.1">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="grindSize">Grind Size</label>
+                            <input type="text" id="grindSize" placeholder="Fine">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="filterType">Filter Type</label>
+                            <select id="filterType"></select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="waterAmount">Water Amount (ml)</label>
+                            <input type="number" id="waterAmount" placeholder="300">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="waterTemp">Water Temperature (°C)</label>
+                            <input type="number" id="waterTemp" placeholder="95">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="milkAmount">Milk Amount (ml)</label>
+                            <input type="number" id="milkAmount" placeholder="150">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="milkTemp">Milk Temperature</label>
+                            <input type="text" id="milkTemp" placeholder="65°C">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="frothLevel">Froth Level</label>
+                            <select id="frothLevel">
+                                <option value="">Select froth level...</option>
+                                <option value="low">Low</option>
+                                <option value="medium">Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="waterPlus">Water+ (ml)</label>
+                            <input type="number" id="waterPlus" placeholder="50">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="waterPlusTemp">Water+ Temperature (°C)</label>
+                            <input type="number" id="waterPlusTemp" placeholder="80">
+                        </div>
+                    </div>
+                    
+                    <div class="button-actions">
+                        <button class="button button-primary" onclick="saveBrew()">Save Brew</button>
+                        <button class="button button-danger" onclick="deleteBrew()">Delete Brew</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="setup" class="tab-panel">
+                <div class="setup-section">
+                    <h3>Data Management</h3>
+                    <div class="import-export">
+                        <button class="button button-primary" onclick="exportData()">Export Data</button>
+                        <button class="button button-primary" onclick="document.getElementById('fileInput').click()">Import Data</button>
+                        <input type="file" id="fileInput" accept=".json" onchange="importData(event)">
+                    </div>
+                </div>
+                
+                <div class="setup-section">
+                    <h3>Manage Methods</h3>
+                    <div class="dropdown-manager">
+                        <input type="text" id="newMethod" placeholder="Add new method..." style="flex: 1; padding: 12px; border: 2px solid #BCAAA4; border-radius: 8px;">
+                        <button class="button button-primary" onclick="addDropdownItem('methods', 'newMethod')">Add Method</button>
+                    </div>
+                    <div id="methodsList" class="dropdown-list"></div>
+                </div>
+                
+                <div class="setup-section">
+                    <h3>Manage Brands</h3>
+                    <div class="dropdown-manager">
+                        <input type="text" id="newBrand" placeholder="Add new brand..." style="flex: 1; padding: 12px; border: 2px solid #BCAAA4; border-radius: 8px;">
+                        <button class="button button-primary" onclick="addDropdownItem('brands', 'newBrand')">Add Brand</button>
+                    </div>
+                    <div id="brandsList" class="dropdown-list"></div>
+                </div>
+                
+                <div class="setup-section">
+                    <h3>Manage Filter Types</h3>
+                    <div class="dropdown-manager">
+                        <input type="text" id="newFilter" placeholder="Add new filter type..." style="flex: 1; padding: 12px; border: 2px solid #BCAAA4; border-radius: 8px;">
+                        <button class="button button-primary" onclick="addDropdownItem('filterTypes', 'newFilter')">Add Filter</button>
+                    </div>
+                    <div id="filtersList" class="dropdown-list"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data storage
+        let brews = {};
+        let dropdownData = {
+            methods: ['Espresso', 'French Press', 'Pour Over', 'Aeropress', 'Cold Brew'],
+            brands: ['Starbucks', 'Blue Bottle', 'Intelligentsia', 'Counter Culture', 'Stumptown'],
+            filterTypes: ['Paper', 'Metal', 'Cloth', 'None']
+        };
+        let currentBrewId = null;
+
+        // Initialize the app
+        function init() {
+            loadFromStorage();
+            populateDropdowns();
+            updateBrewSelector();
+            updateSetupLists();
+        }
+
+        // Tab switching
+        function switchTab(tabName) {
+            // Hide all panels
+            document.querySelectorAll('.tab-panel').forEach(panel => {
+                panel.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected panel and activate tab
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Populate dropdowns
+        function populateDropdowns() {
+            const methodSelect = document.getElementById('method');
+            const brandSelect = document.getElementById('brand');
+            const filterSelect = document.getElementById('filterType');
+            
+            // Clear existing options
+            [methodSelect, brandSelect, filterSelect].forEach(select => {
+                select.innerHTML = '<option value="">Select...</option>';
+            });
+            
+            // Populate methods
+            dropdownData.methods.forEach(method => {
+                const option = document.createElement('option');
+                option.value = method;
+                option.textContent = method;
+                methodSelect.appendChild(option);
+            });
+            
+            // Populate brands
+            dropdownData.brands.forEach(brand => {
+                const option = document.createElement('option');
+                option.value = brand;
+                option.textContent = brand;
+                brandSelect.appendChild(option);
+            });
+            
+            // Populate filter types
+            dropdownData.filterTypes.forEach(filter => {
+                const option = document.createElement('option');
+                option.value = filter;
+                option.textContent = filter;
+                filterSelect.appendChild(option);
+            });
+        }
+
+        // Update brew selector
+        function updateBrewSelector() {
+            const selector = document.getElementById('brewSelector');
+            selector.innerHTML = '<option value="">Select a brew...</option>';
+            
+            // Sort brews alphabetically
+            const sortedBrews = Object.keys(brews).sort((a, b) => 
+                brews[a].name.localeCompare(brews[b].name)
+            );
+            
+            sortedBrews.forEach(id => {
+                const option = document.createElement('option');
+                option.value = id;
+                option.textContent = brews[id].name;
+                selector.appendChild(option);
+            });
+        }
+
+        // Create new brew
+        function createNewBrew() {
+            currentBrewId = null;
+            document.getElementById('brewSelector').value = '';
+            clearForm();
+        }
+
+        // Clear form
+        function clearForm() {
+            const inputs = document.querySelectorAll('#brews input, #brews select');
+            inputs.forEach(input => {
+                if (input.type === 'number') {
+                    input.value = '';
+                } else {
+                    input.value = '';
+                }
+            });
+        }
+
+        // Load brew
+        function loadBrew() {
+            const selector = document.getElementById('brewSelector');
+            const brewId = selector.value;
+            
+            if (!brewId) {
+                clearForm();
+                currentBrewId = null;
+                return;
+            }
+            
+            currentBrewId = brewId;
+            const brew = brews[brewId];
+            
+            // Populate form with brew data
+            Object.keys(brew).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.value = brew[key] || '';
+                }
+            });
+        }
+
+        // Save brew
+        function saveBrew() {
+            const name = document.getElementById('brewName').value.trim();
+            
+            if (!name) {
+                alert('Please enter a name for your brew.');
+                return;
+            }
+            
+            // Create brew object
+            const brew = {
+                name: name,
+                method: document.getElementById('method').value,
+                brand: document.getElementById('brand').value,
+                weight: document.getElementById('weight').value,
+                grindSize: document.getElementById('grindSize').value,
+                filterType: document.getElementById('filterType').value,
+                waterAmount: document.getElementById('waterAmount').value,
+                waterTemp: document.getElementById('waterTemp').value,
+                milkAmount: document.getElementById('milkAmount').value,
+                milkTemp: document.getElementById('milkTemp').value,
+                frothLevel: document.getElementById('frothLevel').value,
+                waterPlus: document.getElementById('waterPlus').value,
+                waterPlusTemp: document.getElementById('waterPlusTemp').value
+            };
+            
+            // Generate ID if new brew
+            if (!currentBrewId) {
+                currentBrewId = 'brew_' + Date.now();
+            }
+            
+            brews[currentBrewId] = brew;
+            saveToStorage();
+            updateBrewSelector();
+            
+            // Select the saved brew in the dropdown
+            document.getElementById('brewSelector').value = currentBrewId;
+            
+            alert('Brew saved successfully!');
+        }
+
+        // Delete brew
+        function deleteBrew() {
+            if (!currentBrewId) {
+                alert('Please select a brew to delete.');
+                return;
+            }
+            
+            if (confirm('Are you sure you want to delete this brew?')) {
+                delete brews[currentBrewId];
+                saveToStorage();
+                updateBrewSelector();
+                clearForm();
+                currentBrewId = null;
+                alert('Brew deleted successfully!');
+            }
+        }
+
+        // Add dropdown item
+        function addDropdownItem(category, inputId) {
+            const input = document.getElementById(inputId);
+            const value = input.value.trim();
+            
+            if (!value) return;
+            
+            if (!dropdownData[category].includes(value)) {
+                dropdownData[category].push(value);
+                dropdownData[category].sort();
+                populateDropdowns();
+                updateSetupLists();
+                saveToStorage();
+            }
+            
+            input.value = '';
+        }
+
+        // Remove dropdown item
+        function removeDropdownItem(category, item) {
+            const index = dropdownData[category].indexOf(item);
+            if (index > -1) {
+                dropdownData[category].splice(index, 1);
+                populateDropdowns();
+                updateSetupLists();
+                saveToStorage();
+            }
+        }
+
+        // Update setup lists
+        function updateSetupLists() {
+            updateList('methodsList', 'methods');
+            updateList('brandsList', 'brands');
+            updateList('filtersList', 'filterTypes');
+        }
+
+        function updateList(containerId, category) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            
+            dropdownData[category].forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'dropdown-item';
+                div.innerHTML = `
+                    <span>${item}</span>
+                    <button class="remove-item" onclick="removeDropdownItem('${category}', '${item}')">Remove</button>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // Export data
+        function exportData() {
+            const data = {
+                brews: brews,
+                dropdownData: dropdownData
+            };
+            
+            const dataStr = JSON.stringify(data, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(dataBlob);
+            link.download = 'coffee_brews_' + new Date().toISOString().split('T')[0] + '.json';
+            link.click();
+        }
+
+        // Import data
+        function importData(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    
+                    if (data.brews) {
+                        brews = data.brews;
+                    }
+                    
+                    if (data.dropdownData) {
+                        dropdownData = data.dropdownData;
+                    }
+                    
+                    saveToStorage();
+                    populateDropdowns();
+                    updateBrewSelector();
+                    updateSetupLists();
+                    clearForm();
+                    currentBrewId = null;
+                    
+                    alert('Data imported successfully!');
+                } catch (error) {
+                    alert('Error importing data. Please check the file format.');
+                }
+            };
+            reader.readAsText(file);
+            
+            // Clear the file input
+            event.target.value = '';
+        }
+
+        // Storage functions - using in-memory storage since localStorage is not supported
+        let storageKey = 'coffeeBrewData';
+        let memoryStorage = {};
+
+        function saveToStorage() {
+            memoryStorage[storageKey] = {
+                brews: brews,
+                dropdownData: dropdownData
+            };
+        }
+
+        function loadFromStorage() {
+            const data = memoryStorage[storageKey];
+            if (data) {
+                brews = data.brews || {};
+                dropdownData = data.dropdownData || {
+                    methods: ['Espresso', 'French Press', 'Pour Over', 'Aeropress', 'Cold Brew'],
+                    brands: ['Starbucks', 'Blue Bottle', 'Intelligentsia', 'Counter Culture', 'Stumptown'],
+                    filterTypes: ['Paper', 'Metal', 'Cloth', 'None']
+                };
+            }
+        }
+
+        // Initialize the app when the page loads
+        window.onload = init;
+    </script>
+</body>
+</html>
