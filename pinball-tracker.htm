@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinball Score Tracker</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .tab-buttons {
+            display: flex;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            overflow: hidden;
+            background: #f0f0f0;
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 12px 8px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            min-width: 80px;
+        }
+
+        .tab-button.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #6c757d;
+            border: 2px solid #e9ecef;
+        }
+
+        .btn-small {
+            width: auto;
+            padding: 8px 15px;
+            font-size: 14px;
+            display: inline-block;
+            margin: 5px;
+        }
+
+        .game-entry {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .game-entry h4 {
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .game-entry p {
+            margin: 2px 0;
+            font-size: 14px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .strategy-analysis {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .delete-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            float: right;
+        }
+
+        .config-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border-left: 4px solid #28a745;
+        }
+
+        .config-item h4 {
+            color: #28a745;
+            margin-bottom: 10px;
+        }
+
+        .strategy-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 10px;
+        }
+
+        .strategy-tag {
+            background: #e9ecef;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .strategy-tag .remove {
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            font-size: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .add-strategy-form {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .add-strategy-form input {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        .add-strategy-form button {
+            width: auto;
+            margin-bottom: 0;
+            padding: 12px 20px;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tab-button {
+                font-size: 12px;
+                padding: 10px 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 Pinball Tracker</h1>
+            <p>Track your games and improve your strategy</p>
+        </div>
+
+        <div class="card">
+            <div class="tab-buttons">
+                <button class="tab-button active" onclick="showTab('entry')">Add Game</button>
+                <button class="tab-button" onclick="showTab('history')">History</button>
+                <button class="tab-button" onclick="showTab('analysis')">Analysis</button>
+                <button class="tab-button" onclick="showTab('config')">Setup</button>
+            </div>
+
+            <div id="entry-tab" class="tab-content active">
+                <form id="gameForm">
+                    <div class="form-group">
+                        <label for="machine">Machine</label>
+                        <select id="machine" required onchange="updateStrategies()">
+                            <option value="">Select Machine</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="strategy">Strategy</label>
+                        <select id="strategy" required>
+                            <option value="">Select Machine First</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="score">Final Score</label>
+                        <input type="number" id="score" placeholder="Enter score" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ballTime">Ball Time (minutes)</label>
+                        <input type="number" id="ballTime" step="0.1" placeholder="e.g. 8.5">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="extraBalls">Extra Balls</label>
+                        <input type="number" id="extraBalls" placeholder="Number of extra balls" min="0">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <select id="location" required>
+                            <option value="">Select Location</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notes">Notes (optional)</label>
+                        <textarea id="notes" rows="3" placeholder="What worked? What didn't?"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Save Game</button>
+                </form>
+            </div>
+
+            <div id="history-tab" class="tab-content">
+                <div id="gamesList"></div>
+                <button onclick="exportData()" class="btn btn-secondary">Export Data as CSV</button>
+                <button onclick="clearAllData()" class="btn btn-secondary" style="background: #dc3545; color: white;">Clear All Data</button>
+            </div>
+
+            <div id="analysis-tab" class="tab-content">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalGames">0</div>
+                        <div class="stat-label">Total Games</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="avgScore">0</div>
+                        <div class="stat-label">Avg Score</div>
+                    </div>
+                </div>
+                <div id="strategyAnalysis"></div>
+            </div>
+
+            <div id="config-tab" class="tab-content">
+                <h3 style="margin-bottom: 20px;">Configure Machines & Strategies</h3>
+                
+                <div class="form-group">
+                    <label for="newMachine">Add New Machine</label>
+                    <div class="add-strategy-form">
+                        <input type="text" id="newMachine" placeholder="Machine name">
+                        <button type="button" onclick="addMachine()" class="btn btn-primary">Add</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="newLocation">Add New Location</label>
+                    <div class="add-strategy-form">
+                        <input type="text" id="newLocation" placeholder="Location name">
+                        <button type="button" onclick="addLocation()" class="btn btn-primary">Add</button>
+                    </div>
+                </div>
+
+                <h4 style="margin: 20px 0 15px 0;">Machines & Their Strategies</h4>
+                <div id="machinesList"></div>
+
+                <h4 style="margin: 20px 0 15px 0;">Locations</h4>
+                <div id="locationsList"></div>
+
+                <button onclick="resetToDefaults()" class="btn btn-secondary" style="background: #ffc107; color: #000; margin-top: 20px;">Reset to Defaults</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Default configuration
+        const defaultConfig = {
+            machines: {
+                "Led Zeppelin": ["Tour Focus", "Song Completion", "Multiball Stack", "Safe Play"],
+                "Medieval Madness": ["Castle Destruction", "Multiball Stack", "Safe Play", "Catapult Focus"],
+                "Attack from Mars": ["Rule the Universe", "Multiball Stack", "Saucer Attack", "Safe Play"],
+                "The Addams Family": ["Tour the Mansion", "Multiball Stack", "Thing Flips", "Safe Play"],
+                "Twilight Zone": ["Lost in the Zone", "Multiball Stack", "Clock Focus", "Safe Play"],
+                "Monster Bash": ["Monster Collection", "Multiball Stack", "Frankenstein Focus", "Safe Play"],
+                "Tales from the Crypt": ["Tales Collection", "Multiball Stack", "Crypt Focus", "Safe Play"],
+                "Indiana Jones": ["Adventure Mode", "Multiball Stack", "Path of Adventure", "Safe Play"],
+                "Jurassic Park": ["Escape the Island", "Multiball Stack", "T-Rex Focus", "Safe Play"],
+                "Stranger Things": ["Upside Down", "Multiball Stack", "Demogorgon Hunt", "Safe Play"]
+            },
+            locations: ["Home", "Local Arcade", "Pinball Hall", "Tournament", "Bar/Restaurant", "Convention"]
+        };
+
+        // Load configuration from localStorage or use defaults
+        let config = JSON.parse(localStorage.getItem('pinballConfig')) || defaultConfig;
+        let games = JSON.parse(localStorage.getItem('pinballGames') || '[]');
+
+        function saveConfig() {
+            localStorage.setItem('pinballConfig', JSON.stringify(config));
+        }
+
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(tabName + '-tab').classList.add('active');
+            event.target.classList.add('active');
+
+            if (tabName === 'entry') {
+                populateDropdowns();
+            } else if (tabName === 'history') {
+                displayGames();
+            } else if (tabName === 'analysis') {
+                displayAnalysis();
+            } else if (tabName === 'config') {
+                displayConfig();
+            }
+        }
+
+        function populateDropdowns() {
+            // Populate machines
+            const machineSelect = document.getElementById('machine');
+            machineSelect.innerHTML = '<option value="">Select Machine</option>';
+            Object.keys(config.machines).forEach(machine => {
+                machineSelect.innerHTML += `<option value="${machine}">${machine}</option>`;
+            });
+
+            // Populate locations
+            const locationSelect = document.getElementById('location');
+            locationSelect.innerHTML = '<option value="">Select Location</option>';
+            config.locations.forEach(location => {
+                locationSelect.innerHTML += `<option value="${location}">${location}</option>`;
+            });
+        }
+
+        function updateStrategies() {
+            const machine = document.getElementById('machine').value;
+            const strategySelect = document.getElementById('strategy');
+            
+            if (!machine) {
+                strategySelect.innerHTML = '<option value="">Select Machine First</option>';
+                return;
+            }
+
+            strategySelect.innerHTML = '<option value="">Select Strategy</option>';
+            const strategies = config.machines[machine] || [];
+            strategies.forEach(strategy => {
+                strategySelect.innerHTML += `<option value="${strategy}">${strategy}</option>`;
+            });
+        }
+
+        function addMachine() {
+            const machineName = document.getElementById('newMachine').value.trim();
+            if (!machineName) {
+                alert('Please enter a machine name');
+                return;
+            }
+            if (config.machines[machineName]) {
+                alert('Machine already exists');
+                return;
+            }
+
+            config.machines[machineName] = [];
+            saveConfig();
+            document.getElementById('newMachine').value = '';
+            displayConfig();
+            populateDropdowns();
+        }
+
+        function addLocation() {
+            const locationName = document.getElementById('newLocation').value.trim();
+            if (!locationName) {
+                alert('Please enter a location name');
+                return;
+            }
+            if (config.locations.includes(locationName)) {
+                alert('Location already exists');
+                return;
+            }
+
+            config.locations.push(locationName);
+            saveConfig();
+            document.getElementById('newLocation').value = '';
+            displayConfig();
+            populateDropdowns();
+        }
+
+        function deleteMachine(machineName) {
+            if (confirm(`Delete ${machineName} and all its strategies?`)) {
+                delete config.machines[machineName];
+                saveConfig();
+                displayConfig();
+                populateDropdowns();
+            }
+        }
+
+        function deleteLocation(locationName) {
+            if (confirm(`Delete location: ${locationName}?`)) {
+                config.locations = config.locations.filter(loc => loc !== locationName);
+                saveConfig();
+                displayConfig();
+                populateDropdowns();
+            }
+        }
+
+        function addStrategy(machineName) {
+            const input = document.getElementById(`strategy-input-${machineName.replace(/\s+/g, '-')}`);
+            const strategyName = input.value.trim();
+            
+            if (!strategyName) {
+                alert('Please enter a strategy name');
+                return;
+            }
+            if (config.machines[machineName].includes(strategyName)) {
+                alert('Strategy already exists for this machine');
+                return;
+            }
+
+            config.machines[machineName].push(strategyName);
+            saveConfig();
+            input.value = '';
+            displayConfig();
+        }
+
+        function removeStrategy(machineName, strategyName) {
+            config.machines[machineName] = config.machines[machineName].filter(s => s !== strategyName);
+            saveConfig();
+            displayConfig();
+        }
+
+        function displayConfig() {
+            // Display machines and strategies
+            const machinesList = document.getElementById('machinesList');
+            machinesList.innerHTML = Object.entries(config.machines).map(([machine, strategies]) => {
+                const machineId = machine.replace(/\s+/g, '-');
+                return `
+                    <div class="config-item">
+                        <h4>${machine} <button class="delete-btn" onclick="deleteMachine('${machine}')">Delete</button></h4>
+                        <div class="strategy-list">
+                            ${strategies.map(strategy => `
+                                <div class="strategy-tag">
+                                    ${strategy}
+                                    <button class="remove" onclick="removeStrategy('${machine}', '${strategy}')">×</button>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="add-strategy-form">
+                            <input type="text" id="strategy-input-${machineId}" placeholder="Add strategy">
+                            <button type="button" onclick="addStrategy('${machine}')" class="btn btn-primary">Add</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // Display locations
+            const locationsList = document.getElementById('locationsList');
+            locationsList.innerHTML = config.locations.map(location => `
+                <div class="strategy-tag" style="margin: 5px;">
+                    ${location}
+                    <button class="remove" onclick="deleteLocation('${location}')">×</button>
+                </div>
+            `).join('');
+        }
+
+        function resetToDefaults() {
+            if (confirm('Reset all machines, strategies, and locations to defaults? This will not delete your game history.')) {
+                config = JSON.parse(JSON.stringify(defaultConfig));
+                saveConfig();
+                displayConfig();
+                populateDropdowns();
+                alert('Configuration reset to defaults');
+            }
+        }
+
+        document.getElementById('gameForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const game = {
+                id: Date.now(),
+                date: new Date().toISOString().split('T')[0],
+                machine: document.getElementById('machine').value,
+                strategy: document.getElementById('strategy').value,
+                score: parseInt(document.getElementById('score').value),
+                ballTime: parseFloat(document.getElementById('ballTime').value) || null,
+                extraBalls: parseInt(document.getElementById('extraBalls').value) || 0,
+                location: document.getElementById('location').value,
+                notes: document.getElementById('notes').value
+            };
+
+            games.push(game);
+            localStorage.setItem('pinballGames', JSON.stringify(games));
+            
+            this.reset();
+            updateStrategies(); // Reset strategy dropdown
+            alert('Game saved successfully!');
+        });
+
+        function displayGames() {
+            const gamesList = document.getElementById('gamesList');
+            if (games.length === 0) {
+                gamesList.innerHTML = '<p style="text-align: center; color: #666;">No games recorded yet.</p>';
+                return;
+            }
+
+            gamesList.innerHTML = games.slice(-10).reverse().map(game => `
+                <div class="game-entry">
+                    <button class="delete-btn" onclick="deleteGame(${game.id})">Delete</button>
+                    <h4>${game.machine}</h4>
+                    <p><strong>Score:</strong> ${game.score.toLocaleString()}</p>
+                    <p><strong>Strategy:</strong> ${game.strategy}</p>
+                    <p><strong>Date:</strong> ${game.date} | <strong>Location:</strong> ${game.location}</p>
+                    ${game.ballTime ? `<p><strong>Ball Time:</strong> ${game.ballTime}min</p>` : ''}
+                    ${game.extraBalls ? `<p><strong>Extra Balls:</strong> ${game.extraBalls}</p>` : ''}
+                    ${game.notes ? `<p><strong>Notes:</strong> ${game.notes}</p>` : ''}
+                </div>
+            `).join('');
+        }
+
+        function displayAnalysis() {
+            if (games.length === 0) {
+                document.getElementById('totalGames').textContent = '0';
+                document.getElementById('avgScore').textContent = '0';
+                document.getElementById('strategyAnalysis').innerHTML = '<p style="text-align: center; color: #666;">No data to analyze yet.</p>';
+                return;
+            }
+
+            const totalGames = games.length;
+            const avgScore = Math.round(games.reduce((sum, game) => sum + game.score, 0) / totalGames);
+
+            document.getElementById('totalGames').textContent = totalGames;
+            document.getElementById('avgScore').textContent = avgScore.toLocaleString();
+
+            // Strategy analysis
+            const strategyStats = {};
+            games.forEach(game => {
+                const key = `${game.machine} - ${game.strategy}`;
+                if (!strategyStats[key]) {
+                    strategyStats[key] = { scores: [], count: 0 };
+                }
+                strategyStats[key].scores.push(game.score);
+                strategyStats[key].count++;
+            });
+
+            const strategyAnalysis = Object.entries(strategyStats)
+                .map(([strategy, stats]) => {
+                    const avg = Math.round(stats.scores.reduce((a, b) => a + b, 0) / stats.count);
+                    const max = Math.max(...stats.scores);
+                    return { strategy, avg, max, count: stats.count };
+                })
+                .sort((a, b) => b.avg - a.avg);
+
+            document.getElementById('strategyAnalysis').innerHTML = `
+                <h3 style="margin-bottom: 15px;">Strategy Performance</h3>
+                ${strategyAnalysis.map(stat => `
+                    <div class="strategy-analysis">
+                        <h4>${stat.strategy}</h4>
+                        <p><strong>Avg Score:</strong> ${stat.avg.toLocaleString()} | <strong>Best:</strong> ${stat.max.toLocaleString()} | <strong>Games:</strong> ${stat.count}</p>
+                    </div>
+                `).join('')}
+            `;
+        }
+
+        function deleteGame(id) {
+            if (confirm('Delete this game?')) {
+                games = games.filter(game => game.id !== id);
+                localStorage.setItem('pinballGames', JSON.stringify(games));
+                displayGames();
+            }
+        }
+
+        function exportData() {
+            if (games.length === 0) {
+                alert('No data to export');
+                return;
+            }
+
+            const headers = ['Date', 'Machine', 'Strategy', 'Score', 'Ball Time', 'Extra Balls', 'Location', 'Notes'];
+            const csvContent = [
+                headers.join(','),
+                ...games.map(game => [
+                    game.date,
+                    `"${game.machine}"`,
+                    `"${game.strategy}"`,
+                    game.score,
+                    game.ballTime || '',
+                    game.extraBalls,
+                    `"${game.location}"`,
+                    `"${(game.notes || '').replace(/"/g, '""')}"`
+                ].join(','))
+            ].join('\n');
+
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `pinball-scores-${new Date().toISOString().split('T')[0]}.csv`;
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
+
+        function clearAllData() {
+            if (confirm('Are you sure you want to delete all game data? This cannot be undone.')) {
+                games = [];
+                localStorage.setItem('pinballGames', JSON.stringify(games));
+                displayGames();
+                displayAnalysis();
+                alert('All data cleared');
+            }
+        }
+
+        // Initialize
+        populateDropdowns();
+        displayGames();
+        displayAnalysis();
+        displayConfig();
+    </script>
+</body>
+</html>
