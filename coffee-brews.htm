@@ -115,138 +115,43 @@
             border: 2px solid #8D6E63;
         }
 
-/* Replace the existing .form-grid class with this enhanced version */
-.form-grid {
-    /* Flexbox fallback for older browsers */
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-bottom: 25px;
-}
-
-/* CSS Grid support for modern browsers */
-@supports (display: grid) {
-    .form-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 20px;
-        margin-bottom: 25px;
-    }
-}
-
-/* Flexbox fallback styling for form groups */
-.form-group {
-    display: flex;
-    flex-direction: column;
-    /* Flexbox fallback: make each item take up available space */
-    flex: 1 1 200px; /* grow, shrink, basis */
-    min-width: 200px;
-}
-
-/* Grid-specific styling for form groups */
-@supports (display: grid) {
-    .form-group {
-        /* Reset flex properties when grid is supported */
-        flex: none;
-        min-width: auto;
-    }
-    
-    /* Full-width name field in grid */
-    .form-group:has(#brewName),
-    .form-group:first-child {
-        grid-column: 1 / -1;
-    }
-}
-
-/* Alternative selector for browsers that don't support :has() */
-@supports (display: grid) and (not (selector(:has(*)))) {
-    .form-group.full-width {
-        grid-column: 1 / -1;
-    }
-}
-
-/* Enhanced mobile responsiveness */
-@media (max-width: 768px) {
-    .form-grid {
-        /* Flexbox: stack items vertically on mobile */
-        flex-direction: column;
-    }
-    
-    .form-group {
-        /* Flexbox: full width on mobile */
-        flex: 1 1 auto;
-        min-width: auto;
-    }
-}
-
-@supports (display: grid) {
-    @media (max-width: 768px) {
         .form-grid {
-            /* Grid: single column on mobile */
-            grid-template-columns: 1fr;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
         }
-    }
-}
 
-/* Additional fallback for very old browsers (pre-flexbox) */
-@supports not (display: flex) and not (display: grid) {
-    .form-grid {
-        display: block;
-    }
-    
-    .form-group {
-        display: block;
-        float: left;
-        width: calc(50% - 10px);
-        margin-right: 20px;
-        margin-bottom: 20px;
-    }
-    
-    .form-group:nth-child(even) {
-        margin-right: 0;
-    }
-    
-    /* Clear floats */
-    .form-grid::after {
-        content: "";
-        display: table;
-        clear: both;
-    }
-}
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
 
-/* Specific fallback for dropdown-manager sections */
-.dropdown-manager {
-    /* Flexbox fallback */
-    display: flex;
-    gap: 15px;
-    margin-bottom: 15px;
-    align-items: center;
-    flex-wrap: wrap;
-}
+        .form-group label {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #3E2723;
+            font-size: 14px;
+        }
 
-/* Ensure flex items behave correctly in older Safari */
-.dropdown-manager > * {
-    flex-shrink: 0;
-}
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 12px;
+            border: 2px solid #BCAAA4;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: white;
+        }
 
-.dropdown-manager input[type="text"],
-.dropdown-manager select {
-    flex: 1;
-    min-width: 200px;
-}
-
-/* Mobile adjustments for dropdown-manager */
-@media (max-width: 768px) {
-    .dropdown-manager {
-        flex-direction: column;
-        align-items: stretch;
-    }
-    
-    .dropdown-manager input[type="text"],
-    .dropdown-manager select {
-        min-width: auto;
-    }
-}
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #8D6E63;
+            box-shadow: 0 0 0 3px rgba(141, 110, 99, 0.2);
+        }
 
         .button {
             padding: 12px 25px;
@@ -408,7 +313,7 @@
                 
                 <div class="brew-card">
                     <div class="form-grid">
-                        <div class="form-group full-width">
+                        <div class="form-group" style="grid-column: 1 / -1;">
                             <label for="brewName">Name</label>
                             <input type="text" id="brewName" placeholder="Morning Blend">
                         </div>
