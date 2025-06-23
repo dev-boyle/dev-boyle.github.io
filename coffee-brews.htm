@@ -121,10 +121,51 @@
             gap: 20px;
             margin-bottom: 25px;
         }
-
+        
+        /* Flexbox fallback for older browsers */
+        .form-grid {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-flex-wrap: wrap;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            margin-left: -10px;
+            margin-right: -10px;
+        }
+        
+        /* Modern browsers will override this with grid */
+        @supports (display: grid) {
+            .form-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 20px;
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+        
         .form-group {
             display: flex;
             flex-direction: column;
+            -webkit-box-flex: 1;
+            -webkit-flex: 1 1 200px;
+            -ms-flex: 1 1 200px;
+            flex: 1 1 200px;
+            min-width: 200px;
+            padding-left: 10px;
+            padding-right: 10px;
+            margin-bottom: 20px;
+        }
+        
+        /* Grid override for modern browsers */
+        @supports (display: grid) {
+            .form-group {
+                padding-left: 0;
+                padding-right: 0;
+                margin-bottom: 0;
+            }
         }
 
         .form-group label {
