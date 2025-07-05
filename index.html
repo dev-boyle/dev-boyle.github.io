@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev Boyle - Projects</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .header {
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
+            font-weight: 300;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255,255,255,0.2);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover .card-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .coffee-icon {
+            background: linear-gradient(135deg, #8B4513, #D2691E);
+        }
+
+        .values-icon {
+            background: linear-gradient(135deg, #4CAF50, #8BC34A);
+        }
+
+        .philosophy-icon {
+            background: linear-gradient(135deg, #9C27B0, #E91E63);
+        }
+
+        .pinball-icon {
+            background: linear-gradient(135deg, #FF5722, #FF9800);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .card p {
+            color: #7f8c8d;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-footer {
+            color: #667eea;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover .card-footer {
+            color: #764ba2;
+            transform: translateX(5px);
+        }
+
+        .add-more {
+            grid-column: 1 / -1;
+            background: rgba(255,255,255,0.1);
+            border: 2px dashed rgba(255,255,255,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+            color: rgba(255,255,255,0.7);
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .add-more:hover {
+            background: rgba(255,255,255,0.15);
+            border-color: rgba(255,255,255,0.5);
+            color: white;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Dev Boyle</h1>
+            <p>Personal Projects & Experiments</p>
+        </div>
+        
+        <div class="grid">
+            <a href="https://dev-boyle.github.io/coffee-brews/" target="_blank" class="card">
+                <div class="card-icon coffee-icon">
+                    ☕
+                </div>
+                <h3>Coffee Brews</h3>
+                <p>Explore different coffee brewing methods, recipes, and techniques for the perfect cup.</p>
+                <div class="card-footer">
+                    Visit Page →
+                </div>
+            </a>
+            
+            <a href="https://dev-boyle.github.io/core-values/" target="_blank" class="card">
+                <div class="card-icon values-icon">
+                    💎
+                </div>
+                <h3>Core Values</h3>
+                <p>A reflection on personal principles and values that guide decision-making and growth.</p>
+                <div class="card-footer">
+                    Visit Page →
+                </div>
+            </a>
+            
+            <a href="https://dev-boyle.github.io/philosophy-quiz/" target="_blank" class="card">
+                <div class="card-icon philosophy-icon">
+                    🧠
+                </div>
+                <h3>Philosophy Quiz</h3>
+                <p>Test your knowledge of philosophical concepts, thinkers, and ideas through interactive quizzes.</p>
+                <div class="card-footer">
+                    Visit Page →
+                </div>
+            </a>
+            
+            <a href="https://dev-boyle.github.io/pinball-tracker/" target="_blank" class="card">
+                <div class="card-icon pinball-icon">
+                    🎮
+                </div>
+                <h3>Pinball Tracker</h3>
+                <p>Keep track of pinball games, scores, and locations for the ultimate arcade experience.</p>
+                <div class="card-footer">
+                    Visit Page →
+                </div>
+            </a>
+            
+        </div>
+    </div>
+</body>
+</html>
