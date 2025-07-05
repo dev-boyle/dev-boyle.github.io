@@ -1,0 +1,275 @@
+{
+  "quizTypes": {
+    "quote": {
+      "title": "Quote Quiz",
+      "description": "Identify the philosophical tradition from famous quotes",
+      "icon": "📜",
+      "questionField": "quote"
+    },
+    "concept": {
+      "title": "Concept Quiz", 
+      "description": "Identify the philosophical tradition from key concepts",
+      "icon": "💭",
+      "questionField": "concept"
+    }
+  },
+  "questions": [
+    {
+      "id": "stoicism_1",
+      "quote": "Focus only on what is within your control—your thoughts, actions, and responses. Accept everything else with tranquil indifference.",
+      "concept": "The practice of distinguishing between what is within our control (our thoughts, actions, responses) and what is not (external events), leading to inner peace through acceptance of fate.",
+      "answer": "Stoicism",
+      "philosopher": "Epictetus",
+      "year": "~100 CE"
+    },
+    {
+      "id": "existentialism_1", 
+      "quote": "You are condemned to be free, and with that freedom comes the terrifying responsibility to create your own meaning and essence.",
+      "concept": "The belief that humans are 'thrown' into existence without choosing it, yet must take full responsibility for creating their own meaning and essence through authentic choices.",
+      "answer": "Existentialism",
+      "philosopher": "Jean-Paul Sartre",
+      "year": "1943"
+    },
+    {
+      "id": "utilitarianism_1",
+      "quote": "The right action is the one that produces the greatest happiness for the greatest number of people, regardless of personal preferences.",
+      "concept": "The principle that moral actions should be judged solely by their consequences in maximizing overall happiness or well-being for the greatest number of people.",
+      "answer": "Utilitarianism", 
+      "philosopher": "Jeremy Bentham",
+      "year": "1789"
+    },
+    {
+      "id": "confucianism_1",
+      "quote": "The superior person cultivates virtue through ritual propriety, filial piety, and harmonious relationships within the natural social order.",
+      "concept": "The ideal of the exemplary person (junzi) who achieves moral cultivation through proper relationships, respect for tradition, ritual propriety, and social harmony.",
+      "answer": "Confucianism",
+      "philosopher": "Confucius", 
+      "year": "~500 BCE"
+    },
+    {
+      "id": "buddhism_1",
+      "quote": "All suffering arises from attachment and craving; liberation comes through mindful detachment and the cessation of desire.",
+      "concept": "The Four Noble Truths: suffering exists, it arises from attachment and craving, it can be ended, and the Eightfold Path leads to liberation (nirvana).",
+      "answer": "Buddhism",
+      "philosopher": "Buddha",
+      "year": "~500 BCE"
+    },
+    {
+      "id": "platonism_1",
+      "quote": "The material world is merely a shadow of eternal, perfect Forms—true knowledge comes from understanding these unchanging ideals.",
+      "concept": "The Theory of Forms - reality consists of perfect, eternal, unchanging Forms, while the material world is merely an imperfect reflection of these ideals.",
+      "answer": "Platonism",
+      "philosopher": "Plato",
+      "year": "~380 BCE"
+    },
+    {
+      "id": "aristotelianism_1",
+      "quote": "Virtue lies in the golden mean between extremes; excellence is achieved through habit and the cultivation of good character.",
+      "concept": "The doctrine of the mean - virtue is found in the balanced middle ground between extremes of excess and deficiency, developed through repeated practice.",
+      "answer": "Aristotelianism",
+      "philosopher": "Aristotle",
+      "year": "~350 BCE"
+    },
+    {
+      "id": "liberalism_1",
+      "quote": "All individuals possess natural rights to life, liberty, and property that no government may justly violate without consent.",
+      "concept": "Natural rights theory - humans have inherent rights to life, liberty, and property that precede government, and legitimate political authority requires consent of the governed.",
+      "answer": "Liberalism",
+      "philosopher": "John Locke",
+      "year": "1689"
+    },
+    {
+      "id": "marxism_1",
+      "quote": "History is the story of class struggle; workers must unite to overthrow the capitalist system that alienates them from their labor.",
+      "concept": "Historical materialism and class struggle - economic relations drive historical change, and capitalism creates alienation that can only be resolved through revolution.",
+      "answer": "Marxism",
+      "philosopher": "Karl Marx",
+      "year": "1848"
+    },
+    {
+      "id": "nihilism_1",
+      "quote": "There are no objective truths, universal morals, or inherent meanings—only the values we courageously create for ourselves.",
+      "concept": "The rejection of objective values - traditional moral and religious foundations are groundless, requiring individuals to create their own values and meaning.",
+      "answer": "Nihilism",
+      "philosopher": "Friedrich Nietzsche",
+      "year": "1880s"
+    },
+    {
+      "id": "stoicism_2",
+      "quote": "What does not kill you makes you stronger—embrace the eternal recurrence and become who you truly are.",
+      "concept": "Amor fati (love of fate) - embracing what occurs rather than fighting against it, finding peace through alignment with the natural order and resilience through adversity.",
+      "answer": "Stoicism",
+      "philosopher": "Marcus Aurelius",
+      "year": "~170 CE"
+    },
+    {
+      "id": "existentialism_2",
+      "quote": "We are thrown into existence without our choosing, yet we must take full responsibility for every choice we make.",
+      "concept": "Thrownness (Geworfenheit) - we find ourselves existing in a world we didn't choose, yet must take full responsibility for how we respond to this condition.",
+      "answer": "Existentialism",
+      "philosopher": "Martin Heidegger",
+      "year": "1927"
+    },
+    {
+      "id": "utilitarianism_2",
+      "quote": "It is better to be a human being dissatisfied than a pig satisfied; better to be Socrates dissatisfied than a fool satisfied.",
+      "concept": "Qualitative hedonism - higher pleasures of the mind are more valuable than lower physical pleasures, even if they involve more complexity and potential dissatisfaction.",
+      "answer": "Utilitarianism",
+      "philosopher": "John Stuart Mill",
+      "year": "1863"
+    },
+    {
+      "id": "confucianism_2",
+      "quote": "The gentleman understands what is right; the petty man understands what is profitable.",
+      "concept": "Moral versus material priorities - the cultivated person prioritizes righteousness and virtue over personal gain and profit in all decisions.",
+      "answer": "Confucianism",
+      "philosopher": "Confucius",
+      "year": "~500 BCE"
+    },
+    {
+      "id": "buddhism_2",
+      "quote": "Pain is inevitable, but suffering is optional—mindfulness reveals the impermanent nature of all phenomena.",
+      "concept": "The distinction between pain and suffering - physical pain is unavoidable, but psychological suffering comes from our attachment to permanence in an impermanent world.",
+      "answer": "Buddhism",
+      "philosopher": "Buddhist principle",
+      "year": "~500 BCE"
+    },
+    {
+      "id": "platonism_2",
+      "quote": "The unexamined life is not worth living—true wisdom begins with knowing that you know nothing.",
+      "concept": "Socratic wisdom and self-knowledge - intellectual humility and constant questioning are essential for philosophical understanding and a meaningful life.",
+      "answer": "Platonism",
+      "philosopher": "Plato/Socrates",
+      "year": "~400 BCE"
+    },
+    {
+      "id": "aristotelianism_2",
+      "quote": "We are what we repeatedly do; excellence is not an act, but a habit formed through practical wisdom.",
+      "concept": "Virtue as habit (hexis) - moral excellence is developed through repeated practice guided by practical wisdom (phronesis), not through single acts.",
+      "answer": "Aristotelianism",
+      "philosopher": "Aristotle",
+      "year": "~350 BCE"
+    },
+    {
+      "id": "liberalism_2",
+      "quote": "The only way to deal with an unfree world is to become so absolutely free that your very existence is an act of rebellion.",
+      "concept": "Individual autonomy and resistance to tyranny - personal freedom requires active resistance to social and political forces that constrain human liberty.",
+      "answer": "Liberalism",
+      "philosopher": "John Stuart Mill",
+      "year": "1859"
+    },
+    {
+      "id": "marxism_2",
+      "quote": "The philosophers have only interpreted the world; the point is to change it through revolutionary praxis.",
+      "concept": "Praxis over theory - philosophy should not merely analyze reality but actively work to transform unjust social and economic conditions through revolutionary action.",
+      "answer": "Marxism",
+      "philosopher": "Karl Marx",
+      "year": "1845"
+    },
+    {
+      "id": "nihilism_2",
+      "quote": "God is dead, and we have killed him—now we must become gods ourselves and create new values.",
+      "concept": "The death of God and transvaluation - traditional religious/moral authorities have lost their power, requiring humans to create new values and meaning.",
+      "answer": "Nihilism",
+      "philosopher": "Friedrich Nietzsche",
+      "year": "1882"
+    },
+    {
+      "id": "stoicism_3",
+      "quote": "The discipline of desire teaches us to want what happens, not what we wish would happen.",
+      "concept": "The discipline of desire - finding contentment by wanting what happens rather than demanding that reality conform to our wishes.",
+      "answer": "Stoicism",
+      "philosopher": "Epictetus",
+      "year": "~100 CE"
+    },
+    {
+      "id": "existentialism_3",
+      "quote": "Hell is other people—we are defined by the gaze of others, yet we must authentically choose ourselves.",
+      "concept": "Bad faith and the look of the other - we often define ourselves through others' perceptions, but authentic existence requires choosing our own identity.",
+      "answer": "Existentialism",
+      "philosopher": "Jean-Paul Sartre",
+      "year": "1944"
+    },
+    {
+      "id": "utilitarianism_3",
+      "quote": "Actions are right in proportion as they tend to promote happiness; wrong as they tend to produce the reverse.",
+      "concept": "The principle of utility restated - moral rightness is determined purely by consequences that maximize happiness and minimize suffering for all affected.",
+      "answer": "Utilitarianism",
+      "philosopher": "John Stuart Mill",
+      "year": "1863"
+    },
+    {
+      "id": "confucianism_3",
+      "quote": "The ruler who governs by virtue is like the North Star—fixed in place while all other stars orbit around it.",
+      "concept": "Rule by moral example - virtuous leadership naturally attracts followers and creates order without coercion, like celestial harmony in the natural world.",
+      "answer": "Confucianism",
+      "philosopher": "Confucius",
+      "year": "~500 BCE"
+    },
+    {
+      "id": "buddhism_3",
+      "quote": "Form is emptiness, emptiness is form—all phenomena arise through dependent origination and have no inherent existence.",
+      "concept": "Emptiness (śūnyatā) and dependent origination - all phenomena lack independent existence and arise only through interconnected relationships with other phenomena.",
+      "answer": "Buddhism",
+      "philosopher": "Heart Sutra",
+      "year": "~600 CE"
+    },
+    {
+      "id": "platonism_3",
+      "quote": "The soul is like a charioteer trying to control two horses—one noble, one base—as it ascends toward the realm of Forms.",
+      "concept": "The tripartite soul - reason must control both spirit and appetite to achieve wisdom and approach the eternal realm of perfect Forms.",
+      "answer": "Platonism",
+      "philosopher": "Plato",
+      "year": "~370 BCE"
+    },
+    {
+      "id": "aristotelianism_3",
+      "quote": "The whole is greater than the sum of its parts—understanding requires grasping the final cause or purpose.",
+      "concept": "Teleological thinking and holism - true understanding comes from recognizing the purpose or end goal that gives meaning to individual components.",
+      "answer": "Aristotelianism",
+      "philosopher": "Aristotle",
+      "year": "~350 BCE"
+    },
+    {
+      "id": "liberalism_3",
+      "quote": "Government derives its just powers from the consent of the governed, and people have the right to revolution when it fails them.",
+      "concept": "Social contract theory - legitimate government exists only through popular consent, and people retain the right to overthrow tyrannical rule.",
+      "answer": "Liberalism",
+      "philosopher": "John Locke",
+      "year": "1689"
+    },
+    {
+      "id": "marxism_3",
+      "quote": "The bourgeoisie cannot exist without constantly revolutionizing the instruments of production and the relations of society.",
+      "concept": "Capitalism's revolutionary nature - the capitalist system inherently disrupts traditional social relations through constant technological and economic innovation.",
+      "answer": "Marxism",
+      "philosopher": "Karl Marx",
+      "year": "1848"
+    },
+    {
+      "id": "nihilism_3",
+      "quote": "The abyss gazes also into you—when you stare into meaninglessness, you must will your own meaning into existence.",
+      "concept": "The abyss and will to power - confronting meaninglessness changes us, but we can overcome nihilism by actively creating our own values and purpose.",
+      "answer": "Nihilism",
+      "philosopher": "Friedrich Nietzsche",
+      "year": "1886"
+    }
+  ],
+  "philosophicalTraditions": [
+    "Stoicism",
+    "Existentialism",
+    "Utilitarianism",
+    "Confucianism",
+    "Buddhism",
+    "Platonism",
+    "Aristotelianism",
+    "Liberalism",
+    "Marxism",
+    "Nihilism"
+  ],
+  "settings": {
+    "defaultQuestionCount": 30,
+    "passingScore": 70,
+    "timeLimit": null
+  }
+}

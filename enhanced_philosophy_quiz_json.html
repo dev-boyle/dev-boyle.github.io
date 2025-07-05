@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Philosophy Quiz - Test Your Knowledge</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 50%, #9b59b6 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #2c3e50;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+            width: 90%;
+            text-align: center;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .title {
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #7f8c8d;
+            font-style: italic;
+        }
+
+        .quiz-selector {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+
+        .quiz-type-btn {
+            background: linear-gradient(145deg, #3498db, #2980b9);
+            border: none;
+            border-radius: 15px;
+            padding: 20px 30px;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 150px;
+        }
+
+        .quiz-type-btn:hover {
+            background: linear-gradient(145deg, #2980b9, #21618c);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(52, 152, 219, 0.3);
+        }
+
+        .quiz-type-btn.concept {
+            background: linear-gradient(145deg, #e67e22, #d35400);
+        }
+
+        .quiz-type-btn.concept:hover {
+            background: linear-gradient(145deg, #d35400, #ba4a00);
+            box-shadow: 0 8px 16px rgba(230, 126, 34, 0.3);
+        }
+
+        .loading {
+            font-size: 1.2em;
+            color: #3498db;
+            margin: 20px 0;
+        }
+
+        .error {
+            background: #f8d7da;
+            border: 2px solid #f5c6cb;
+            color: #721c24;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .progress {
+            background: #ecf0f1;
+            border-radius: 15px;
+            height: 20px;
+            margin: 20px 0;
+            overflow: hidden;
+            border: 2px solid #bdc3c7;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #3498db, #9b59b6);
+            transition: width 0.3s ease;
+            border-radius: 13px;
+        }
+
+        .stats {
+            font-size: 1.1em;
+            color: #34495e;
+            margin-bottom: 30px;
+        }
+
+        .quote-card {
+            background: #f8f9fa;
+            border: 3px solid #e9ecef;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quote-card::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 8em;
+            color: #e9ecef;
+            font-family: serif;
+        }
+
+        .quote-card.concept::before {
+            content: '💭';
+            font-size: 4em;
+            top: 10px;
+        }
+
+        .quote {
+            font-size: 1.4em;
+            line-height: 1.6;
+            color: #2c3e50;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        .concept {
+            font-size: 1.3em;
+            line-height: 1.6;
+            color: #2c3e50;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+        }
+
+        .choices {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .choice-btn {
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 15px 20px;
+            font-size: 1.1em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        .choice-btn:hover {
+            background: linear-gradient(145deg, #3498db, #2980b9);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(52, 152, 219, 0.3);
+        }
+
+        .choice-btn:active {
+            transform: translateY(0);
+        }
+
+        .choice-btn.correct {
+            background: linear-gradient(145deg, #27ae60, #2ecc71);
+            color: white;
+            border-color: #27ae60;
+        }
+
+        .choice-btn.incorrect {
+            background: linear-gradient(145deg, #e74c3c, #c0392b);
+            color: white;
+            border-color: #e74c3c;
+        }
+
+        .next-btn {
+            background: linear-gradient(145deg, #9b59b6, #8e44ad);
+            border: none;
+            border-radius: 12px;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .next-btn:hover {
+            background: linear-gradient(145deg, #8e44ad, #7d3c98);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(142, 68, 173, 0.3);
+        }
+
+        .next-btn:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .result {
+            background: #f8f9fa;
+            border: 3px solid #e9ecef;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            display: none;
+        }
+
+        .result.show {
+            display: block;
+        }
+
+        .result.correct {
+            background: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+
+        .result.incorrect {
+            background: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+
+        .final-score {
+            font-size: 2em;
+            color: #2c3e50;
+            margin: 30px 0;
+        }
+
+        .restart-btn {
+            background: linear-gradient(145deg, #e67e22, #d35400);
+            border: none;
+            border-radius: 12px;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .restart-btn:hover {
+            background: linear-gradient(145deg, #d35400, #ba4a00);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(230, 126, 34, 0.3);
+        }
+
+        .back-btn {
+            background: linear-gradient(145deg, #95a5a6, #7f8c8d);
+            border: none;
+            border-radius: 12px;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 15px;
+        }
+
+        .back-btn:hover {
+            background: linear-gradient(145deg, #7f8c8d, #6c7b7d);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(149, 165, 166, 0.3);
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .title {
+                font-size: 2em;
+            }
+            
+            .quote, .concept {
+                font-size: 1.2em;
+            }
+            
+            .choices {
+                grid-template-columns: 1fr;
+            }
+
+            .quiz-selector {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">🏛️ Philosophy Quiz</h1>
+            <p class="subtitle">Test Your Knowledge of Great Philosophical Traditions</p>
+        </div>
+
+        <div class="loading" id="loadingMessage">Loading quiz data...</div>
+        <div class="error" id="errorMessage" style="display: none;">
+            Error loading quiz data. Please make sure the quiz_data.json file is in the same directory.
+        </div>
+
+        <div class="quiz-selector" id="quizSelector" style="display: none;">
+            <button class="quiz-type-btn" onclick="selectQuizType('quote')">📜 Quote Quiz</button>
+            <button class="quiz-type-btn concept" onclick="selectQuizType('concept')">💭 Concept Quiz</button>
+        </div>
+
+        <div class="progress" id="progressContainer" style="display: none;">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="stats" id="stats" style="display: none;">
+            Question 1 of 30 | Score: 0/0
+        </div>
+
+        <div class="quote-card" id="questionCard" style="display: none;">
+            <div class="quote" id="questionText">Ready to test your philosophical knowledge?</div>
+        </div>
+
+        <div class="choices" id="choices" style="display: none;">
+            <!-- Choices will be populated dynamically -->
+        </div>
+
+        <div class="result" id="result"></div>
+
+        <button class="next-btn" id="nextBtn" onclick="nextQuestion()" style="display: none;">Next Question</button>
+        <div id="gameControls" style="display: none;">
+            <button class="back-btn" id="backBtn" onclick="backToMenu()">Back to Menu</button>
+            <button class="restart-btn" id="restartBtn" onclick="restartQuiz()">Play Again</button>
+        </div>
+    </div>
+
+    <script>
+        let quizData = null;
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let shuffledQuestions = [];
+        let selectedAnswer = null;
+        let answered = false;
+        let currentQuizType = '';
+
+        // Load quiz data from JSON file
+        async function loadQuizData() {
+            try {
+                const response = await fetch('quiz_data.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                quizData = await response.json();
+                
+                // Hide loading message and show quiz selector
+                document.getElementById('loadingMessage').style.display = 'none';
+                document.getElementById('quizSelector').style.display = 'flex';
+                
+                // Populate choices dynamically
+                populateChoices();
+                
+            } catch (error) {
+                console.error('Error loading quiz data:', error);
+                document.getElementById('loadingMessage').style.display = 'none';
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+        }
+
+        // Populate choice buttons from JSON data
+        function populateChoices() {
+            const choicesContainer = document.getElementById('choices');
+            choicesContainer.innerHTML = '';
+            
+            quizData.philosophicalTraditions.forEach(tradition => {
+                const button = document.createElement('button');
+                button.className = 'choice-btn';
+                button.textContent = tradition;
+                button.onclick = () => selectAnswer(tradition);
+                choicesContainer.appendChild(button);
+            });
+        }
+
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        function selectQuizType(type) {
+            currentQuizType = type;
+            shuffledQuestions = shuffleArray(quizData.questions);
+            currentQuestionIndex = 0;
+            score = 0;
+            answered = false;
+            
+            // Hide quiz selector and show game elements
+            document.getElementById('quizSelector').style.display = 'none';
+            document.getElementById('progressContainer').style.display = 'block';
+            document.getElementById('stats').style.display = 'block';
+            document.getElementById('questionCard').style.display = 'block';
+            document.getElementById('choices').style.display = 'grid';
+            document.getElementById('nextBtn').style.display = 'inline-block';
+            
+            // Update card styling for concept quiz
+            const questionCard = document.getElementById('questionCard');
+            if (type === 'concept') {
+                questionCard.classList.add('concept');
+            } else {
+                questionCard.classList.remove('concept');
+            }
+            
+            showQuestion();
+        }
+
+        function showQuestion() {
+            if (currentQuestionIndex >= shuffledQuestions.length) {
+                showFinalScore();
+                return;
+            }
+
+            const question = shuffledQuestions[currentQuestionIndex];
+            const questionText = document.getElementById('questionText');
+            
+            if (currentQuizType === 'quote') {
+                questionText.textContent = question.quote;
+                questionText.className = 'quote';
+            } else {
+                questionText.textContent = question.concept;
+                questionText.className = 'concept';
+            }
+            
+            document.getElementById('stats').textContent = `Question ${currentQuestionIndex + 1} of ${shuffledQuestions.length} | Score: ${score}/${currentQuestionIndex}`;
+            
+            const progress = ((currentQuestionIndex) / shuffledQuestions.length) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+            
+            // Reset button states
+            const buttons = document.querySelectorAll('.choice-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('correct', 'incorrect');
+                btn.disabled = false;
+            });
+            
+            document.getElementById('result').classList.remove('show');
+            document.getElementById('nextBtn').disabled = true;
+            answered = false;
+            selectedAnswer = null;
+        }
+
+        function selectAnswer(answer) {
+            if (answered) return;
+            
+            answered = true;
+            selectedAnswer = answer;
+            const question = shuffledQuestions[currentQuestionIndex];
+            const buttons = document.querySelectorAll('.choice-btn');
+            
+            buttons.forEach(btn => {
+                btn.disabled = true;
+                if (btn.textContent === question.answer) {
+                    btn.classList.add('correct');
+                } else if (btn.textContent === answer && answer !== question.answer) {
+                    btn.classList.add('incorrect');
+                }
+            });
+            
+            const result = document.getElementById('result');
+            if (answer === question.answer) {
+                score++;
+                if (currentQuizType === 'quote') {
+                    result.innerHTML = `<strong>✅ Correct!</strong><br><strong>${question.answer}</strong> (${question.philosopher}, ${question.year})<br><br><em>Concept:</em> ${question.concept}`;
+                } else {
+                    result.innerHTML = `<strong>✅ Correct!</strong><br><strong>${question.answer}</strong> (${question.philosopher}, ${question.year})<br><br><em>Quote:</em> "${question.quote}"`;
+                }
+                result.className = 'result show correct';
+            } else {
+                if (currentQuizType === 'quote') {
+                    result.innerHTML = `<strong>❌ Incorrect!</strong><br>The correct answer is <strong>${question.answer}</strong> (${question.philosopher}, ${question.year})<br><br><em>Concept:</em> ${question.concept}`;
+                } else {
+                    result.innerHTML = `<strong>❌ Incorrect!</strong><br>The correct answer is <strong>${question.answer}</strong> (${question.philosopher}, ${question.year})<br><br><em>Quote:</em> "${question.quote}"`;
+                }
+                result.className = 'result show incorrect';
+            }
+            
+            document.getElementById('nextBtn').disabled = false;
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            showQuestion();
+        }
+
+        function showFinalScore() {
+            const percentage = Math.round((score / shuffledQuestions.length) * 100);
+            let message = '';
+            
+            if (percentage >= 90) {
+                message = '🎓 Philosophical Master! You have exceptional knowledge of philosophical traditions.';
+            } else if (percentage >= 80) {
+                message = '📚 Philosophy Scholar! You have a strong understanding of philosophical concepts.';
+            } else if (percentage >= 70) {
+                message = '🤔 Thoughtful Student! You have a good grasp of philosophical ideas.';
+            } else if (percentage >= 60) {
+                message = '💭 Curious Mind! You have some knowledge of philosophical traditions.';
+            } else {
+                message = '🌱 Beginning Philosopher! Keep exploring the world of philosophical thought.';
+            }
+            
+            const quizTypeText = currentQuizType === 'quote' ? 'Quote Quiz' : 'Concept Quiz';
+            document.getElementById('questionText').innerHTML = `
+                <div class="final-score">Final Score: ${score}/${shuffledQuestions.length} (${percentage}%)</div>
+                <div>${message}</div>
+                <div style="margin-top: 20px; font-size: 0.9em; color: #7f8c8d;">${quizTypeText} Complete</div>
+            `;
+            
+            document.getElementById('choices').style.display = 'none';
+            document.getElementById('nextBtn').style.display = 'none';
+            document.getElementById('gameControls').style.display = 'block';
+            document.getElementById('result').classList.remove('show');
+            document.getElementById('progressBar').style.width = '100%';
+            document.getElementById('stats').textContent = `Quiz Complete! | Final Score: ${score}/${shuffledQuestions.length}`;
+        }
+
+        function restartQuiz() {
+            selectQuizType(currentQuizType);
+        }
+
+        function backToMenu() {
+            // Reset everything to initial state
+            document.getElementById('quizSelector').style.display = 'flex';
+            document.getElementById('progressContainer').style.display = 'none';
+            document.getElementById('stats').style.display = 'none';
+            document.getElementById('questionCard').style.display = 'none';
+            document.getElementById('choices').style.display = 'none';
+            document.getElementById('nextBtn').style.display = 'none';
+            document.getElementById('gameControls').style.display = 'none';
+            document.getElementById('result').classList.remove('show');
+            document.getElementById('progressBar').style.width = '0%';
+            
+            // Reset question card styling
+            document.getElementById('questionCard').classList.remove('concept');
+            document.getElementById('questionText').textContent = 'Ready to test your philosophical knowledge?';
+            document.getElementById('questionText').className = 'quote';
+        }
+
+        // Initialize the quiz when the page loads
+        document.addEventListener('DOMContentLoaded', loadQuizData);
+    </script>
+</body>
+</html>
