@@ -403,6 +403,12 @@
                             <label for="waterPlusTemp">Water+ Temperature (°C)</label>
                             <input type="number" id="waterPlusTemp" placeholder="80">
                         </div>
+
+                        <div class="form-group" style="grid-column: 1 / -1;">
+                            <label for="notes">Notes</label>
+                            <textarea id="notes" placeholder="Add brewing notes, tasting notes, or any other comments..." rows="4"></textarea>
+                        </div>
+                        
                     </div>
                     
                     <div class="button-actions">
@@ -610,7 +616,7 @@
 
         // Clear form
         function clearForm() {
-            const inputs = document.querySelectorAll('#brews input, #brews select');
+            const inputs = document.querySelectorAll('#brews input, #brews select, #brews textarea');
             inputs.forEach(input => {
                 if (input.type === 'number') {
                     input.value = '';
@@ -678,6 +684,7 @@
                 frothLevel: document.getElementById('frothLevel').value,
                 waterPlus: document.getElementById('waterPlus').value,
                 waterPlusTemp: document.getElementById('waterPlusTemp').value
+                notes: document.getElementById('notes').value      
             };
             
             // Generate ID if new brew
