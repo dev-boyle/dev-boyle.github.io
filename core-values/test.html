@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Core Values Assessment Cards</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #d4b896 0%, #a08660 100%);
+            min-height: 100vh;
+            padding: 20px;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .io-buttons {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .io-buttons button {
+            background-color: #9c7c54;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin: 0 10px;
+        }
+
+        .io-buttons button:hover {
+            background-color: #c7a882;
+        }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        
+        .card-header {
+            background: linear-gradient(135deg, #c7a882 0%, #9c7c54 100%);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .card-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .card-content {
+            padding: 1.5rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0;
+        }
+        
+        th {
+            background-color: #f5f1ea;
+            padding: 12px 8px;
+            text-align: center;
+            font-weight: 600;
+            color: #6b5b47;
+            border-bottom: 2px solid #e8dcc9;
+            font-size: 0.9rem;
+        }
+        
+        td {
+            padding: 12px 8px;
+            border-bottom: 1px solid #e8dcc9;
+            vertical-align: top;
+        }
+        
+        .rank-cell {
+            width: 60px;
+            text-align: center;
+            background-color: #f5f1ea;
+            border-right: 1px solid #e8dcc9;
+        }
+        
+        .value-name {
+            font-weight: 600;
+            color: #5d4e3a;
+            margin-bottom: 4px;
+        }
+        
+        .value-description {
+            font-size: 0.85rem;
+            color: #8a7963;
+            line-height: 1.4;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #faf8f3;
+        }
+        
+        tr:hover {
+            background-color: #f0ead6;
+            transition: background-color 0.2s ease;
+        }
+        
+        input[type="number"] {
+            width: 40px;
+            padding: 4px;
+            border: 1px solid #d0c4a8;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #c7a882;
+            box-shadow: 0 0 0 2px rgba(199, 168, 130, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Core Values Assessment</h1>
+        
+        <div class="io-buttons">
+            <button id="exportButton">Export Rankings</button>
+            <button id="importButton">Import Rankings</button>
+            <input type="file" id="importFile" style="display: none;" accept=".json">
+        </div>
+
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Character and Personal Development</h2>
+                </div>
+                <div class="card-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Priority Rank</th>
+                                <th>Strength Rank</th>
+                                <th>Core Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td>
+                                    <div class="value-name">Authenticity</div>
+                                    <div class="value-description">Being true to yourself rather than conforming to others' expectations</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td>
+                                    <div class="value-name">Growth mindset</div>
+                                    <div class="value-description">Choosing options that promote learning and development over comfort</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td>
+                                    <div class="value-name">Resilience</div>
+                                    <div class="value-description">Building capacity to handle adversity and bounce back from setbacks</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td>
+                                    <div class="value-name">Self-discipline</div>
+                                    <div class="value-description">Making choices that strengthen your ability to act according to your principles</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td>
+                                    <div class="value-name">Humility</div>
+                                    <div class="value-description">Remaining open to being wrong and learning from others</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Relationships and Community</h2>
+                </div>
+                <div class="card-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Priority Rank</th>
+                                <th>Strength Rank</th>
+                                <th>Core Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td>
+                                    <div class="value-name">Compassion</div>
+                                    <div class="value-description">Considering the suffering of others and acting to alleviate it when possible</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td>
+                                    <div class="value-name">Loyalty</div>
+                                    <div class="value-description">Honoring commitments to people who have earned your trust</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td>
+                                    <div class="value-name">Service</div>
+                                    <div class="value-description">Contributing to causes larger than yourself</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td>
+                                    <div class="value-name">Mentorship</div>
+                                    <div class="value-description">Helping others develop their potential</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td>
+                                    <div class="value-name">Reciprocity</div>
+                                    <div class="value-description">Giving back to those who have helped you</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Excellence and Achievement</h2>
+                </div>
+                <div class="card-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Priority Rank</th>
+                                <th>Strength Rank</th>
+                                <th>Core Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td>
+                                    <div class="value-name">Craftsmanship</div>
+                                    <div class="value-description">Doing quality work regardless of external recognition</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td>
+                                    <div class="value-name">Innovation</div>
+                                    <div class="value-description">Creating new solutions or improving existing ones</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td>
+                                    <div class="value-name">Mastery</div>
+                                    <div class="value-description">Developing deep competence in areas that matter to you</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td>
+                                    <div class="value-name">Efficiency</div>
+                                    <div class="value-description">Using resources (time, money, energy) thoughtfully</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td>
+                                    <div class="value-name">Excellence</div>
+                                    <div class="value-description">Striving to do your best rather than just meeting minimum standards</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Freedom and Autonomy</h2>
+                </div>
+                <div class="card-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Priority Rank</th>
+                                <th>Strength Rank</th>
+                                <th>Core Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td>
+                                    <div class="value-name">Independence</div>
+                                    <div class="value-description">Maintaining your ability to make choices without undue external pressure</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td>
+                                    <div class="value-name">Privacy</div>
+                                    <div class="value-description">Protecting your personal space and information</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td>
+                                    <div class="value-name">Self-reliance</div>
+                                    <div class="value-description">Developing capacity to handle challenges without always depending on others</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td>
+                                    <div class="value-name">Financial security</div>
+                                    <div class="value-description">Maintaining resources that preserve your freedom of choice</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Health and Well-being</h2>
+                </div>
+                <div class="card-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Priority Rank</th>
+                                <th>Strength Rank</th>
+                                <th>Core Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td>
+                                    <div class="value-name">Physical health</div>
+                                    <div class="value-description">Making choices that support your body's long-term function</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td>
+                                    <div class="value-name">Mental health</div>
+                                    <div class="value-description">Protecting and nurturing your psychological well-being</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td>
+                                    <div class="value-name">Work-life balance</div>
+                                    <div class="value-description">Maintaining sustainable rhythms of effort and rest</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td>
+                                    <div class="value-name">Joy</div>
+                                    <div class="value-description">Allowing space for pleasure and celebration in life</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td>
+                                    <div class="value-name">Peace</div>
+                                    <div class="value-description">Seeking inner tranquility and external harmony when possible</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Knowledge and Truth</h2>
+                </div>
+                <div class="card-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Priority Rank</th>
+                                <th>Strength Rank</th>
+                                <th>Core Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td>
+                                    <div class="value-name">Curiosity</div>
+                                    <div class="value-description">Remaining interested in learning and understanding</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td>
+                                    <div class="value-name">Honesty</div>
+                                    <div class="value-description">Commitment to truth in both internal reflection and external communication</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td>
+                                    <div class="value-name">Critical thinking</div>
+                                    <div class="value-description">Questioning assumptions and examining evidence</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td>
+                                    <div class="value-name">Wisdom</div>
+                                    <div class="value-description">Seeking understanding rather than just information</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Legacy and Impact</h2>
+                </div>
+                <div class="card-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Priority Rank</th>
+                                <th>Strength Rank</th>
+                                <th>Core Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td>
+                                    <div class="value-name">Environmental stewardship</div>
+                                    <div class="value-description">Considering the impact of your choices on the natural world</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td>
+                                    <div class="value-name">Future generations</div>
+                                    <div class="value-description">Thinking about how your actions affect those who come after you</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td>
+                                    <div class="value-name">Cultural contribution</div>
+                                    <div class="value-description">Adding something positive to the human story</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td>
+                                    <div class="value-name">Positive influence</div>
+                                    <div class="value-description">Using your presence to make situations better rather than worse</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Spiritual and Transcendent Values</h2>
+                </div>
+                <div class="card-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Priority Rank</th>
+                                <th>Strength Rank</th>
+                                <th>Core Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td>
+                                    <div class="value-name">Meaning</div>
+                                    <div class="value-description">Choosing actions that connect to your sense of purpose</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td>
+                                    <div class="value-name">Gratitude</div>
+                                    <div class="value-description">Appreciating what you have rather than focusing on what you lack</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td>
+                                    <div class="value-name">Acceptance</div>
+                                    <div class="value-description">Working with reality as it is rather than as you wish it were</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td>
+                                    <div class="value-name">Connection</div>
+                                    <div class="value-description">Recognizing your interdependence with others and the world</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td class="rank-cell"><input type="number" min="1" max="10"></td>
+                                <td>
+                                    <div class="value-name">Wonder</div>
+                                    <div class="value-description">Maintaining appreciation for the mystery and beauty of existence</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('exportButton').addEventListener('click', () => {
+            const rankings = {};
+            document.querySelectorAll('.card').forEach(card => {
+                const category = card.querySelector('h2').textContent;
+                rankings[category] = [];
+                card.querySelectorAll('tbody tr').forEach(row => {
+                    const valueName = row.querySelector('.value-name').textContent;
+                    const inputs = row.querySelectorAll('input[type="number"]');
+                    const priorityRank = inputs[0].value;
+                    const strengthRank = inputs[1].value;
+                    rankings[category].push({
+                        value: valueName,
+                        priority: priorityRank,
+                        strength: strengthRank
+                    });
+                });
+            });
+
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(rankings, null, 2));
+            const downloadAnchorNode = document.createElement('a');
+            downloadAnchorNode.setAttribute("href", dataStr);
+            downloadAnchorNode.setAttribute("download", "core_values.json");
+            document.body.appendChild(downloadAnchorNode);
+            downloadAnchorNode.click();
+            downloadAnchorNode.remove();
+        });
+
+        document.getElementById('importButton').addEventListener('click', () => {
+            document.getElementById('importFile').click();
+        });
+
+        document.getElementById('importFile').addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (!file) {
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const rankings = JSON.parse(e.target.result);
+                    for (const category in rankings) {
+                        const card = Array.from(document.querySelectorAll('.card')).find(c => c.querySelector('h2').textContent === category);
+                        if (card) {
+                            rankings[category].forEach(valueRanking => {
+                                const row = Array.from(card.querySelectorAll('tbody tr')).find(r => r.querySelector('.value-name').textContent === valueRanking.value);
+                                if (row) {
+                                    const inputs = row.querySelectorAll('input[type="number"]');
+                                    inputs[0].value = valueRanking.priority;
+                                    inputs[1].value = valueRanking.strength;
+                                }
+                            });
+                        }
+                    }
+                } catch (error) {
+                    alert('Error reading or parsing the file. Please make sure it is a valid JSON file.');
+                    console.error("Import error:", error);
+                }
+            };
+            reader.readAsText(file);
+            
+            // Reset file input to allow re-importing the same file
+            event.target.value = '';
+        });
+    </script>
+</body>
+</html>
