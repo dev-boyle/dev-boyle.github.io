@@ -154,6 +154,19 @@
             box-shadow: 0 0 0 3px rgba(93, 64, 55, 0.3);
         }
 
+        .form-group input::placeholder,
+        .form-group select::placeholder,
+        .form-group textarea::placeholder {
+            color: #8D6E63;
+            opacity: 0.6;
+        }
+
+        .form-group input:focus::placeholder,
+        .form-group select:focus::placeholder,
+        .form-group textarea:focus::placeholder {
+            opacity: 0.4;
+        }
+
         .button {
             padding: 12px 25px;
             border: none;
@@ -641,6 +654,11 @@
             
             currentBrewId = brewId;
             const brew = brews[brewId];
+
+            // Handle the name field specifically since it has a different ID
+            if (brew.name) {
+                document.getElementById('brewName').value = brew.name;
+            }
             
             // Populate form with brew data
             Object.keys(brew).forEach(key => {
