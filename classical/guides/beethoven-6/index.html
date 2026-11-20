@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Beethoven: Symphony No. 6 "Pastoral" — Listening Guide</title>
+<style>
+  :root {
+    --bg: #faf7f2; --ink: #26231f; --muted: #6b645b; --accent: #2f6b4f;
+    --accent-soft: #e4efe8; --rule: #ddd5c8; --card: #fff; --warn: #fff4d6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #17191a; --ink: #ece8e0; --muted: #a39d92; --accent: #7fc4a0;
+            --accent-soft: #22302a; --rule: #34383a; --card: #1f2224; --warn: #3a3320; }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 19px/1.65 Georgia, "Iowan Old Style", serif;
+         padding-bottom: env(safe-area-inset-bottom); }
+  header { padding: 2.5rem 1.25rem 1.25rem; max-width: 46rem; margin: 0 auto; }
+  header .kicker { font: 600 .8rem/1 -apple-system, system-ui, sans-serif; letter-spacing: .12em;
+                   text-transform: uppercase; color: var(--accent); }
+  h1 { font-size: 2.1rem; line-height: 1.2; margin: .5rem 0 .4rem; }
+  .sub { color: var(--muted); margin: 0; }
+
+  /* Sticky tap-to-navigate bar */
+  nav.bar { position: sticky; top: 0; z-index: 10; background: var(--bg);
+            border-bottom: 1px solid var(--rule); padding-top: env(safe-area-inset-top); }
+  nav.bar .chips { display: flex; gap: .5rem; overflow-x: auto; padding: .6rem 1.25rem;
+                   max-width: 46rem; margin: 0 auto; -webkit-overflow-scrolling: touch; }
+  nav.bar a { flex: none; font: 600 .95rem/1 -apple-system, system-ui, sans-serif; text-decoration: none;
+              color: var(--ink); background: var(--card); border: 1px solid var(--rule);
+              padding: .8rem 1rem; border-radius: 999px; min-height: 44px; display: inline-flex; align-items: center; }
+  nav.bar a.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  main { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem 4rem; }
+  section { padding-top: 2rem; scroll-margin-top: 4.6rem; }
+  h2 { font-size: 1.55rem; line-height: 1.25; margin: 0 0 .25rem; }
+  .meta { font: .9rem/1.5 -apple-system, system-ui, sans-serif; color: var(--muted); margin: 0 0 1rem; }
+  h3 { font: 700 .85rem/1 -apple-system, system-ui, sans-serif; letter-spacing: .1em; text-transform: uppercase;
+       color: var(--accent); margin: 1.6rem 0 .5rem; }
+
+  .listen { display: flex; flex-wrap: wrap; gap: .6rem; margin: .5rem 0 1.25rem; }
+  .listen a { font: 600 1rem/1 -apple-system, system-ui, sans-serif; text-decoration: none; color: #fff;
+              background: var(--accent); padding: .9rem 1.1rem; border-radius: 12px; min-height: 44px;
+              display: inline-flex; align-items: center; gap: .4rem; }
+  .listen a.alt { background: var(--accent-soft); color: var(--accent); }
+
+  ul.map { list-style: none; padding: 0; margin: 0; border-left: 3px solid var(--accent-soft); }
+  ul.map li { padding: .35rem 0 .35rem 1rem; }
+  ul.map b { font-family: -apple-system, system-ui, sans-serif; font-size: .9rem; color: var(--accent); }
+
+  figure.score { margin: 1.25rem 0; background: var(--card); border: 1px solid var(--rule);
+                 border-radius: 12px; padding: .75rem; }
+  figure.score img { width: 100%; height: auto; display: block; background: #fff; border-radius: 6px; }
+  figure.score .slot { display: none; padding: 1.1rem; background: var(--warn); border-radius: 6px;
+                       font: .9rem/1.5 -apple-system, system-ui, sans-serif; }
+  figure.score.missing img { display: none; }
+  figure.score.missing .slot { display: block; }
+  figcaption { font: .9rem/1.5 -apple-system, system-ui, sans-serif; color: var(--muted); margin-top: .6rem; }
+
+  .callout { background: var(--accent-soft); border-radius: 12px; padding: .9rem 1.1rem; margin: 1.25rem 0;
+             font-size: .98rem; }
+  table { width: 100%; border-collapse: collapse; font: .95rem/1.45 -apple-system, system-ui, sans-serif; }
+  th, td { text-align: left; padding: .6rem .4rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; }
+  td a { color: var(--accent); font-weight: 600; }
+  footer { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem 3rem; color: var(--muted);
+           font: .85rem/1.5 -apple-system, system-ui, sans-serif; }
+  .top { display: inline-block; margin-top: 1.25rem; font: 600 .9rem -apple-system, system-ui, sans-serif;
+         color: var(--accent); text-decoration: none; padding: .6rem 0; }
+</style>
+</head>
+<body>
+
+<header id="top">
+  <div class="kicker">Listening guide</div>
+  <h1>Beethoven: Symphony No.&nbsp;6 in F major, Op.&nbsp;68 "Pastoral"</h1>
+  <p class="sub">Premiered 22 December 1808, Vienna · five movements · about 40 minutes · built on a short video guide, written out to read at your own pace</p>
+</header>
+
+<nav class="bar" aria-label="Guide outline">
+  <div class="chips">
+    <a href="#intro">Intro</a>
+    <a href="#m1">1 · Arrival</a>
+    <a href="#m2">2 · Brook</a>
+    <a href="#m3">3 · Folk</a>
+    <a href="#m4">4 · Storm</a>
+    <a href="#m5">5 · Shepherd's Song</a>
+    <a href="#recordings">Recordings</a>
+  </div>
+</nav>
+
+<main>
+
+<section id="intro">
+  <h2>Before you press play</h2>
+  <p class="meta">The one symphony where Beethoven gave every movement a title.</p>
+  <p>Beethoven headed the score with a warning: the work is "more an expression of feeling than painting." The titles are invitations to a mood, not a script. He is not trying to imitate the countryside note for note. He wants you to feel what it is like to walk out of the city and let your shoulders drop.</p>
+  <p>Three things make this symphony different from his others, and they are worth carrying into every movement:</p>
+  <ul>
+    <li><b>Patience.</b> Short musical cells repeat many times over slowly shifting harmony. Where his Fifth drives forward, the Sixth lets things sit.</li>
+    <li><b>Five movements, not four.</b> The country dance, the storm and the closing hymn run together without a break.</li>
+    <li><b>Nature in the orchestra.</b> There are named bird calls in the second movement. The storm brings in the piccolo and timpani, heard nowhere else in the symphony, plus trombones, which return only in the finale.</li>
+  </ul>
+  <div class="callout"><b>Hearing it all in one go:</b> the five titles tell the story. Arrival → a brook → villagers dancing → a storm breaks in → a song of thanks.</div>
+  <div class="listen">
+    <a href="https://music.apple.com/us/search?term=Beethoven%20Symphony%20No.%206%20Pastoral">▶ Whole symphony on Apple Music</a>
+  </div>
+</section>
+
+<section id="m1">
+  <h2>1. Awakening of cheerful feelings on arriving in the country</h2>
+  <p class="meta">Allegro ma non troppo · F major · 2/4 · sonata form</p>
+  <div class="listen">
+    <a href="https://music.apple.com/us/search?term=Beethoven%20Pastoral%20Symphony%20Allegro%20ma%20non%20troppo%20Erwachen%20heiterer%20Empfindungen">▶ Listen: 1st movement</a>
+  </div>
+
+  <h3>Listening map</h3>
+  <ul class="map">
+    <li><b>OPENING</b> A gentle first theme in the violins, built from a tiny cell that is repeated and nudged up and down.</li>
+    <li><b>EXPOSITION</b> The second theme arrives in C major, in the same easy mood. Nothing here argues.</li>
+    <li><b>DEVELOPMENT</b> The cell is repeated over and over while the harmony slowly shifts underneath. This is the stretch people call "hypnotic."</li>
+    <li><b>RECAP &amp; CODA</b> The themes return in F major and the movement ends quietly rather than with a flourish.</li>
+  </ul>
+
+  <figure class="score" id="fig-m1-theme">
+    <img src="img/m1-theme.png" alt="Score excerpt: opening theme of the first movement" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> Movement 1, opening bars (first violins). Save the crop as <code>img/m1-theme.png</code>.</div>
+    <figcaption>Opening theme. Count how many times the little cell repeats before the phrase moves on.</figcaption>
+  </figure>
+
+  <h3>What to listen for</h3>
+  <p>Notice what Beethoven does <em>not</em> do. In the middle of the movement a single idea is repeated for long stretches and the music still feels like it is moving, because the colors and harmonies slide beneath it the way light shifts on a hillside.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="m2">
+  <h2>2. Scene by the brook</h2>
+  <p class="meta">Andante molto mosso · B-flat major · 12/8 · sonata form</p>
+  <div class="listen">
+    <a href="https://music.apple.com/us/search?term=Beethoven%20Pastoral%20Symphony%20Andante%20molto%20mosso%20Szene%20am%20Bach">▶ Listen: 2nd movement</a>
+  </div>
+
+  <h3>Listening map</h3>
+  <ul class="map">
+    <li><b>BROOK</b> The strings murmur in a gentle 12/8 rocking figure. Two solo cellos play with mutes (marked <em>soli con sordini</em>) while the other cellos and basses pluck below. The water never stops.</li>
+    <li><b>MELODIES</b> Long, singing themes float over the murmur.</li>
+    <li><b>CODA</b> The orchestra thins out and the birds appear. Beethoven labels them in the score: <i>Nachtigall</i> (nightingale, flute), <i>Wachtel</i> (quail, oboe) and <i>Kuckuck</i> (cuckoo, clarinets).</li>
+  </ul>
+
+  <figure class="score" id="fig-m2-brook">
+    <img src="img/m2-brook.png" alt="Score excerpt: the brook figure in the strings" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> Movement 2, opening bars showing the murmuring strings. Save as <code>img/m2-brook.png</code>.</div>
+    <figcaption>The brook: the opening bars. Notice the two solo muted cellos in the lower staves.</figcaption>
+  </figure>
+
+  <figure class="score" id="fig-m2-birds">
+    <img src="img/m2-birds.png" alt="Score excerpt: the bird-call cadenza near the end of the second movement" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> Movement 2, the bird-call cadenza (flute, oboe, clarinets) with Beethoven's labels. Save as <code>img/m2-birds.png</code>.</div>
+    <figcaption>The bird-call passage near the end (PDF page 71, from m. 128). Look for the three printed bird names above the staves.</figcaption>
+  </figure>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="m3">
+  <h2>3. Merry gathering of country folk</h2>
+  <p class="meta">Allegro · F major · 3/4 scherzo, with a 2/4 trio · played without a break into the storm</p>
+  <div class="listen">
+    <a href="https://music.apple.com/us/search?term=Beethoven%20Pastoral%20Symphony%20Allegro%20Lustiges%20Zusammensein%20der%20Landleute">▶ Listen: 3rd movement</a>
+  </div>
+
+  <h3>Listening map</h3>
+  <ul class="map">
+    <li><b>SCHERZO</b> A bouncy 3/4 dance that starts almost under its breath, then grows.</li>
+    <li><b>VILLAGE BAND</b> A joke inside the scherzo. The oboe's tune keeps missing the downbeat, and the bassoon seems to know only two notes.</li>
+    <li><b>TRIO</b> The meter switches to 2/4 and the dancers stamp. Loud <em>sf</em> accents land on the first beat of almost every bar.</li>
+    <li><b>RETURNS</b> The pattern runs scherzo, trio, scherzo, trio, then a cut-short scherzo. The dance breaks off as the first thunder arrives.</li>
+  </ul>
+
+  <figure class="score" id="fig-m3-band">
+    <img src="img/m3-band.png" alt="Score excerpt: the oboe tune, bassoon and violins in the scherzo" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> Movement 3, oboe, bassoon and violins from m. 96. Save as <code>img/m3-band.png</code>.</div>
+    <figcaption>The village band (from m. 96; staves that are silent here are left out). Follow the oboe's syncopated line and see how sparse the second bassoon part is.</figcaption>
+  </figure>
+
+  <figure class="score" id="fig-m3-trio">
+    <img src="img/m3-trio.png" alt="Score excerpt: the start of the 2/4 trio at m. 165" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> Movement 3, the 2/4 trio at m. 165. Save as <code>img/m3-trio.png</code>.</div>
+    <figcaption>The trio at m. 165 ("a tempo Allegro", ♩ = 132). Look for the <em>sf</em> markings under almost every chord.</figcaption>
+  </figure>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="m4">
+  <h2>4. Thunder, storm</h2>
+  <p class="meta">Allegro · F minor · 4/4 · no break after the third movement</p>
+  <div class="listen">
+    <a href="https://music.apple.com/us/search?term=Beethoven%20Pastoral%20Symphony%20Allegro%20Gewitter%20Sturm">▶ Listen: 4th movement</a>
+  </div>
+
+  <h3>Listening map</h3>
+  <ul class="map">
+    <li><b>FIRST DROPS</b> Cellos and basses rumble first, then the second violins start to patter.</li>
+    <li><b>BREAKING</b> Timpani and the full orchestra crash in. The piccolo and timpani play nowhere else in the symphony, and the trombones join here for the first time.</li>
+    <li><b>CLEARING</b> The storm drains away into the low strings, and a rising flute scale points toward the light and leads straight into the finale.</li>
+  </ul>
+
+  <figure class="score" id="fig-m4-storm">
+    <img src="img/m4-storm.png" alt="Score excerpt: the opening of the storm movement" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> Movement 4, the opening bars (rumbling low strings, patter in the violins). Save as <code>img/m4-storm.png</code>.</div>
+    <figcaption>The storm begins small (page 89 of the score). Notice that the piccolo, trumpets, trombones and timpani are all on the page but silent. They are waiting.</figcaption>
+  </figure>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="m5">
+  <h2>5. Shepherds' song: happy, thankful feelings after the storm</h2>
+  <p class="meta">Allegretto · F major · 6/8 · rondo with sonata features</p>
+  <div class="listen">
+    <a href="https://music.apple.com/us/search?term=Beethoven%20Pastoral%20Symphony%20Allegretto%20Hirtengesang%20Frohe%20und%20dankbare%20Gef%C3%BChle">▶ Listen: 5th movement</a>
+  </div>
+
+  <h3>Listening map</h3>
+  <ul class="map">
+    <li><b>CALL</b> A solo clarinet, then a horn, play a pipe-like shepherd's call.</li>
+    <li><b>HYMN</b> The strings answer with the main tune, a warm, grateful song that returns between episodes.</li>
+    <li><b>CODA</b> The song fades to a hush, with a muted horn (<em>con sordino</em>) floating above shimmering strings, and then two sudden <em>ff</em> chords end the symphony.</li>
+  </ul>
+
+  <figure class="score" id="fig-m5-theme">
+    <img src="img/m5-theme.png" alt="Score excerpt: the shepherd's song theme" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> Movement 5, the clarinet/horn call and the first statement of the song. Save as <code>img/m5-theme.png</code>.</div>
+    <figcaption>The shepherd's song, the movement's refrain.</figcaption>
+  </figure>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="recordings">
+  <h2>Recommended recordings</h2>
+  <p class="meta">Tap a link to search Apple Music for that recording.</p>
+  <table>
+    <tr><th>Conductor · Orchestra</th><th>Character</th></tr>
+    <tr><td><a href="https://music.apple.com/us/search?term=Bohm%20Vienna%20Philharmonic%20Beethoven%20Symphony%206">Karl Böhm · Vienna Philharmonic</a></td><td>Warm and unhurried. A classic reading.</td></tr>
+    <tr><td><a href="https://music.apple.com/us/search?term=Bruno%20Walter%20Columbia%20Symphony%20Beethoven%20Symphony%206">Bruno Walter · Columbia Symphony</a></td><td>Gentle and songful.</td></tr>
+    <tr><td><a href="https://music.apple.com/us/search?term=Otto%20Klemperer%20Philharmonia%20Beethoven%20Symphony%206">Otto Klemperer · Philharmonia</a></td><td>Broad, spacious and weighty.</td></tr>
+    <tr><td><a href="https://music.apple.com/us/search?term=Gardiner%20Orchestre%20Revolutionnaire%20Beethoven%20Symphony%206">John Eliot Gardiner · Orchestre Révolutionnaire et Romantique</a></td><td>Period instruments: lighter, faster, with sharper storm colors.</td></tr>
+  </table>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+</main>
+
+<footer>
+  Score excerpts are cropped from the CCARH edition (© 2008 Center for Computer Assisted Research in the Humanities, musedata.org/beethoven/sym-6) and are shown here for personal, non-commercial study. Links open Apple Music searches. Take the first matching recording or pick one from the table.
+</footer>
+
+<script>
+  // Show a labeled placeholder if a score image hasn't been added yet.
+  document.querySelectorAll('figure.score img').forEach(function (img) {
+    var fig = img.closest('figure');
+    function miss() { fig.classList.add('missing'); }
+    if (img.complete && img.naturalWidth === 0) miss();
+    img.addEventListener('error', miss);
+  });
+  // Highlight the current section in the sticky bar.
+  var links = {};
+  document.querySelectorAll('nav.bar a').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        Object.values(links).forEach(function (a) { a.classList.remove('on'); });
+        var a = links[e.target.id];
+        if (a) { a.classList.add('on'); a.scrollIntoView({ inline: 'center', block: 'nearest' }); }
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  document.querySelectorAll('main section').forEach(function (s) { io.observe(s); });
+</script>
+</body>
+</html>
