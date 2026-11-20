@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Beethoven: Symphony No. 7 — Listening Guide</title>
+<style>
+  :root {
+    --bg: #faf7f2; --ink: #26231f; --muted: #6b645b; --accent: #2f6b4f;
+    --accent-soft: #e4efe8; --rule: #ddd5c8; --card: #fff; --warn: #fff4d6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #17191a; --ink: #ece8e0; --muted: #a39d92; --accent: #7fc4a0;
+            --accent-soft: #22302a; --rule: #34383a; --card: #1f2224; --warn: #3a3320; }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 19px/1.65 Georgia, "Iowan Old Style", serif;
+         padding-bottom: env(safe-area-inset-bottom); }
+  header { padding: 2.5rem 1.25rem 1.25rem; max-width: 46rem; margin: 0 auto; }
+  .back { display: inline-block; font: 600 .95rem -apple-system, system-ui, sans-serif; color: var(--accent);
+          text-decoration: none; padding: .7rem 0; min-height: 44px; }
+  header .kicker { font: 600 .8rem/1 -apple-system, system-ui, sans-serif; letter-spacing: .12em;
+                   text-transform: uppercase; color: var(--accent); }
+  h1 { font-size: 2.1rem; line-height: 1.2; margin: .5rem 0 .4rem; }
+  .sub { color: var(--muted); margin: 0; }
+
+  /* Sticky tap-to-navigate bar */
+  nav.bar { position: sticky; top: 0; z-index: 10; background: var(--bg);
+            border-bottom: 1px solid var(--rule); padding-top: env(safe-area-inset-top); }
+  nav.bar .chips { display: flex; gap: .5rem; overflow-x: auto; padding: .6rem 1.25rem;
+                   max-width: 46rem; margin: 0 auto; -webkit-overflow-scrolling: touch; }
+  nav.bar a { flex: none; font: 600 .95rem/1 -apple-system, system-ui, sans-serif; text-decoration: none;
+              color: var(--ink); background: var(--card); border: 1px solid var(--rule);
+              padding: .8rem 1rem; border-radius: 999px; min-height: 44px; display: inline-flex; align-items: center; }
+  nav.bar a.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  main { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem 4rem; }
+  section { padding-top: 2rem; scroll-margin-top: 4.6rem; }
+  h2 { font-size: 1.55rem; line-height: 1.25; margin: 0 0 .25rem; }
+  .meta { font: .9rem/1.5 -apple-system, system-ui, sans-serif; color: var(--muted); margin: 0 0 1rem; }
+  h3 { font: 700 .85rem/1 -apple-system, system-ui, sans-serif; letter-spacing: .1em; text-transform: uppercase;
+       color: var(--accent); margin: 1.6rem 0 .5rem; }
+
+  .listen { display: flex; flex-wrap: wrap; gap: .6rem; margin: .5rem 0 1.25rem; }
+  .listen a { font: 600 1rem/1 -apple-system, system-ui, sans-serif; text-decoration: none; color: #fff;
+              background: var(--accent); padding: .9rem 1.1rem; border-radius: 12px; min-height: 44px;
+              display: inline-flex; align-items: center; gap: .4rem; }
+  .listen a.alt { background: var(--accent-soft); color: var(--accent); }
+
+  ul.map { list-style: none; padding: 0; margin: 0; border-left: 3px solid var(--accent-soft); }
+  ul.map li { padding: .35rem 0 .35rem 1rem; }
+  ul.map b { font-family: -apple-system, system-ui, sans-serif; font-size: .9rem; color: var(--accent); }
+
+  figure.score { margin: 1.25rem 0; background: var(--card); border: 1px solid var(--rule);
+                 border-radius: 12px; padding: .75rem; }
+  figure.score img { width: 100%; height: auto; display: block; background: #fff; border-radius: 6px; }
+  figure.score .slot { display: none; padding: 1.1rem; background: var(--warn); border-radius: 6px;
+                       font: .9rem/1.5 -apple-system, system-ui, sans-serif; }
+  figure.score.missing img { display: none; }
+  figure.score.missing .slot { display: block; }
+  figcaption { font: .9rem/1.5 -apple-system, system-ui, sans-serif; color: var(--muted); margin-top: .6rem; }
+
+  .callout { background: var(--accent-soft); border-radius: 12px; padding: .9rem 1.1rem; margin: 1.25rem 0;
+             font-size: .98rem; }
+  table { width: 100%; border-collapse: collapse; font: .95rem/1.45 -apple-system, system-ui, sans-serif; }
+  th, td { text-align: left; padding: .6rem .4rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; }
+  td a { color: var(--accent); font-weight: 600; }
+  footer { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem 3rem; color: var(--muted);
+           font: .85rem/1.5 -apple-system, system-ui, sans-serif; }
+  .top { display: inline-block; margin-top: 1.25rem; font: 600 .9rem -apple-system, system-ui, sans-serif;
+         color: var(--accent); text-decoration: none; padding: .6rem 0; }
+</style>
+</head>
+<body>
+
+<header id="top">
+  <a class="back" href="../">← All guides</a>
+  <div class="kicker">Listening guide</div>
+  <h1>Beethoven: Symphony No.&nbsp;7 in A major, Op.&nbsp;92</h1>
+  <p class="sub">Premiered 8 December 1813, Vienna · four movements · about 38 minutes</p>
+</header>
+
+<nav class="bar" aria-label="Guide outline">
+  <div class="chips">
+    <a href="#intro">Intro</a>
+    <a href="#m1">1 · Intro &amp; Vivace</a>
+    <a href="#m2">2 · Allegretto</a>
+    <a href="#m3">3 · Scherzo</a>
+    <a href="#m4">4 · Finale</a>
+    <a href="#recordings">Recordings</a>
+  </div>
+</nav>
+
+<main>
+
+<section id="intro">
+  <h2>Before you press play</h2>
+  <p class="meta">Rhythm is the main character. Wagner called it "the apotheosis of the dance."</p>
+  <p>Beethoven finished the Seventh in 1812, and it had to wait until December 1813 for its first performance. He conducted it himself, deaf by then, at a benefit concert for soldiers wounded in the Napoleonic wars. The orchestra was full of famous musicians. One of them, Louis Spohr, left a vivid account of Beethoven on the podium: crouching down for soft passages and jumping into the air for loud ones. The Allegretto was so well received that the audience made the orchestra play it again.</p>
+  <p>The same program also gave the first performance of <i>Wellington's Victory</i>, a battle piece that got even more applause that night. The Seventh outlasted it by a wide margin.</p>
+  <p>Three things to carry into every movement:</p>
+  <ul>
+    <li><b>One rhythm per movement.</b> Each movement is built around a single short rhythmic figure that keeps coming back: a lilting dotted dance in the first, a steady tread in the second, a rushing triple beat in the third, a whirl in the finale.</li>
+    <li><b>Detours from home.</b> The symphony is in A, but the first movement visits C major and F major, and the scherzo is in F with a trio in D. The detours make each return feel bright.</li>
+    <li><b>Crescendo as a method.</b> Beethoven repeats a pattern and adds volume and instruments each time. The ends of the first and last movements are built this way.</li>
+  </ul>
+  <h3>The sound</h3>
+  <p>This is Beethoven's standard orchestra, only leaner than the one in the "Eroica": strings, pairs of flutes, oboes, clarinets and bassoons, two horns, two trumpets and timpani. There is no piccolo, no trombones and no other percussion, and there is no third horn. What is unusual is not the lineup but how it is used. The horns, trumpets and timpani join in the rhythm almost constantly, so the whole orchestra drives forward. The horns also change their tuning crook from movement to movement (A, E, D, then A again), so each movement gets its own color from them.</p>
+  <div class="callout"><b>Hearing it all in one go:</b> a slow, grand introduction, then a dance that never stops; a dark walking pace; a flash of a scherzo with a hymn in the middle; and a finale that is one long rush.</div>
+  <div class="listen">
+    <a href="https://classical.music.apple.com/us/album/1644892939" target="_blank" rel="noopener">▶ Whole symphony on Apple Music Classical</a>
+  </div>
+  <p class="meta">The listen buttons play Carlos Kleiber's recording with the Vienna Philharmonic. The table at the end has others.</p>
+</section>
+
+<section id="m1">
+  <h2>1. Poco sostenuto – Vivace</h2>
+  <p class="meta">A major · slow introduction in 4/4, then a Vivace in 6/8 · sonata form</p>
+  <div class="listen">
+    <a href="https://classical.music.apple.com/us/album/1644892939?i=1644892962" target="_blank" rel="noopener">▶ Listen: 1st movement</a>
+  </div>
+
+  <h3>Listening map</h3>
+  <ul class="map">
+    <li><b>INTRODUCTION</b> Loud chords open the symphony and alternate with a quiet oboe tune and held notes. Soon the strings climb in long scales. The introduction lasts about 60 bars, slow and spacious.</li>
+    <li><b>THE HANDOFF</b> The introduction narrows down to one repeated note, E. The flutes and oboes tap it out in a dotted rhythm, and that rhythm is the dance before the tune has even arrived.</li>
+    <li><b>EXPOSITION</b> The flute states the dance tune over that same rhythm. It does not stop for the rest of the movement.</li>
+    <li><b>DEVELOPMENT</b> The tune and the rhythm pass around the orchestra, moving through surprising keys, including episodes in C major and F major.</li>
+    <li><b>CODA</b> From bar 391 the cellos and basses rock on a short figure while the violins repeat a two-bar phrase. The volume starts at a whisper and builds and builds.</li>
+  </ul>
+
+  <figure class="score" id="fig-m1-intro">
+    <img src="img/m1-intro.png" alt="Score excerpt: the opening chords and the oboe tune of the first movement" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> Movement 1, opening bars. Save as <code>img/m1-intro.png</code>.</div>
+    <figcaption>The opening bars: loud chords alternate with the quiet oboe tune (second staff from the top).</figcaption>
+  </figure>
+
+  <figure class="score" id="fig-m1-vivace">
+    <img src="img/m1-vivace.png" alt="Score excerpt: the repeated E in flutes and oboes at the start of the Vivace" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> Movement 1, bar 63. Save as <code>img/m1-vivace.png</code>.</div>
+    <figcaption>The Vivace begins (bar 63). Flutes and oboes tap out the dotted rhythm on one note. The flute tune enters near the end of the system.</figcaption>
+  </figure>
+
+  <figure class="score" id="fig-m1-coda">
+    <img src="img/m1-coda.png" alt="Score excerpt: the ostinato in the cellos and basses in the coda" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> Movement 1, bar 393. Save as <code>img/m1-coda.png</code>.</div>
+    <figcaption>Coda, bar 393. The cellos and basses (bottom staff) repeat their figure bar after bar, marked pp, while the violins repeat a two-bar phrase above.</figcaption>
+  </figure>
+
+  <h3>What to listen for</h3>
+  <p>Count how long the dotted rhythm goes without a break. It begins at the end of the introduction and carries on, almost unbroken, to the final chord. The coda is where you can hear it most clearly: the same small pattern, over and over, getting louder with each pass.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="m2">
+  <h2>2. Allegretto</h2>
+  <p class="meta">A minor · 2/4 · a tune that is repeated and built up, with a major-key episode and a fugal passage</p>
+  <div class="listen">
+    <a href="https://classical.music.apple.com/us/album/1644892939?i=1644892963" target="_blank" rel="noopener">▶ Listen: 2nd movement</a>
+  </div>
+
+  <h3>Listening map</h3>
+  <ul class="map">
+    <li><b>OPENING CHORD</b> The winds and horns sound one dark chord, loud at first and then dying away.</li>
+    <li><b>THE TREAD</b> Violas, cellos and basses begin a steady walking rhythm, very quietly: long, short, short, long, long. The rest of the movement is built on it.</li>
+    <li><b>BUILD</b> The tune is played again and again. Each time more instruments join, until the whole orchestra plays it at full volume (around bar 78).</li>
+    <li><b>MAJOR EPISODE</b> At bar 101 the key brightens to A major. The clarinets and bassoons sing a smooth, consoling tune over gently moving triplets in the violins and plucked low strings.</li>
+    <li><b>RETURN AND FUGUE</b> The minor theme comes back, and the strings begin to enter one after another, in the manner of a fugue.</li>
+    <li><b>ENDING</b> The strings play pizzicato, the sound thins, and the movement closes with a short chord.</li>
+  </ul>
+
+  <figure class="score" id="fig-m2-theme">
+    <img src="img/m2-theme.png" alt="Score excerpt: the opening chord and the first entry of the walking rhythm" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> Movement 2, opening bars. Save as <code>img/m2-theme.png</code>.</div>
+    <figcaption>The opening chord in the winds, then the rhythm entering in the violas and cellos (lower staves).</figcaption>
+  </figure>
+
+  <figure class="score" id="fig-m2-clarinet">
+    <img src="img/m2-clarinet.png" alt="Score excerpt: the A major episode with clarinets and bassoons" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> Movement 2, the major episode. Save as <code>img/m2-clarinet.png</code>.</div>
+    <figcaption>The major episode begins at the double bar (bar 101). The clarinets and bassoons sing "dolce" while the lower strings pluck.</figcaption>
+  </figure>
+
+  <h3>What to listen for</h3>
+  <p>The tune barely moves. It is mostly one rhythm and a few notes. What changes is how many instruments play it and how loud they are. Notice how the major episode feels like light coming through a window, and how quickly the minor tread takes over again.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="m3">
+  <h2>3. Presto – Assai meno presto</h2>
+  <p class="meta">F major, with the trio in D major · 3/4 · scherzo and trio, with the trio played twice</p>
+  <div class="listen">
+    <a href="https://classical.music.apple.com/us/album/1644892939?i=1644892964" target="_blank" rel="noopener">▶ Listen: 3rd movement</a>
+  </div>
+
+  <h3>Listening map</h3>
+  <ul class="map">
+    <li><b>SCHERZO</b> A very fast piece full of quick jokes. Loud chords are answered by whispers, and the dynamics swap without warning.</li>
+    <li><b>TRIO (bar 152)</b> The tempo drops. The winds and horns sing a broad tune in D major, often said to come from an Austrian pilgrims' hymn, while the strings mostly hold long notes below.</li>
+    <li><b>SCHERZO AGAIN (bar 235)</b> The fast music returns, much as before.</li>
+    <li><b>TRIO AGAIN (bar 405)</b> The hymn returns a second time. Most scherzos play their trio once, so this is the unusual part.</li>
+    <li><b>SCHERZO, THEN CODA (bars 500 and 643)</b> The scherzo comes round a third time. The trio starts to come back once more but is cut off by a few abrupt chords.</li>
+  </ul>
+
+  <figure class="score" id="fig-m3-scherzo">
+    <img src="img/m3-scherzo.png" alt="Score excerpt: the opening of the scherzo" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> Movement 3, opening bars. Save as <code>img/m3-scherzo.png</code>.</div>
+    <figcaption>The scherzo opens with a loud figure and drops to piano almost at once.</figcaption>
+  </figure>
+
+  <figure class="score" id="fig-m3-trio">
+    <img src="img/m3-trio.png" alt="Score excerpt: the start of the trio" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> Movement 3, bar 152. Save as <code>img/m3-trio.png</code>.</div>
+    <figcaption>The trio (bar 152). The clarinets, bassoons and horns carry the tune, and the violins hold long notes.</figcaption>
+  </figure>
+
+  <h3>What to listen for</h3>
+  <p>The pattern is fast, slow, fast, slow, fast, and then one more attempt at slow. Once you hear the scherzo come back for the second time, you will start to expect the hymn, and the abrupt ending is more fun because of it.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="m4">
+  <h2>4. Allegro con brio</h2>
+  <p class="meta">A major · 2/4 · sonata form · fast and loud almost throughout</p>
+  <div class="listen">
+    <a href="https://classical.music.apple.com/us/album/1644892939?i=1644893237" target="_blank" rel="noopener">▶ Listen: 4th movement</a>
+  </div>
+
+  <h3>Listening map</h3>
+  <ul class="map">
+    <li><b>OPENING</b> Two crashing chords from the whole orchestra, and then the violins start to whirl, with sharp accents landing on the offbeats.</li>
+    <li><b>THE RUSH</b> The whirling figure and its accents are passed around the orchestra. It rarely stops for breath.</li>
+    <li><b>CODA</b> Near the end the violas, cellos and basses rock on a two-note figure, bar after bar, while the markings call for the music to get louder and louder. Then a rush of scales and a string of chords bring the symphony to a close.</li>
+  </ul>
+
+  <figure class="score" id="fig-m4-open">
+    <img src="img/m4-open.png" alt="Score excerpt: the two opening chords and the start of the whirling figure" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> Movement 4, opening bars. Save as <code>img/m4-open.png</code>.</div>
+    <figcaption>The two chords and then the whirl begins in the violins, with the accented offbeats in the winds and horns.</figcaption>
+  </figure>
+
+  <figure class="score" id="fig-m4-coda">
+    <img src="img/m4-coda.png" alt="Score excerpt: the rocking figure in the lower strings in the coda" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> Movement 4, bar 400. Save as <code>img/m4-coda.png</code>.</div>
+    <figcaption>Coda, bar 400. Violas, cellos and basses rock on two notes, marked "sempre più f" (always louder).</figcaption>
+  </figure>
+
+  <h3>What to listen for</h3>
+  <p>This is the same method as the end of the first movement, but with more force. Follow the bass line in the last minute. It hardly moves, and the energy comes from everything above it getting louder.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="recordings">
+  <h2>Recommended recordings</h2>
+  <p class="meta">Tap a link to open that album in Apple Music Classical.</p>
+  <table>
+    <tr><th>Conductor · Orchestra</th><th>Character</th></tr>
+    <tr><td><a href="https://classical.music.apple.com/us/album/1644892939" target="_blank" rel="noopener">Carlos Kleiber · Vienna Philharmonic</a></td><td>Famously electric and driven. One of the most admired recordings of the piece.</td></tr>
+    <tr><td><a href="https://classical.music.apple.com/us/album/930843917" target="_blank" rel="noopener">Otto Klemperer · Philharmonia</a></td><td>Broad, spacious and weighty.</td></tr>
+    <tr><td><a href="https://classical.music.apple.com/us/album/1408173286" target="_blank" rel="noopener">Nikolaus Harnoncourt · Vienna Philharmonic (live)</a></td><td>A relaxed introduction, then a gradual build. The dance feeling is strong.</td></tr>
+    <tr><td><a href="https://classical.music.apple.com/us/album/562089767" target="_blank" rel="noopener">John Eliot Gardiner · Orchestre Révolutionnaire et Romantique (live)</a></td><td>Period instruments: lighter, quicker and sharper-edged.</td></tr>
+  </table>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+</main>
+
+<footer>
+  <a class="back" href="../">← All guides</a><br>
+  Score excerpts are cropped from the CCARH edition (© 2008 Center for Computer Assisted Research in the Humanities, musedata.org/beethoven/sym-7) and are shown here for personal, non-commercial study. Links open Apple Music Classical (in the app if you have it). Listen buttons play Carlos Kleiber's recording; the table lists other recordings.
+</footer>
+
+<script>
+  // Show a labeled placeholder if a score image hasn't been added yet.
+  document.querySelectorAll('figure.score img').forEach(function (img) {
+    var fig = img.closest('figure');
+    function miss() { fig.classList.add('missing'); }
+    if (img.complete && img.naturalWidth === 0) miss();
+    img.addEventListener('error', miss);
+  });
+  // Highlight the current section in the sticky bar.
+  var links = {};
+  document.querySelectorAll('nav.bar a').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        Object.values(links).forEach(function (a) { a.classList.remove('on'); });
+        var a = links[e.target.id];
+        if (a) { a.classList.add('on'); a.scrollIntoView({ inline: 'center', block: 'nearest' }); }
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  document.querySelectorAll('main section').forEach(function (s) { io.observe(s); });
+</script>
+</body>
+</html>
