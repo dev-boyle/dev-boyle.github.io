@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mozart: Requiem in D minor, K. 626 — Listening Guide</title>
+<style>
+  :root {
+    --bg: #faf7f2; --ink: #26231f; --muted: #6b645b; --accent: #2f6b4f;
+    --accent-soft: #e4efe8; --rule: #ddd5c8; --card: #fff; --warn: #fff4d6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #17191a; --ink: #ece8e0; --muted: #a39d92; --accent: #7fc4a0;
+            --accent-soft: #22302a; --rule: #34383a; --card: #1f2224; --warn: #3a3320; }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 19px/1.65 Georgia, "Iowan Old Style", serif;
+         padding-bottom: env(safe-area-inset-bottom); }
+  header { padding: 2.5rem 1.25rem 1.25rem; max-width: 46rem; margin: 0 auto; }
+  .back { display: inline-block; font: 600 .95rem -apple-system, system-ui, sans-serif; color: var(--accent);
+          text-decoration: none; padding: .7rem 0; min-height: 44px; }
+  header .kicker { font: 600 .8rem/1 -apple-system, system-ui, sans-serif; letter-spacing: .12em;
+                   text-transform: uppercase; color: var(--accent); }
+  h1 { font-size: 2.1rem; line-height: 1.2; margin: .5rem 0 .4rem; }
+  .sub { color: var(--muted); margin: 0; }
+
+  /* Sticky tap-to-navigate bar */
+  nav.bar { position: sticky; top: 0; z-index: 10; background: var(--bg);
+            border-bottom: 1px solid var(--rule); padding-top: env(safe-area-inset-top); }
+  nav.bar .chips { display: flex; gap: .5rem; overflow-x: auto; padding: .6rem 1.25rem;
+                   max-width: 46rem; margin: 0 auto; -webkit-overflow-scrolling: touch; }
+  nav.bar a { flex: none; font: 600 .95rem/1 -apple-system, system-ui, sans-serif; text-decoration: none;
+              color: var(--ink); background: var(--card); border: 1px solid var(--rule);
+              padding: .8rem 1rem; border-radius: 999px; min-height: 44px; display: inline-flex; align-items: center; }
+  nav.bar a.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  main { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem 4rem; }
+  section { padding-top: 2rem; scroll-margin-top: 4.6rem; }
+  h2 { font-size: 1.55rem; line-height: 1.25; margin: 0 0 .25rem; }
+  .meta { font: .9rem/1.5 -apple-system, system-ui, sans-serif; color: var(--muted); margin: 0 0 1rem; }
+  h3 { font: 700 .85rem/1 -apple-system, system-ui, sans-serif; letter-spacing: .1em; text-transform: uppercase;
+       color: var(--accent); margin: 1.6rem 0 .5rem; }
+
+  .listen { display: flex; flex-wrap: wrap; gap: .6rem; margin: .5rem 0 1.25rem; }
+  .listen a { font: 600 1rem/1 -apple-system, system-ui, sans-serif; text-decoration: none; color: #fff;
+              background: var(--accent); padding: .9rem 1.1rem; border-radius: 12px; min-height: 44px;
+              display: inline-flex; align-items: center; gap: .4rem; }
+  .listen a.alt { background: var(--accent-soft); color: var(--accent); }
+
+  ul.map { list-style: none; padding: 0; margin: 0; border-left: 3px solid var(--accent-soft); }
+  ul.map li { padding: .35rem 0 .35rem 1rem; }
+  ul.map b { font-family: -apple-system, system-ui, sans-serif; font-size: .9rem; color: var(--accent); }
+
+  figure.score { margin: 1.25rem 0; background: var(--card); border: 1px solid var(--rule);
+                 border-radius: 12px; padding: .75rem; }
+  figure.score img { width: 100%; height: auto; display: block; background: #fff; border-radius: 6px; }
+  figure.score .slot { display: none; padding: 1.1rem; background: var(--warn); border-radius: 6px;
+                       font: .9rem/1.5 -apple-system, system-ui, sans-serif; }
+  figure.score.missing img { display: none; }
+  figure.score.missing .slot { display: block; }
+  figcaption { font: .9rem/1.5 -apple-system, system-ui, sans-serif; color: var(--muted); margin-top: .6rem; }
+
+  .callout { background: var(--accent-soft); border-radius: 12px; padding: .9rem 1.1rem; margin: 1.25rem 0;
+             font-size: .98rem; }
+  table { width: 100%; border-collapse: collapse; font: .95rem/1.45 -apple-system, system-ui, sans-serif; }
+  th, td { text-align: left; padding: .6rem .4rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; }
+  td a { color: var(--accent); font-weight: 600; }
+  footer { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem 3rem; color: var(--muted);
+           font: .85rem/1.5 -apple-system, system-ui, sans-serif; }
+  .top { display: inline-block; margin-top: 1.25rem; font: 600 .9rem -apple-system, system-ui, sans-serif;
+         color: var(--accent); text-decoration: none; padding: .6rem 0; }
+</style>
+</head>
+<body>
+
+<header id="top">
+  <a class="back" href="../">← All guides</a>
+  <div class="kicker">Listening guide</div>
+  <h1>Mozart: Requiem in D minor, K.&nbsp;626</h1>
+  <p class="sub">Vienna, 1791 · completed by Süßmayr · eight parts, one story · written out to read at your own pace</p>
+</header>
+
+<nav class="bar" aria-label="Guide outline">
+  <div class="chips">
+    <a href="#intro">Intro</a>
+    <a href="#who">Who wrote it</a>
+    <a href="#introitus">Introitus</a>
+    <a href="#kyrie">Kyrie</a>
+    <a href="#sequence">Sequence</a>
+    <a href="#offertory">Offertory</a>
+    <a href="#sanctus-agnus">Sanctus–Agnus</a>
+    <a href="#communio">Communion</a>
+    <a href="#recordings">Recordings</a>
+  </div>
+</nav>
+
+<main>
+
+<section id="intro">
+  <h2>Before you press play</h2>
+  <p class="meta">Requiem Mass in D minor, K.&nbsp;626 · for four soloists, chorus and orchestra · about 50 minutes</p>
+  <p>This is Mozart's last work, and he did not live to finish it. He began it in the autumn of 1791 and died on 5 December that year. The commission came through an intermediary for a nobleman, Count Walsegg, who was mourning his young wife and, it seems, planned to pass the piece off as his own. Mozart's widow Constanze needed the work completed so the rest of the fee could be paid. Several musicians helped, and most of the finishing was done by Mozart's pupil Franz Xaver Süßmayr.</p>
+  <p>Some of the legends around the piece (a mysterious grey messenger, Mozart writing his own funeral music) grew in the retelling, partly through Constanze. What matters for listening is that <em>you are hearing the work of more than one hand</em>, and the score tells you whose. The next section lays that out.</p>
+  <h3>The sound</h3>
+  <p>Mozart left out the flutes, oboes and standard clarinets. The orchestra is strings, two bassoons, two <b>basset horns</b> (a dusky, low relative of the clarinet), two trumpets, timpani and organ, plus three <b>trombones</b>, an instrument he never used in his symphonies or concertos. The result is dark and a little austere, which suits the text.</p>
+  <h3>Reading the guide</h3>
+  <p>The Requiem is a sequence of short numbers grouped under the parts of the Mass, not movements in the symphonic sense. The sticky bar follows those parts. Each part has a listening map, and seven of the numbers include a page of the score.</p>
+  <div class="listen"><a href="https://music.apple.com/us/search?term=Mozart%20Requiem%20K%20626">▶ Whole Requiem on Apple Music</a></div>
+</section>
+
+<section id="who">
+  <h2>Who wrote what</h2>
+  <p class="meta">Labels as printed in the Neue Mozart-Ausgabe score used for the excerpts below.</p>
+  <table>
+    <tr><th>Part</th><th>Hand</th></tr>
+    <tr><td>Introitus · Kyrie</td><td>Mozart</td></tr>
+    <tr><td>Sequence: Dies irae to Confutatis</td><td>Mozart and Süßmayr</td></tr>
+    <tr><td>Lacrimosa</td><td>Mozart for the first eight bars, then Süßmayr</td></tr>
+    <tr><td>Offertory: Domine Jesu, Hostias</td><td>Mozart and Süßmayr</td></tr>
+    <tr><td>Sanctus · Benedictus · Agnus Dei</td><td>Süßmayr</td></tr>
+    <tr><td>Communion (Lux aeterna)</td><td>Süßmayr, built on Mozart's Introitus and Kyrie</td></tr>
+  </table>
+  <div class="callout"><b>What "Mozart and Süßmayr" means:</b> for the middle sections Mozart left the vocal parts and the bass line, with key instrumental ideas sketched, and others wrote out the rest of the orchestration. Only the Introitus survives fully orchestrated in his hand. This guide follows the usual Süßmayr completion. Other musicians have since made alternative completions, so a recording may differ in places.</div>
+</section>
+
+<section id="introitus">
+  <h2>I. Introitus: Requiem aeternam</h2>
+  <p class="meta">Adagio · D minor · Mozart</p>
+  <div class="listen"><a href="https://music.apple.com/us/search?term=Mozart%20Requiem%20K%20626%20Introitus%20Requiem%20aeternam">▶ Listen: Introitus</a></div>
+  <h3>Listening map</h3>
+  <ul class="map">
+    <li><b>INTRODUCTION</b> Seven bars with no voices. The bassoons and then the basset horns pass the main theme between them in imitation, over steady, hushed strings.</li>
+    <li><b>CHORUS</b> The choir enters with "Requiem aeternam" (eternal rest), quiet and unhurried.</li>
+    <li><b>SOLO</b> A solo soprano brings a gentler line for "Te decet hymnus" (a hymn becomes you), then the chorus returns.</li>
+    <li><b>CLOSE</b> The movement ends on an unresolved chord (a half cadence), and the Kyrie follows at once.</li>
+  </ul>
+  <figure class="score" id="fig-introitus">
+    <img src="img/introitus.png" alt="Score page: the opening of the Introitus" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> Introitus, first page (printed page 37). Save as <code>img/introitus.png</code>.</div>
+    <figcaption>The opening page. Look at the top staves: the basset horns and bassoons carry the theme before any singer enters.</figcaption>
+  </figure>
+  <h3>What to listen for</h3>
+  <p>The main theme is shaped like a mourning figure from a Handel anthem, and its outline comes back in the Kyrie and later in the work. When you hear the choir enter, notice how little it does. Mozart gets the solemnity from dark color and slow pacing.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="kyrie">
+  <h2>II. Kyrie</h2>
+  <p class="meta">Allegro · D minor · Mozart · follows the Introitus without a break</p>
+  <div class="listen"><a href="https://music.apple.com/us/search?term=Mozart%20Requiem%20K%20626%20Kyrie%20eleison">▶ Listen: Kyrie</a></div>
+  <h3>Listening map</h3>
+  <ul class="map">
+    <li><b>SUBJECTS</b> A double fugue. One theme is set to "Kyrie eleison" and a faster, running theme to "Christe eleison".</li>
+    <li><b>PILE-UP</b> The two themes are sung together and entries stack up from every voice.</li>
+    <li><b>ENDING</b> The energy builds to a firm close on the word "eleison."</li>
+  </ul>
+  <figure class="score" id="fig-kyrie">
+    <img src="img/kyrie.png" alt="Score page: the start of the Kyrie fugue" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> Kyrie, first page (printed page 49). Save as <code>img/kyrie.png</code>.</div>
+    <figcaption>The Kyrie begins. Find the running sixteenth notes in the alto on "Christe" while the other parts sing "Kyrie".</figcaption>
+  </figure>
+  <h3>What to listen for</h3>
+  <p>A fugue is an argument where the same tune is passed from voice to voice. This one has two tunes arguing at once. Follow the quick, flowing line and let the slower line sit underneath it.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="sequence">
+  <h2>III. Sequence</h2>
+  <p class="meta">Six numbers on the text of the "Dies irae" (day of wrath) · Mozart and Süßmayr, with the Lacrimosa ending after eight bars of Mozart</p>
+  <div class="listen">
+    <a class="alt" href="https://music.apple.com/us/search?term=Mozart%20Requiem%20K%20626%20Dies%20irae">▶ Dies irae</a>
+    <a class="alt" href="https://music.apple.com/us/search?term=Mozart%20Requiem%20K%20626%20Tuba%20mirum">▶ Tuba mirum</a>
+    <a class="alt" href="https://music.apple.com/us/search?term=Mozart%20Requiem%20K%20626%20Rex%20tremendae">▶ Rex tremendae</a>
+    <a class="alt" href="https://music.apple.com/us/search?term=Mozart%20Requiem%20K%20626%20Recordare">▶ Recordare</a>
+    <a class="alt" href="https://music.apple.com/us/search?term=Mozart%20Requiem%20K%20626%20Confutatis">▶ Confutatis</a>
+    <a class="alt" href="https://music.apple.com/us/search?term=Mozart%20Requiem%20K%20626%20Lacrimosa">▶ Lacrimosa</a>
+  </div>
+
+  <h3>1 · Dies irae</h3>
+  <p class="meta">Allegro assai · chorus</p>
+  <p>The Last Judgment arrives at full speed. The chorus enters at once on all four voices, with trumpets and timpani punching in and restless strings underneath. The trombones add weight by doubling the singers.</p>
+  <figure class="score" id="fig-dies-irae">
+    <img src="img/dies-irae.png" alt="Score page: the opening of the Dies irae" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> Dies irae, first page (printed page 62). Save as <code>img/dies-irae.png</code>.</div>
+    <figcaption>Dies irae, opening bars. All four voices enter together and the trumpets and timpani strike with them.</figcaption>
+  </figure>
+
+  <h3>2 · Tuba mirum</h3>
+  <p class="meta">Andante · four soloists and a solo trombone</p>
+  <p>The "wondrous trumpet" of judgment day is a <b>solo tenor trombone</b>, and a bass soloist answers it. The tenor, alto and soprano soloists then enter in turn, one voice at a time, as if each person is called forward.</p>
+  <figure class="score" id="fig-tuba-mirum">
+    <img src="img/tuba-mirum.png" alt="Score page: the trombone solo and bass entry in the Tuba mirum" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> Tuba mirum, first page (printed page 78). Save as <code>img/tuba-mirum.png</code>.</div>
+    <figcaption>The trombone solo is the staff labeled "Trombone tenore solo". The bass enters on "Tuba mirum spargens sonum."</figcaption>
+  </figure>
+
+  <h3>3 · Rex tremendae</h3>
+  <p>A short, majestic chorus for the "king of awful majesty," with a heavy, dotted rhythm. Between the proud chords the voices drop to a plea for mercy.</p>
+
+  <h3>4 · Recordare</h3>
+  <p>The mood turns tender. The four soloists sing in close, flowing lines, a quiet appeal to be remembered. The basset horns give the opening a warm color.</p>
+
+  <h3>5 · Confutatis</h3>
+  <p class="meta">Andante · chorus</p>
+  <p>This is a study in contrast. The men sing the damned being cast into the flames over agitated, rushing violins. The women answer softly, asking to be called among the blessed.</p>
+  <figure class="score" id="fig-confutatis">
+    <img src="img/confutatis.png" alt="Score page: the opening of the Confutatis" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> Confutatis, first page (printed page 100). Save as <code>img/confutatis.png</code>.</div>
+    <figcaption>The men (tenor and bass) enter first on "Confutatis maledictis" while the sopranos and altos wait, silent. The violins drive underneath.</figcaption>
+  </figure>
+
+  <h3>6 · Lacrimosa</h3>
+  <p class="meta">12/8 · Mozart for eight bars, then Süßmayr</p>
+  <p>This is the last music Mozart is known to have written. The violins sigh in short paired notes, and the chorus enters softly with "Lacrimosa dies illa" (that day of weeping). The score marks the handover: the heading reads "Bis Takt 8: Mozart und Süßmayr, danach Süßmayr." Mozart may have meant to follow it with an "Amen" fugue, but Süßmayr did not include one, and the Sequence ends there.</p>
+  <figure class="score" id="fig-lacrimosa">
+    <img src="img/lacrimosa.png" alt="Score page: the first eight bars of the Lacrimosa" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> Lacrimosa, first page (printed page 111). Save as <code>img/lacrimosa.png</code>.</div>
+    <figcaption>The last page we can attribute to Mozart. Look for the paired, sighing notes in the violins, and read the note in the upper right about whose hand is whose.</figcaption>
+  </figure>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="offertory">
+  <h2>IV. Offertory</h2>
+  <p class="meta">Mozart and Süßmayr · two numbers</p>
+  <div class="listen">
+    <a href="https://music.apple.com/us/search?term=Mozart%20Requiem%20K%20626%20Domine%20Jesu%20Christe">▶ Domine Jesu Christe</a>
+    <a class="alt" href="https://music.apple.com/us/search?term=Mozart%20Requiem%20K%20626%20Hostias%20et%20preces">▶ Hostias</a>
+  </div>
+  <h3>Listening map</h3>
+  <ul class="map">
+    <li><b>DOMINE JESU</b> Andante con moto. A prayer to deliver the souls of the dead from the pit, in changing moods. Later it turns into a fugue on a promise made "to Abraham and his seed."</li>
+    <li><b>HOSTIAS</b> Andante. A quieter offering of "sacrifices and prayers," sung in a gentler, steadier tone.</li>
+    <li><b>RETURN</b> The Abraham fugue comes back after the Hostias, which pulls the two numbers together.</li>
+  </ul>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="sanctus-agnus">
+  <h2>V–VII. Sanctus, Benedictus, Agnus Dei</h2>
+  <p class="meta">Süßmayr · the sections with no music in Mozart's hand</p>
+  <div class="listen">
+    <a href="https://music.apple.com/us/search?term=Mozart%20Requiem%20K%20626%20Sanctus">▶ Sanctus</a>
+    <a class="alt" href="https://music.apple.com/us/search?term=Mozart%20Requiem%20K%20626%20Benedictus">▶ Benedictus</a>
+    <a class="alt" href="https://music.apple.com/us/search?term=Mozart%20Requiem%20K%20626%20Agnus%20Dei">▶ Agnus Dei</a>
+  </div>
+  <p>No manuscript pages survive for these three numbers, and the score credits them to Süßmayr alone. He may have worked from what Mozart told him or sketched, but we cannot know. They are shorter and plainer than what came before.</p>
+  <ul class="map">
+    <li><b>SANCTUS</b> Adagio. A grand, slow call of "holy," followed by a brisk "Osanna" fugue.</li>
+    <li><b>BENEDICTUS</b> Andante. The four soloists sing a gentle, flowing blessing, and the "Osanna" returns.</li>
+    <li><b>AGNUS DEI</b> A plea to the "Lamb of God," which leads into the closing Communion.</li>
+  </ul>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="communio">
+  <h2>VIII. Communion: Lux aeterna</h2>
+  <p class="meta">Süßmayr, built on Mozart's Introitus and Kyrie</p>
+  <div class="listen">
+    <a href="https://music.apple.com/us/search?term=Mozart%20Requiem%20K%20626%20Lux%20aeterna">▶ Lux aeterna</a>
+    <a class="alt" href="https://music.apple.com/us/search?term=Mozart%20Requiem%20K%20626%20Cum%20sanctis%20tuis">▶ Cum sanctis tuis</a>
+  </div>
+  <h3>Listening map</h3>
+  <ul class="map">
+    <li><b>LUX AETERNA</b> The soprano sings "may eternal light shine upon them" to the music of the opening Introitus, with new words.</li>
+    <li><b>CUM SANCTIS TUIS</b> The fast fugue returns, now using the Kyrie's music for "with Your saints forever."</li>
+    <li><b>CLOSE</b> The fugue carries the Requiem to a firm final cadence.</li>
+  </ul>
+  <figure class="score" id="fig-communio">
+    <img src="img/communio.png" alt="Score page: the start of the Lux aeterna" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> Communion, first page (printed page 179). Save as <code>img/communio.png</code>.</div>
+    <figcaption>The Communion opens with the same music as the Introitus. Compare it with the first page above. The heading credits Süßmayr, working from the Introitus and Kyrie of Mozart.</figcaption>
+  </figure>
+  <h3>What to listen for</h3>
+  <p>Whoever decided to bring the opening back, the effect is clear. Mozart's own music is the first and the last thing you hear.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="recordings">
+  <h2>Recommended recordings</h2>
+  <p class="meta">Tap a link to search Apple Music for that recording. Check that you are hearing the Süßmayr version if you want to follow this guide.</p>
+  <table>
+    <tr><th>Conductor · Ensemble</th><th>Character</th></tr>
+    <tr><td><a href="https://music.apple.com/us/search?term=Karl%20Bohm%20Vienna%20Philharmonic%20Mozart%20Requiem">Karl Böhm · Vienna Philharmonic</a></td><td>Weighty, traditional, with a modern orchestra and large chorus.</td></tr>
+    <tr><td><a href="https://music.apple.com/us/search?term=John%20Eliot%20Gardiner%20Monteverdi%20Choir%20Mozart%20Requiem">John Eliot Gardiner · Monteverdi Choir</a></td><td>Period instruments: leaner, quicker, sharper in the Dies irae.</td></tr>
+    <tr><td><a href="https://music.apple.com/us/search?term=Nikolaus%20Harnoncourt%20Concentus%20Musicus%20Mozart%20Requiem">Nikolaus Harnoncourt · Concentus Musicus Wien</a></td><td>Period instruments with strong drama and contrast.</td></tr>
+    <tr><td><a href="https://music.apple.com/us/search?term=Harry%20Christophers%20Handel%20and%20Haydn%20Society%20Mozart%20Requiem">Harry Christophers · Handel and Haydn Society</a></td><td>Period instruments, clear and direct.</td></tr>
+  </table>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+</main>
+
+<footer>
+  <a class="back" href="../">← All guides</a><br>
+  Score excerpts are from the Neue Mozart-Ausgabe (Internationale Stiftung Mozarteum / Bärenreiter), as scanned on IMSLP, and are shown here for personal, non-commercial study. Links open Apple Music searches. Take the first matching recording or pick one from the table.
+</footer>
+
+<script>
+  // Show a labeled placeholder if a score image hasn't been added yet.
+  document.querySelectorAll('figure.score img').forEach(function (img) {
+    var fig = img.closest('figure');
+    function miss() { fig.classList.add('missing'); }
+    if (img.complete && img.naturalWidth === 0) miss();
+    img.addEventListener('error', miss);
+  });
+  // Highlight the current section in the sticky bar.
+  var links = {};
+  document.querySelectorAll('nav.bar a').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        Object.values(links).forEach(function (a) { a.classList.remove('on'); });
+        var a = links[e.target.id];
+        if (a) { a.classList.add('on'); a.scrollIntoView({ inline: 'center', block: 'nearest' }); }
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  document.querySelectorAll('main section').forEach(function (s) { io.observe(s); });
+</script>
+</body>
+</html>
