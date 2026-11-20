@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Beethoven: Symphony No. 3 "Eroica" — Listening Guide</title>
+<style>
+  :root {
+    --bg: #faf7f2; --ink: #26231f; --muted: #6b645b; --accent: #2f6b4f;
+    --accent-soft: #e4efe8; --rule: #ddd5c8; --card: #fff; --warn: #fff4d6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #17191a; --ink: #ece8e0; --muted: #a39d92; --accent: #7fc4a0;
+            --accent-soft: #22302a; --rule: #34383a; --card: #1f2224; --warn: #3a3320; }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 19px/1.65 Georgia, "Iowan Old Style", serif;
+         padding-bottom: env(safe-area-inset-bottom); }
+  header { padding: 2.5rem 1.25rem 1.25rem; max-width: 46rem; margin: 0 auto; }
+  .back { display: inline-block; font: 600 .95rem -apple-system, system-ui, sans-serif; color: var(--accent);
+          text-decoration: none; padding: .7rem 0; min-height: 44px; }
+  header .kicker { font: 600 .8rem/1 -apple-system, system-ui, sans-serif; letter-spacing: .12em;
+                   text-transform: uppercase; color: var(--accent); }
+  h1 { font-size: 2.1rem; line-height: 1.2; margin: .5rem 0 .4rem; }
+  .sub { color: var(--muted); margin: 0; }
+
+  /* Sticky tap-to-navigate bar */
+  nav.bar { position: sticky; top: 0; z-index: 10; background: var(--bg);
+            border-bottom: 1px solid var(--rule); padding-top: env(safe-area-inset-top); }
+  nav.bar .chips { display: flex; gap: .5rem; overflow-x: auto; padding: .6rem 1.25rem;
+                   max-width: 46rem; margin: 0 auto; -webkit-overflow-scrolling: touch; }
+  nav.bar a { flex: none; font: 600 .95rem/1 -apple-system, system-ui, sans-serif; text-decoration: none;
+              color: var(--ink); background: var(--card); border: 1px solid var(--rule);
+              padding: .8rem 1rem; border-radius: 999px; min-height: 44px; display: inline-flex; align-items: center; }
+  nav.bar a.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  main { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem 4rem; }
+  section { padding-top: 2rem; scroll-margin-top: 4.6rem; }
+  h2 { font-size: 1.55rem; line-height: 1.25; margin: 0 0 .25rem; }
+  .meta { font: .9rem/1.5 -apple-system, system-ui, sans-serif; color: var(--muted); margin: 0 0 1rem; }
+  h3 { font: 700 .85rem/1 -apple-system, system-ui, sans-serif; letter-spacing: .1em; text-transform: uppercase;
+       color: var(--accent); margin: 1.6rem 0 .5rem; }
+
+  .listen { display: flex; flex-wrap: wrap; gap: .6rem; margin: .5rem 0 1.25rem; }
+  .listen a { font: 600 1rem/1 -apple-system, system-ui, sans-serif; text-decoration: none; color: #fff;
+              background: var(--accent); padding: .9rem 1.1rem; border-radius: 12px; min-height: 44px;
+              display: inline-flex; align-items: center; gap: .4rem; }
+  .listen a.alt { background: var(--accent-soft); color: var(--accent); }
+
+  ul.map { list-style: none; padding: 0; margin: 0; border-left: 3px solid var(--accent-soft); }
+  ul.map li { padding: .35rem 0 .35rem 1rem; }
+  ul.map b { font-family: -apple-system, system-ui, sans-serif; font-size: .9rem; color: var(--accent); }
+
+  figure.score { margin: 1.25rem 0; background: var(--card); border: 1px solid var(--rule);
+                 border-radius: 12px; padding: .75rem; }
+  figure.score img { width: 100%; height: auto; display: block; background: #fff; border-radius: 6px; }
+  figure.score .slot { display: none; padding: 1.1rem; background: var(--warn); border-radius: 6px;
+                       font: .9rem/1.5 -apple-system, system-ui, sans-serif; }
+  figure.score.missing img { display: none; }
+  figure.score.missing .slot { display: block; }
+  figcaption { font: .9rem/1.5 -apple-system, system-ui, sans-serif; color: var(--muted); margin-top: .6rem; }
+
+  .callout { background: var(--accent-soft); border-radius: 12px; padding: .9rem 1.1rem; margin: 1.25rem 0;
+             font-size: .98rem; }
+  table { width: 100%; border-collapse: collapse; font: .95rem/1.45 -apple-system, system-ui, sans-serif; }
+  th, td { text-align: left; padding: .6rem .4rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; }
+  td a { color: var(--accent); font-weight: 600; }
+  footer { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem 3rem; color: var(--muted);
+           font: .85rem/1.5 -apple-system, system-ui, sans-serif; }
+  .top { display: inline-block; margin-top: 1.25rem; font: 600 .9rem -apple-system, system-ui, sans-serif;
+         color: var(--accent); text-decoration: none; padding: .6rem 0; }
+</style>
+</head>
+<body>
+
+<header id="top">
+  <a class="back" href="../">← All guides</a>
+  <div class="kicker">Listening guide</div>
+  <h1>Beethoven: Symphony No.&nbsp;3 in E-flat major, Op.&nbsp;55 "Eroica"</h1>
+  <p class="sub">Public premiere 7 April 1805, Vienna · four movements · about 50 minutes</p>
+</header>
+
+<nav class="bar" aria-label="Guide outline">
+  <div class="chips">
+    <a href="#intro">Intro</a>
+    <a href="#m1">1 · Allegro con brio</a>
+    <a href="#m2">2 · Funeral March</a>
+    <a href="#m3">3 · Scherzo</a>
+    <a href="#m4">4 · Finale</a>
+    <a href="#recordings">Recordings</a>
+  </div>
+</nav>
+
+<main>
+
+<section id="intro">
+  <h2>Introduction</h2>
+  <p class="meta">A symphony on a new scale: it has a funeral march for a slow movement and a finale built as variations.</p>
+  <p>Beethoven wrote the "Eroica" between 1802 and 1804. It was first heard in private, played by the orchestra of his patron Prince Lobkowitz at the prince's Vienna palace in 1804. The public premiere came on 7 April 1805 at the Theater an der Wien, with Beethoven conducting, at a concert that was a benefit for the violinist Franz Clement.</p>
+  <p>The title page once carried Napoleon's name. The story goes that Beethoven scratched it out when Napoleon crowned himself emperor, and it is often said he scraped hard enough to leave a hole in the paper. What is certain is that the symphony was published in 1806 with a dedication to Lobkowitz. Early listeners were divided. Some were baffled by the length and the daring. A famous story from the first rehearsal has Beethoven's pupil Ferdinand Ries muttering that the horn player must have lost count, because the horn seemed to come in far too early. It was deliberate (more on that in the first movement).</p>
+  <p>Three things to carry into every movement:</p>
+  <ul>
+    <li><b>Simple material, unsettled.</b> The opening tune is little more than the notes of a chord. Beethoven keeps knocking it off balance with a foreign note, a syncopated accent, or a new key, then lets the symphony fight its way back.</li>
+    <li><b>Whisper against blow.</b> Nearly every movement swings between very quiet music and sudden full-orchestra force. Listen for the silences as much as for the noise.</li>
+    <li><b>Breaking the mould.</b> A new tune appears in the middle of the first movement, a funeral march takes the slow-movement slot, and the finale starts with the bare bass line of its own theme. Each of these was unusual for a symphony of its day.</li>
+  </ul>
+  <h3>The sound</h3>
+  <p>This is Beethoven's standard orchestra with one addition: strings, pairs of flutes, oboes, clarinets and bassoons, two trumpets, timpani, and <i>three</i> horns where two was usual. There is no piccolo, no trombones and no other percussion. The third horn lets him write true three-part horn harmony, and the scherzo's trio is built on it: three horns carry the tune together. The brass and timpani also change tuning for the funeral march. The first two horns, the trumpets and the timpani are all set in C (timpani C and G) while the third horn stays in E-flat, then they return to E-flat for the scherzo. The result is a darker, more hollow sound in the march than in the movements around it.</p>
+  <div class="callout"><b>Hearing it all in one go:</b> two crashing chords and a theme in the cellos; a funeral march that brightens into major and then erupts into a fugue; a scherzo that whispers and then bursts; and a finale that begins with a bare plucked bass line and builds into a tune.</div>
+  <div class="listen">
+    <a href="https://classical.music.apple.com/us/album/688349504" target="_blank" rel="noopener">▶ Whole symphony on Apple Music Classical</a>
+  </div>
+  <p class="meta">The listen buttons play Otto Klemperer's recording with the Philharmonia Orchestra. The same album has two Leonore overtures after the symphony. The table at the end has other recordings.</p>
+</section>
+
+<section id="m1">
+  <h2>1. Allegro con brio</h2>
+  <p class="meta">E-flat major · 3/4 · fast, one beat to the bar · sonata form with a very long development and coda</p>
+  <div class="listen">
+    <a href="https://classical.music.apple.com/us/album/688349504?i=688349505" target="_blank" rel="noopener">▶ Listen: 1st movement</a>
+  </div>
+
+  <h3>Listening map</h3>
+  <ul class="map">
+    <li><b>OPENING (BARS 1–2)</b> Two loud E-flat chords from the whole orchestra, and then the cellos alone, quietly, begin the main theme (bar 3).</li>
+    <li><b>THE THEME</b> It outlines an E-flat chord, almost like a fanfare played softly. Within a few bars a note that does not belong (a C-sharp) makes it lurch. That small unease drives the whole movement.</li>
+    <li><b>EXPOSITION</b> Several ideas follow, in B-flat major. Around bar 107 the whole orchestra hammers accents on the weak beats (marked <i>sf</i>), so the three-beat bar seems to stumble forward. The score asks for the exposition to be repeated.</li>
+    <li><b>DEVELOPMENT</b> After the repeat the music drops to pianissimo and starts to wander. A short fugato (voices entering one after another) appears around bars 236–246. Then a crashing, dissonant climax gives way to a new, gentle tune in the remote key of E minor (bar 284), a tune that did not appear in the exposition.</li>
+    <li><b>THE HORN (NEAR BAR 395)</b> The violins whisper on harmony that is waiting to resolve. A solo horn quietly states the main theme in the home key before the music has arrived there. The full orchestra then crashes in, and the real return of the theme follows.</li>
+    <li><b>CODA</b> The coda is long enough to feel like a second development. The new tune from the development comes back, and the movement ends in a long crescendo with trumpets and timpani at full force.</li>
+  </ul>
+
+  <figure class="score" id="fig-m1-open">
+    <img src="img/m1-open.png" alt="Score excerpt: the two opening chords and the cellos' entry with the main theme" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> Movement 1, bars 1 to 10. Save as <code>img/m1-open.png</code>.</div>
+    <figcaption>The opening. Two chords for the full orchestra, then the cellos (second staff from the bottom) alone with the theme, marked p, while the violas and second violins hold a quiet note.</figcaption>
+  </figure>
+
+  <figure class="score" id="fig-m1-horn">
+    <img src="img/m1-horn.png" alt="Score excerpt: the second horn entering early with the main theme over quiet violins" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> Movement 1, the system beginning at bar 395. Save as <code>img/m1-horn.png</code>.</div>
+    <figcaption>The system beginning at bar 395. The second horn ("2.", marked pp, in the horn staff) plays the main theme while the violins still murmur at ppp. A few bars later the whole orchestra arrives, f and then ff.</figcaption>
+  </figure>
+
+  <h3>What to listen for</h3>
+  <p>Start by getting the cello theme into your ear, and notice the moment it goes wrong. Then wait for two big events: the new tune in E minor, which feels like a door opening into another room, and the horn's too-early entrance, which feels like a mistake and is the opposite. When the new tune returns in the coda, it sounds like something that has finally been settled.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="m2">
+  <h2>2. Marcia funebre. Adagio assai</h2>
+  <p class="meta">C minor · 2/4 · a funeral march that keeps returning, with a major-key episode and a fugue</p>
+  <div class="listen">
+    <a href="https://classical.music.apple.com/us/album/688349504?i=688349506" target="_blank" rel="noopener">▶ Listen: 2nd movement</a>
+  </div>
+
+  <h3>Listening map</h3>
+  <ul class="map">
+    <li><b>THE MARCH (BAR 1)</b> The violins sing a dark, slow tune marked <i>sotto voce</i> ("under the voice") and pianissimo. Underneath, the double basses mutter a rumbling figure that is often heard as muffled drums.</li>
+    <li><b>CONSOLATION</b> A brief, gentler tune appears in E-flat major, but it soon slips back into C minor and the march returns, taken up by the winds.</li>
+    <li><b>MAGGIORE (BAR 69)</b> The key changes to C major, and the score actually says <i>Maggiore</i> at that point. An oboe sings over rippling violins, and the mood lifts for a while, like light through a window.</li>
+    <li><b>THE MARCH RETURNS, THEN A FUGUE (BAR 114)</b> The march theme comes back in the minor, then veers away. From bar 114 a fugue in F minor begins, with the strings entering one after another and loud accents (<i>sf</i>) driving it on.</li>
+    <li><b>ENDING (BARS 235–247)</b> The march breaks into fragments, with silences between the broken phrases, and the movement closes on a few soft chords.</li>
+  </ul>
+
+  <figure class="score" id="fig-m2-open">
+    <img src="img/m2-open.png" alt="Score excerpt: the opening of the funeral march, violins with the theme and double basses beneath" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> Movement 2, opening bars. Save as <code>img/m2-open.png</code>.</div>
+    <figcaption>The march begins. Only the strings play. The first violins carry the theme (<i>sotto voce</i>, pp), and the double basses (bottom staff) have a quick rumbling figure beneath it.</figcaption>
+  </figure>
+
+  <figure class="score" id="fig-m2-maggiore">
+    <img src="img/m2-maggiore.png" alt="Score excerpt: the change to C major at the Maggiore marking, with the oboe melody over rippling violins" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> Movement 2, bars 66 to 70. Save as <code>img/m2-maggiore.png</code>.</div>
+    <figcaption>Bar 69, marked <i>Maggiore</i>. The flats of the key signature disappear. The oboe (second staff) sings the new tune, p, over rippling triplets in the violins.</figcaption>
+  </figure>
+
+  <h3>What to listen for</h3>
+  <p>The march is full of silence. Listen to the rests between phrases, and to how the sound thins to almost nothing at the very end. Listen also for how the major-key episode works as a memory of something warm, and how the fugue sounds like grief turning to protest.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="m3">
+  <h2>3. Scherzo. Allegro vivace</h2>
+  <p class="meta">E-flat major · 3/4 · scherzo and trio, then the scherzo again and a coda</p>
+  <div class="listen">
+    <a href="https://classical.music.apple.com/us/album/688349504?i=688349507" target="_blank" rel="noopener">▶ Listen: 3rd movement</a>
+  </div>
+
+  <h3>Listening map</h3>
+  <ul class="map">
+    <li><b>SCHERZO (BAR 1)</b> The strings begin alone, <i>sempre pianissimo e staccato</i> ("always very quiet and short"), a scurrying whisper. After a few bars an oboe taps in on repeated notes.</li>
+    <li><b>THE BURST</b> The whisper grows, and by around bar 94 the whole orchestra is playing loud accents (<i>sf</i>) with the horns and trumpets joining in. The swing from hush to blast is the joke of the movement.</li>
+    <li><b>TRIO (BAR 170)</b> The pace relaxes and the three horns take over with a broad, call-like tune. The rest of the orchestra waits and then adds soft touches.</li>
+    <li><b>SCHERZO RETURNS</b> The fast music comes back, much as before.</li>
+    <li><b>CODA (BAR 431)</b> The music dies down again, then builds to a loud finish with all the instruments, ending on full chords.</li>
+  </ul>
+
+  <figure class="score" id="fig-m3-scherzo">
+    <img src="img/m3-scherzo.png" alt="Score excerpt: the opening of the scherzo with the strings alone and the oboe entering" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> Movement 3, opening bars. Save as <code>img/m3-scherzo.png</code>.</div>
+    <figcaption>The scherzo opens with the strings alone, marked "sempre pianissimo e stacc." An oboe joins after a few bars.</figcaption>
+  </figure>
+
+  <figure class="score" id="fig-m3-trio">
+    <img src="img/m3-trio.png" alt="Score excerpt: the trio, with three horns carrying the tune" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> Movement 3, bar 170. Save as <code>img/m3-trio.png</code>.</div>
+    <figcaption>The trio (bar 170). The three horns (second and third staves from the top) have the tune, starting with a forceful <i>sf</i>. The oboe and strings add a few quiet touches a little later.</figcaption>
+  </figure>
+
+  <h3>What to listen for</h3>
+  <p>Wait for the sudden jumps in volume. The movement works by teasing you: you settle into the quiet scurrying, and then it explodes. When the trio arrives, notice how different three horns sound from one: the tune is wide and round. Then listen for how the coda gathers all of that force for a short, hard finish.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="m4">
+  <h2>4. Finale. Allegro molto</h2>
+  <p class="meta">E-flat major · 2/4 · variations on a theme, with elements of sonata form</p>
+  <div class="listen">
+    <a href="https://classical.music.apple.com/us/album/688349504?i=688349909" target="_blank" rel="noopener">▶ Listen: 4th movement</a>
+  </div>
+
+  <h3>Listening map</h3>
+  <ul class="map">
+    <li><b>FLOURISH (BAR 1)</b> The strings alone rush down in a loud run of fast notes. Loud chords from the full orchestra follow.</li>
+    <li><b>THE BARE BASS</b> Then the sound drops to almost nothing: a plucked bass line, with no tune on top. This is the skeleton of the theme. Over the next stretch, other voices are added to it one at a time.</li>
+    <li><b>THE TUNE</b> The tune itself arrives last. In the system beginning at bar 76 the oboe, clarinet and bassoon sing it, <i>dolce</i>, over plucked cellos and basses. Beethoven had already used this tune in his ballet <i>The Creatures of Prometheus</i> and in a set of piano variations.</li>
+    <li><b>VARIATIONS</b> The tune and the bass line are then passed around the orchestra and dressed in new clothes, with the mood changing from one variation to the next.</li>
+    <li><b>POCO ANDANTE (BAR 350)</b> A fermata, and the pace relaxes. The oboe sings a long, slow, song-like melody, <i>con espressione</i>, and the orchestra swells around it.</li>
+    <li><b>PRESTO (BAR 428)</b> The speed jumps, the whole orchestra plays <i>ff</i>, and the symphony rushes to its close.</li>
+  </ul>
+
+  <figure class="score" id="fig-m4-open">
+    <img src="img/m4-open.png" alt="Score excerpt: the finale's opening flourish in the strings" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> Movement 4, opening bars. Save as <code>img/m4-open.png</code>.</div>
+    <figcaption>The opening flourish. Only the strings play, ff, in a rush of running notes. The winds, brass and timpani are silent here.</figcaption>
+  </figure>
+
+  <figure class="score" id="fig-m4-theme">
+    <img src="img/m4-theme.png" alt="Score excerpt: the winds singing the tune over plucked cellos and basses" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> Movement 4, the system beginning at bar 76. Save as <code>img/m4-theme.png</code>.</div>
+    <figcaption>The system beginning at bar 76. The oboe, clarinet and bassoon sing a long-breathed tune ("dolce") while the cellos and basses pluck (pizz.) underneath.</figcaption>
+  </figure>
+
+  <figure class="score" id="fig-m4-coda">
+    <img src="img/m4-coda.png" alt="Score excerpt: the Poco Andante, with the oboe singing the tune over soft winds" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> Movement 4, bar 350. Save as <code>img/m4-coda.png</code>.</div>
+    <figcaption>Poco Andante (bar 350). After a held chord for the whole orchestra, the oboe sings "con espressione" over clarinets and bassoons.</figcaption>
+  </figure>
+
+  <h3>What to listen for</h3>
+  <p>Listen for the plucked bass line at the start, and then try to hear it underneath each variation, even when the tune above it changes completely. The finale is a lesson in how many different things one simple idea can turn into. The slow, singing passage near the end is the emotional high point, and the Presto that follows sweeps it away.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="recordings">
+  <h2>Recommended recordings</h2>
+  <p class="meta">Tap a link to open that album in Apple Music Classical.</p>
+  <table>
+    <tr><th>Conductor · Orchestra</th><th>Character</th></tr>
+    <tr><td><a href="https://classical.music.apple.com/us/album/688349504" target="_blank" rel="noopener">Otto Klemperer · Philharmonia Orchestra</a></td><td>Unhurried and monumental. The march feels carved from stone.</td></tr>
+    <tr><td><a href="https://classical.music.apple.com/us/album/1562153604" target="_blank" rel="noopener">Wilhelm Furtwängler · Vienna Philharmonic</a></td><td>A historic, remastered performance, known for urgency and tempo that bends with the drama.</td></tr>
+    <tr><td><a href="https://classical.music.apple.com/us/album/140370779" target="_blank" rel="noopener">Nikolaus Harnoncourt · Chamber Orchestra of Europe</a></td><td>Crisp and rhetorical, with sharp accents and sudden contrasts.</td></tr>
+    <tr><td><a href="https://classical.music.apple.com/us/album/1452521390" target="_blank" rel="noopener">John Eliot Gardiner · Orchestre Révolutionnaire et Romantique</a></td><td>Period instruments: lean, fast and fiery.</td></tr>
+  </table>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+</main>
+
+<footer>
+  <a class="back" href="../">← All guides</a><br>
+  Score excerpts are cropped from the CCARH edition (© 2008 Center for Computer Assisted Research in the Humanities, musedata.org/beethoven/sym-3) and are shown here for personal, non-commercial study. Links open Apple Music Classical (in the app if you have it). Listen buttons play Otto Klemperer's recording; the table lists other recordings.
+</footer>
+
+<script>
+  // Show a labeled placeholder if a score image hasn't been added yet.
+  document.querySelectorAll('figure.score img').forEach(function (img) {
+    var fig = img.closest('figure');
+    function miss() { fig.classList.add('missing'); }
+    if (img.complete && img.naturalWidth === 0) miss();
+    img.addEventListener('error', miss);
+  });
+  // Highlight the current section in the sticky bar.
+  var links = {};
+  document.querySelectorAll('nav.bar a').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        Object.values(links).forEach(function (a) { a.classList.remove('on'); });
+        var a = links[e.target.id];
+        if (a) { a.classList.add('on'); a.scrollIntoView({ inline: 'center', block: 'nearest' }); }
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  document.querySelectorAll('main section').forEach(function (s) { io.observe(s); });
+</script>
+</body>
+</html>
