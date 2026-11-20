@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Classical Music Guides</title>
+<style>
+  :root { --bg:#faf7f2; --ink:#26231f; --muted:#6b645b; --accent:#2f6b4f; --accent-soft:#e4efe8; --rule:#ddd5c8; --card:#fff; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#17191a; --ink:#ece8e0; --muted:#a39d92; --accent:#7fc4a0; --accent-soft:#22302a; --rule:#34383a; --card:#1f2224; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:19px/1.6 Georgia,"Iowan Old Style",serif;
+         padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom); }
+  main { max-width:46rem; margin:0 auto; padding:2.5rem 1.25rem 4rem; }
+  .kicker { font:600 .8rem/1 -apple-system,system-ui,sans-serif; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+  h1 { font-size:2.1rem; line-height:1.2; margin:.5rem 0 .4rem; }
+  .sub { color:var(--muted); margin:0 0 1.5rem; }
+  h2 { font:700 .85rem/1 -apple-system,system-ui,sans-serif; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); margin:2.2rem 0 .3rem; }
+  .desc { color:var(--muted); font:.95rem/1.5 -apple-system,system-ui,sans-serif; margin:0 0 .8rem; }
+  ul { list-style:none; padding:0; margin:0; }
+  li a { display:block; text-decoration:none; color:var(--ink); background:var(--card); border:1px solid var(--rule);
+         border-radius:12px; padding:1rem 1.1rem; margin-bottom:.7rem; min-height:44px; }
+  li a b { display:block; font-size:1.1rem; }
+  li a span { font:.9rem/1.4 -apple-system,system-ui,sans-serif; color:var(--muted); }
+  .empty { background:var(--accent-soft); border-radius:12px; padding:1rem 1.1rem; font:.95rem/1.5 -apple-system,system-ui,sans-serif; color:var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <div class="kicker">Listening library</div>
+  <h1>Classical Music Guides</h1>
+  <p class="sub">Readable guides to single works, for the iPad, with score excerpts and links to listen.</p>
+
+  <h2>Guides</h2>
+  <p class="desc">Movement-by-movement guides, one work each.</p>
+  <ul>
+    <li><a href="beethoven-6/"><b>Beethoven: Symphony No. 6 "Pastoral"</b><span>Five movements · score excerpts · recommended recordings</span></a></li>
+  </ul>
+
+</main>
+</body>
+</html>
