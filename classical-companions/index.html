@@ -9,6 +9,8 @@
   @media (prefers-color-scheme: dark) {
     :root { --bg:#17191a; --ink:#ece8e0; --muted:#a39d92; --accent:#7fc4a0; --accent-soft:#22302a; --rule:#34383a; --card:#1f2224; }
   }
+  .back { display: inline-block; font: 600 .95rem -apple-system, system-ui, sans-serif; color: var(--accent);
+          text-decoration: none; padding: .7rem 0; min-height: 44px; }
   * { box-sizing: border-box; }
   body { margin:0; background:var(--bg); color:var(--ink); font:19px/1.6 Georgia,"Iowan Old Style",serif;
          padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom); }
@@ -28,12 +30,13 @@
 </head>
 <body>
 <main>
+  <a class="back" href="../">← Home</a>
   <div class="kicker">Concert preparation</div>
   <h1>Classical Concert Companions</h1>
   <p class="sub">Preparation guides for a specific concert program, with notes and links to listen.</p>
 
   <h2>Companions</h2>
-  <p class="desc">One guide per concert, newest first.</p>
+  <p class="desc">One companion guide per concert, most recent first.</p>
   <ul>
     <li><a href="2026-08-09-willamette-valley-chamber-music-festival-esmail-liang-beethoven/"><b>Willamette Valley Chamber Music Festival – Esmail, Liang &amp; Beethoven</b><span>Sunday, August 9, 2026 · Appassionata Estate, home of J. Christopher Wines</span></a></li>
     <li><a href="2026-07-19-chatterpdx-angie-zhang-schubert-chopin/"><b>Angie Zhang: Schubert &amp; Chopin</b><span>Sunday, July 19, 2026 · Pacific Center, 851 SW 6th Ave, PDX</span></a></li>

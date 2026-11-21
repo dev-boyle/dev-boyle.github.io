@@ -9,6 +9,8 @@
   @media (prefers-color-scheme: dark) {
     :root { --bg:#17191a; --ink:#ece8e0; --muted:#a39d92; --accent:#7fc4a0; --accent-soft:#22302a; --rule:#34383a; --card:#1f2224; }
   }
+  .back { display: inline-block; font: 600 .95rem -apple-system, system-ui, sans-serif; color: var(--accent);
+          text-decoration: none; padding: .7rem 0; min-height: 44px; }
   * { box-sizing: border-box; }
   body { margin:0; background:var(--bg); color:var(--ink); font:19px/1.6 Georgia,"Iowan Old Style",serif;
          padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom); }
@@ -28,6 +30,7 @@
 </head>
 <body>
 <main>
+  <a class="back" href="../">← Home</a>
   <div class="kicker">Listening library</div>
   <h1>Classical Music Guides</h1>
   <p class="sub">Readable guides to single works, for the iPad, with score excerpts and links to listen.</p>
