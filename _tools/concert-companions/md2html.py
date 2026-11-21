@@ -154,6 +154,9 @@ def chip_label(heading, work=False):
         lw = left.strip().split()
         name = ' '.join(lw[-2:]) if len(lw) > 1 and len(lw[-1]) <= 2 else lw[-1]   # 'Pura F\u00e9', not 'F\u00e9'
         if work:
+            mv = re.search(r'Mvts?\.\s*([IVX]+\s*[\u2013-]\s*[IVX]+)', right)       # "Mvts. I\u2013III" -> "Schubert \u00b7 I\u2013III"
+            if mv:
+                return name + ' \u00b7 ' + mv.group(1).replace(' ', '')
             w = right.strip().split()
             k = 2 if (len(w) > 1 and (w[0].isdigit() or len(w[0]) <= 2)) else 1
             return name + ' \u00b7 ' + re.sub(r'[^\w\u00c0-\u024f]+$', '', ' '.join(w[:k]))

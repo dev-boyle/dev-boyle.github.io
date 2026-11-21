@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ChatterPDX: Forest Wanderings — Concert Companion</title>
+<meta name="concert-title" content="ChatterPDX: Forest Wanderings">
+<meta name="concert-date" content="2026-10-18">
+<meta name="concert-label" content="Sunday, October 18, 2026">
+<meta name="concert-minutes" content="630">
+<meta name="concert-venue" content="Pacific Center">
+<style>
+  :root {
+    --bg: #faf7f2; --ink: #26231f; --muted: #6b645b; --accent: #2f6b4f;
+    --accent-soft: #e4efe8; --rule: #ddd5c8; --card: #fff; --warn: #fff4d6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #17191a; --ink: #ece8e0; --muted: #a39d92; --accent: #7fc4a0;
+            --accent-soft: #22302a; --rule: #34383a; --card: #1f2224; --warn: #3a3320; }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 19px/1.65 Georgia, "Iowan Old Style", serif;
+         padding-bottom: env(safe-area-inset-bottom); }
+  header { padding: 2.5rem 1.25rem 1.25rem; max-width: 46rem; margin: 0 auto; }
+  .back { display: inline-block; font: 600 .95rem -apple-system, system-ui, sans-serif; color: var(--accent);
+          text-decoration: none; padding: .7rem 0; min-height: 44px; }
+  header .kicker { font: 600 .8rem/1 -apple-system, system-ui, sans-serif; letter-spacing: .12em;
+                   text-transform: uppercase; color: var(--accent); }
+  h1 { font-size: 2.1rem; line-height: 1.2; margin: .5rem 0 .4rem; }
+  .sub { color: var(--muted); margin: 0; }
+
+  /* Sticky tap-to-navigate bar */
+  nav.bar { position: sticky; top: 0; z-index: 10; background: var(--bg);
+            border-bottom: 1px solid var(--rule); padding-top: env(safe-area-inset-top); }
+  nav.bar .chips { display: flex; gap: .5rem; overflow-x: auto; padding: .6rem 1.25rem;
+                   max-width: 46rem; margin: 0 auto; -webkit-overflow-scrolling: touch; }
+  nav.bar a { flex: none; font: 600 .95rem/1 -apple-system, system-ui, sans-serif; text-decoration: none;
+              color: var(--ink); background: var(--card); border: 1px solid var(--rule);
+              padding: .8rem 1rem; border-radius: 999px; min-height: 44px; display: inline-flex; align-items: center; }
+  nav.bar a.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  main { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem 4rem; }
+  section { padding-top: 2rem; scroll-margin-top: 4.6rem; }
+  h2 { font-size: 1.55rem; line-height: 1.25; margin: 0 0 .25rem; }
+  .meta { font: .9rem/1.5 -apple-system, system-ui, sans-serif; color: var(--muted); margin: 0 0 1rem; }
+  h3 { font: 700 .85rem/1 -apple-system, system-ui, sans-serif; letter-spacing: .1em; text-transform: uppercase;
+       color: var(--accent); margin: 1.6rem 0 .5rem; }
+
+  .listen { display: flex; flex-wrap: wrap; gap: .6rem; margin: .5rem 0 1.25rem; }
+  .listen a { font: 600 1rem/1 -apple-system, system-ui, sans-serif; text-decoration: none; color: #fff;
+              background: var(--accent); padding: .9rem 1.1rem; border-radius: 12px; min-height: 44px;
+              display: inline-flex; align-items: center; gap: .4rem; }
+  .listen a.alt { background: var(--accent-soft); color: var(--accent); }
+
+  ul.map { list-style: none; padding: 0; margin: 0; border-left: 3px solid var(--accent-soft); }
+  ul.map li { padding: .35rem 0 .35rem 1rem; }
+  ul.map b { font-family: -apple-system, system-ui, sans-serif; font-size: .9rem; color: var(--accent); }
+
+  figure.score { margin: 1.25rem 0; background: var(--card); border: 1px solid var(--rule);
+                 border-radius: 12px; padding: .75rem; }
+  figure.score img { width: 100%; height: auto; display: block; background: #fff; border-radius: 6px; }
+  figure.score .slot { display: none; padding: 1.1rem; background: var(--warn); border-radius: 6px;
+                       font: .9rem/1.5 -apple-system, system-ui, sans-serif; }
+  figure.score.missing img { display: none; }
+  figure.score.missing .slot { display: block; }
+  figcaption { font: .9rem/1.5 -apple-system, system-ui, sans-serif; color: var(--muted); margin-top: .6rem; }
+
+  .callout { background: var(--accent-soft); border-radius: 12px; padding: .9rem 1.1rem; margin: 1.25rem 0;
+             font-size: .98rem; }
+  table { width: 100%; border-collapse: collapse; font: .95rem/1.45 -apple-system, system-ui, sans-serif; }
+  th, td { text-align: left; padding: .6rem .4rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; }
+  td a { color: var(--accent); font-weight: 600; }
+  footer { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem 3rem; color: var(--muted);
+           font: .85rem/1.5 -apple-system, system-ui, sans-serif; }
+  .top { display: inline-block; margin-top: 1.25rem; font: 600 .9rem -apple-system, system-ui, sans-serif;
+         color: var(--accent); text-decoration: none; padding: .6rem 0; }
+  /* companion additions */
+  section ul, section ol { padding-left: 1.3rem; }
+  section li p { margin: .1rem 0; }
+  section h4 { font: 700 1.02rem/1.3 -apple-system, system-ui, sans-serif; margin: 1.3rem 0 .3rem; }
+  blockquote { margin: 1rem 0; padding: .1rem 1rem; border-left: 3px solid var(--rule); color: var(--muted); }
+  aside.callout { background: var(--accent-soft); border-left: 4px solid var(--accent); border-radius: 8px;
+                  padding: .8rem 1rem; margin: 1.2rem 0; font-size: .98rem; }
+  aside.callout p { margin: .4rem 0; }
+  aside.callout ul { margin: .4rem 0; }
+  aside.callout .callout-title { font: 700 .8rem/1.2 -apple-system, system-ui, sans-serif; letter-spacing: .08em;
+                                 text-transform: uppercase; color: var(--accent); margin-bottom: .2rem; }
+  aside.c-quote { background: transparent; border-left-color: var(--rule); font-style: italic; color: var(--muted); }
+  aside.c-important { background: var(--warn); border-left-color: #c58b00; }
+  aside.c-important .callout-title { color: #8a6100; }
+  @media (prefers-color-scheme: dark) { aside.c-important .callout-title { color: #e7b84a; } }
+  label.cb { display: flex; gap: .65rem; align-items: flex-start; min-height: 44px; padding: .3rem 0; cursor: pointer; }
+  label.cb input { width: 1.35rem; height: 1.35rem; margin-top: .25rem; flex: none; accent-color: var(--accent); }
+  section li:has(> label.cb), section li:has(> p > label.cb) { list-style: none; margin-left: -1.3rem; }
+  th, td { text-align: left; }
+
+</style>
+</head>
+<body>
+
+<header id="top">
+  <a class="back" href="../">← All companions</a>
+  <div class="kicker">ChatterPDX</div>
+  <h1>Forest Wanderings</h1>
+  <p class="sub">Sunday, October 18, 2026 · 10:30 am · Pacific Center — 851 SW 6th Ave, PDX (doors open at 9:30 am)</p>
+</header>
+
+<nav class="bar" aria-label="Guide outline">
+  <div class="chips">
+    <a href="#program">Program</a>
+    <a href="#overview">Overview</a>
+    <a href="#listen">Listen</a>
+    <a href="#shields">Shields</a>
+    <a href="#spoken-word">Spoken Word</a>
+    <a href="#brahms">Brahms</a>
+    <a href="#journey">Journey</a>
+    <a href="#connections">Connections</a>
+    <a href="#final-thoughts">Final Thoughts</a>
+  </div>
+</nav>
+
+<main>
+
+<section id="program">
+<h3>Performers</h3>
+<ul>
+<li>James Shields — Clarinet (and composer of the opening work)</li>
+<li>Joseph Berger — Horn</li>
+<li>Margot Schwartz — Violin</li>
+<li>Judith Gordon — Piano</li>
+<li>Nathan Brown — Spoken Word</li>
+</ul>
+<h3>Program</h3>
+<ol>
+<li>James Shields — <em>Sonata in One Movement</em> (year and duration not published)</li>
+<li>Spoken Word — Nathan Brown (followed by ~2 minutes of silent reflection)</li>
+<li>Johannes Brahms — <em>Horn Trio in E-flat major</em>, Op. 40 (1865) (~29 min)</li>
+</ol>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="overview">
+  <h2>Overview</h2>
+<p>This is a two-work program with a poem and a pause in the middle, and it pairs two very different relationships to "the forest." The Brahms is the famous one: a trio written in the spring of 1865, in the hills of the Black Forest, for an instrument whose old German name literally means "forest horn." The opener is by a living composer you'll very likely recognize from the stage: James Shields, the clarinetist who also runs ChatterPDX as artistic director, playing his own music at the top of his own series.</p>
+<p>The arc is simple and satisfying: a new voice, a breath of spoken word and silence, then one of the great pastoral-elegiac works in the chamber repertoire. Chatter's format keeps the whole morning to roughly an hour, so the Brahms (just under half an hour) is the long, immersive stretch that everything else sets up.</p>
+<p>If you've been following the Sunday series, there's a nice through-line here: next Sunday's "Constellations" program includes another of Shields's pieces, so this is the first of two back-to-back weeks with the composer in the room.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="listen">
+  <h2>Listen Before the Concert (Apple Music)</h2>
+<ul>
+<li>Shields, <em>Sonata in One Movement</em> — no commercial or streaming recording found</li>
+<li>Brahms, Horn Trio, Op. 40 — <a href="https://classical.music.apple.com/us/album/289981611" target="_blank" rel="noopener">Isabelle Faust, Teunis van der Zwart (natural horn), Alexander Melnikov (Apple Music Classical)</a> · <a href="https://music.apple.com/song/439346462" target="_blank" rel="noopener">Dennis Brain, Max Salpeter, Cyril Preedy — Adagio mesto track (Apple Music)</a></li>
+</ul>
+<p><em>The Faust/van der Zwart/Melnikov album uses a natural horn, the valveless instrument Brahms actually wrote for; the Dennis Brain recording is a 1957 BBC studio reading on a modern horn and is widely admired. Worth sampling both to hear how much the horn's color changes the piece.</em></p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="shields">
+  <h2>James Shields — <em>Sonata in One Movement</em></h2>
+<p>No recording found, and the program doesn't list a year, duration, or scoring, so this is the one genuine unknown of the morning.</p>
+<p>What we can say is who wrote it. Shields is principal clarinet of the Oregon Symphony (he joined in 2016, after holding the same chair with the Canadian Opera Company and the New Mexico Philharmonic), a Juilliard graduate, and holds a master's degree in composition from the University of New Mexico. He co-founded ChatterPDX with cellist Trevor Fitzpatrick, and his compositions have been played by the Chatter musicians for years. In an interview last fall he said he'd been composing more than ever, including fifteen duets for clarinet and violin written for himself and his wife, violinist Emily Cole, plus a woodwind quintet. He also mentioned that his father was an astrophysicist, and next Sunday's program includes his <em>Anemos Arcturus</em>.</p>
+<p>A one-movement sonata folds the contrasts of a multi-movement work (fast, slow, dance, finale) into a single continuous span, so the interest is usually in how the piece moves between moods without a break to reset.</p>
+<h3>Listen for</h3>
+<ul>
+<li>Who's on stage for it. The program lists all four players but doesn't say who plays the sonata, so it's worth noticing the scoring as it unfolds.</li>
+<li>Where the piece changes character. In a one-movement sonata, those moments stand in for the "breaks" between movements.</li>
+<li>How a clarinetist-composer treats the clarinet's range: the dark, woody low register versus the bright, singing top.</li>
+<li>Whether material from the opening returns near the end to close the circle.</li>
+</ul>
+<h3>Note</h3>
+<p>Chatter encourages mingling with the performers over coffee before and after the show, so this is a good concert to ask the composer directly what the sonata is about.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="spoken-word">
+  <h2>Spoken Word — Nathan Brown</h2>
+<p>Placed mid-program (as usual for ChatterPDX), followed by two minutes of silence. Here it sits between a contemporary piece and one from 1865, a natural moment to let the opener settle before the Brahms starts to unfold.</p>
+<h3>About Nathan Brown</h3>
+<p>Nathan Brown is an author, songwriter, and award-winning poet living in Santa Fe, New Mexico. He holds a PhD in English and Journalism from the University of Oklahoma, where he has taught for over 20 years. He served as Poet Laureate for the State of Oklahoma in 2013/14, and now travels full time performing readings, concerts, and workshops and speaking on creativity, poetry, and songwriting. He has published 30-ish books, has taught memoir, poetry, songwriting, and performance workshops, and as a singer-songwriter has performed at venues including the Bluebird in Nashville, the Cactus Cafe in Austin, the Mucky Duck in Houston, and the Blue Door in Oklahoma City, as well as overseas in Israel and Russia.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="brahms">
+  <h2>Johannes Brahms — <em>Horn Trio in E-flat major</em>, Op. 40 (1865)</h2>
+<div class="listen"><a href="https://classical.music.apple.com/us/album/289981611" target="_blank" rel="noopener">▶ Listen (Faust, van der Zwart, Melnikov, Apple Music Classical)</a><a class="alt" href="https://music.apple.com/song/439346462" target="_blank" rel="noopener">▶ Dennis Brain, Max Salpeter, Cyril Preedy (Adagio mesto, Apple Music)</a></div>
+<p>Brahms wrote the trio in the spring of 1865, retreating to Baden-Baden at the edge of the Black Forest a few months after his mother, Christiane, died. The trio was premiered that November in Zurich with Brahms himself at the piano, and it turned out to be his last chamber work for eight years. The setting seems to have mattered: the forest walks and the hunting-horn associations run all through the music.</p>
+<p>The scoring was a statement. Valve horns were already standard by then, but Brahms asked for the valveless natural horn, the Waldhorn ("forest horn"), whose hand-stopped notes come out veiled and slightly darker than the open ones. He'd learned the horn as a boy, from his father, and he reportedly told a friend he'd be uneasy hearing the piece on a valve horn. (He also authorized a viola or cello in place of the horn, a practical nod to how few natural-horn players there were.)</p>
+<p>The trio is usually described as a memorial to his mother, and the biographer Max Kalbeck heard it as a lament. But a piano piece that came to light in 2011–12, an <em>Albumblatt</em> Brahms jotted into a Göttingen music director's guest album in 1853, turned out to contain the tune of the Scherzo's middle section, moved down to A-flat minor twelve years later. So at least part of the trio's emotional material predates his mother's death by over a decade. It's a good reminder that "elegy" may be how the music reads rather than how it began.</p>
+<h3>Movement Breakdown</h3>
+<p>The trio has four movements in a slow–fast–slow–fast order, echoing the old Baroque church sonata rather than the usual Classical layout.</p>
+<ul>
+<li><strong>I. Andante — Poco più animato:</strong> Not in sonata form. A gentle, rocking theme (introduced by the violin, answered by the horn) alternates with more animated, restless music, and Brahms is said to have conceived the main idea while walking among fir trees on forested hills.</li>
+<li><strong>II. Scherzo: Allegro — Molto meno allegro:</strong> A rhythmically playful, romping dance, interrupted by a brief, darker middle section in A-flat minor built around a long violin–horn duet. That's the old <em>Albumblatt</em> tune.</li>
+<li><strong>III. Adagio mesto:</strong> The emotional heart. It opens with four bars of low solo piano, then the violin and horn enter over six flats of E-flat minor. "Mesto" means sad, and this is among the most heartfelt slow movements Brahms wrote.</li>
+<li><strong>IV. Finale: Allegro con brio:</strong> A galloping, hunt-style finale. The horn-call figure that has been hiding in every movement comes out into the open here in bright E-flat major, and the piece rushes to a blazing close.</li>
+</ul>
+<h3>Listen for</h3>
+<ul>
+<li>The horn's color: veiled and stopped notes alongside open, ringing ones (this is the sound Brahms specifically wanted). Notice what kind of horn is played on Sunday.</li>
+<li>The E-flat overtone-series motif: a rising, call-like arpeggio shape that threads through all four movements and is most obvious in the Finale.</li>
+<li>The sudden darkening in the Scherzo's middle section, where a playful movement takes a hushed, minor-key detour and then snaps back.</li>
+<li>The four lonely bars of low piano that open the Adagio mesto before the strings join in.</li>
+<li>The Finale's gallop, which some listeners hear as release after mourning, though that reading is interpretive rather than anything Brahms said.</li>
+</ul>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="journey">
+  <h2>The Emotional Arc of the Program</h2>
+<table>
+<thead>
+<tr>
+<th>Work</th>
+<th>Character</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Shields – Sonata in One Movement</strong></td>
+<td>A composer-performer's own voice, new to most ears</td>
+</tr>
+<tr>
+<td><strong>Spoken Word + Silence</strong></td>
+<td>Reflection and emotional reset</td>
+</tr>
+<tr>
+<td><strong>Brahms – Horn Trio, Op. 40</strong></td>
+<td>Pastoral, elegiac, exultant</td>
+</tr>
+</tbody>
+</table>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="connections">
+  <h2>Musical Connections</h2>
+<h3>Shields and Brahms</h3>
+<p>Shields, a clarinetist, is opening a program that ends with a Brahms trio that has no clarinet in it at all. Brahms's own clarinet music came decades later, inspired by the playing of Richard Mühlfeld, and Chatter has more Brahms coming this season: the Piano Trio No. 2 on November 1, and on December 13 the Clarinet Trio, Op. 114, with Shields playing.</p>
+<h3>The forest thread</h3>
+<p>The concert title leans on the Black Forest setting and on the <em>Waldhorn</em> itself. Shields's sonata isn't announced as a forest piece, so the link is more atmospheric than literal, but opening with a new work before returning to Brahms's woods makes the Horn Trio feel like the destination of the morning.</p>
+<h3>Next Sunday</h3>
+<p>Shields appears as composer again on October 25 ("Constellations"), with <em>Anemos Arcturus</em>, and Joseph Berger is on horn there too. If this sonata makes you curious about his writing, that's the follow-up.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="final-thoughts">
+  <h2>Final Thoughts</h2>
+<p>This is a program about two ways of listening to a landscape: first through a living composer's own voice, then through a young man grieving in a forest in 1865 and writing for an instrument that sounds like distance. The spoken word and the two minutes of silence in the middle are the clearing between the trees, and by the time Brahms's hunting horn comes galloping out of the last movement, you will have been walked, quietly, from the new into the old.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+</main>
+
+<footer>
+  <a class="back" href="../">← All companions</a>
+</footer>
+
+<script>
+  // Highlight the current section in the sticky bar.
+  var links = {};
+  document.querySelectorAll('nav.bar a').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        Object.values(links).forEach(function (a) { a.classList.remove('on'); });
+        var a = links[e.target.id];
+        if (a) { a.classList.add('on'); a.scrollIntoView({ inline: 'center', block: 'nearest' }); }
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  document.querySelectorAll('main section').forEach(function (s) { io.observe(s); });
+  // Remember checklist ticks on this device (best effort).
+  var boxes = document.querySelectorAll('input[type=checkbox]');
+  var key = 'cb:' + location.pathname;
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(key) || '{}'); } catch (e) {}
+  boxes.forEach(function (b, i) {
+    if (saved[i]) b.checked = true;
+    b.addEventListener('change', function () {
+      saved[i] = b.checked;
+      try { localStorage.setItem(key, JSON.stringify(saved)); } catch (e) {}
+    });
+  });
+</script>
+</body>
+</html>

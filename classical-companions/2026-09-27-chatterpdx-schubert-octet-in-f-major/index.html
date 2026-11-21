@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ChatterPDX: Schubert Octet in F Major — Concert Companion</title>
+<meta name="concert-title" content="ChatterPDX: Schubert Octet in F Major">
+<meta name="concert-date" content="2026-09-27">
+<meta name="concert-label" content="Sunday, September 27, 2026">
+<meta name="concert-minutes" content="630">
+<meta name="concert-venue" content="Pacific Center">
+<style>
+  :root {
+    --bg: #faf7f2; --ink: #26231f; --muted: #6b645b; --accent: #2f6b4f;
+    --accent-soft: #e4efe8; --rule: #ddd5c8; --card: #fff; --warn: #fff4d6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #17191a; --ink: #ece8e0; --muted: #a39d92; --accent: #7fc4a0;
+            --accent-soft: #22302a; --rule: #34383a; --card: #1f2224; --warn: #3a3320; }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 19px/1.65 Georgia, "Iowan Old Style", serif;
+         padding-bottom: env(safe-area-inset-bottom); }
+  header { padding: 2.5rem 1.25rem 1.25rem; max-width: 46rem; margin: 0 auto; }
+  .back { display: inline-block; font: 600 .95rem -apple-system, system-ui, sans-serif; color: var(--accent);
+          text-decoration: none; padding: .7rem 0; min-height: 44px; }
+  header .kicker { font: 600 .8rem/1 -apple-system, system-ui, sans-serif; letter-spacing: .12em;
+                   text-transform: uppercase; color: var(--accent); }
+  h1 { font-size: 2.1rem; line-height: 1.2; margin: .5rem 0 .4rem; }
+  .sub { color: var(--muted); margin: 0; }
+
+  /* Sticky tap-to-navigate bar */
+  nav.bar { position: sticky; top: 0; z-index: 10; background: var(--bg);
+            border-bottom: 1px solid var(--rule); padding-top: env(safe-area-inset-top); }
+  nav.bar .chips { display: flex; gap: .5rem; overflow-x: auto; padding: .6rem 1.25rem;
+                   max-width: 46rem; margin: 0 auto; -webkit-overflow-scrolling: touch; }
+  nav.bar a { flex: none; font: 600 .95rem/1 -apple-system, system-ui, sans-serif; text-decoration: none;
+              color: var(--ink); background: var(--card); border: 1px solid var(--rule);
+              padding: .8rem 1rem; border-radius: 999px; min-height: 44px; display: inline-flex; align-items: center; }
+  nav.bar a.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  main { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem 4rem; }
+  section { padding-top: 2rem; scroll-margin-top: 4.6rem; }
+  h2 { font-size: 1.55rem; line-height: 1.25; margin: 0 0 .25rem; }
+  .meta { font: .9rem/1.5 -apple-system, system-ui, sans-serif; color: var(--muted); margin: 0 0 1rem; }
+  h3 { font: 700 .85rem/1 -apple-system, system-ui, sans-serif; letter-spacing: .1em; text-transform: uppercase;
+       color: var(--accent); margin: 1.6rem 0 .5rem; }
+
+  .listen { display: flex; flex-wrap: wrap; gap: .6rem; margin: .5rem 0 1.25rem; }
+  .listen a { font: 600 1rem/1 -apple-system, system-ui, sans-serif; text-decoration: none; color: #fff;
+              background: var(--accent); padding: .9rem 1.1rem; border-radius: 12px; min-height: 44px;
+              display: inline-flex; align-items: center; gap: .4rem; }
+  .listen a.alt { background: var(--accent-soft); color: var(--accent); }
+
+  ul.map { list-style: none; padding: 0; margin: 0; border-left: 3px solid var(--accent-soft); }
+  ul.map li { padding: .35rem 0 .35rem 1rem; }
+  ul.map b { font-family: -apple-system, system-ui, sans-serif; font-size: .9rem; color: var(--accent); }
+
+  figure.score { margin: 1.25rem 0; background: var(--card); border: 1px solid var(--rule);
+                 border-radius: 12px; padding: .75rem; }
+  figure.score img { width: 100%; height: auto; display: block; background: #fff; border-radius: 6px; }
+  figure.score .slot { display: none; padding: 1.1rem; background: var(--warn); border-radius: 6px;
+                       font: .9rem/1.5 -apple-system, system-ui, sans-serif; }
+  figure.score.missing img { display: none; }
+  figure.score.missing .slot { display: block; }
+  figcaption { font: .9rem/1.5 -apple-system, system-ui, sans-serif; color: var(--muted); margin-top: .6rem; }
+
+  .callout { background: var(--accent-soft); border-radius: 12px; padding: .9rem 1.1rem; margin: 1.25rem 0;
+             font-size: .98rem; }
+  table { width: 100%; border-collapse: collapse; font: .95rem/1.45 -apple-system, system-ui, sans-serif; }
+  th, td { text-align: left; padding: .6rem .4rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; }
+  td a { color: var(--accent); font-weight: 600; }
+  footer { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem 3rem; color: var(--muted);
+           font: .85rem/1.5 -apple-system, system-ui, sans-serif; }
+  .top { display: inline-block; margin-top: 1.25rem; font: 600 .9rem -apple-system, system-ui, sans-serif;
+         color: var(--accent); text-decoration: none; padding: .6rem 0; }
+  /* companion additions */
+  section ul, section ol { padding-left: 1.3rem; }
+  section li p { margin: .1rem 0; }
+  section h4 { font: 700 1.02rem/1.3 -apple-system, system-ui, sans-serif; margin: 1.3rem 0 .3rem; }
+  blockquote { margin: 1rem 0; padding: .1rem 1rem; border-left: 3px solid var(--rule); color: var(--muted); }
+  aside.callout { background: var(--accent-soft); border-left: 4px solid var(--accent); border-radius: 8px;
+                  padding: .8rem 1rem; margin: 1.2rem 0; font-size: .98rem; }
+  aside.callout p { margin: .4rem 0; }
+  aside.callout ul { margin: .4rem 0; }
+  aside.callout .callout-title { font: 700 .8rem/1.2 -apple-system, system-ui, sans-serif; letter-spacing: .08em;
+                                 text-transform: uppercase; color: var(--accent); margin-bottom: .2rem; }
+  aside.c-quote { background: transparent; border-left-color: var(--rule); font-style: italic; color: var(--muted); }
+  aside.c-important { background: var(--warn); border-left-color: #c58b00; }
+  aside.c-important .callout-title { color: #8a6100; }
+  @media (prefers-color-scheme: dark) { aside.c-important .callout-title { color: #e7b84a; } }
+  label.cb { display: flex; gap: .65rem; align-items: flex-start; min-height: 44px; padding: .3rem 0; cursor: pointer; }
+  label.cb input { width: 1.35rem; height: 1.35rem; margin-top: .25rem; flex: none; accent-color: var(--accent); }
+  section li:has(> label.cb), section li:has(> p > label.cb) { list-style: none; margin-left: -1.3rem; }
+  th, td { text-align: left; }
+
+</style>
+</head>
+<body>
+
+<header id="top">
+  <a class="back" href="../">← All companions</a>
+  <div class="kicker">ChatterPDX</div>
+  <h1>Schubert Octet in F Major</h1>
+  <p class="sub">Sunday, September 27, 2026 · 10:30 am · Pacific Center — 851 SW 6th Ave, PDX (enter through the doors on the NW corner of 6th and Taylor)</p>
+</header>
+
+<nav class="bar" aria-label="Guide outline">
+  <div class="chips">
+    <a href="#program">Program</a>
+    <a href="#overview">Overview</a>
+    <a href="#listen">Listen</a>
+    <a href="#schubert-iiii">Schubert · I–III</a>
+    <a href="#spoken-word">Spoken Word</a>
+    <a href="#schubert-ivvi">Schubert · IV–VI</a>
+    <a href="#journey">Journey</a>
+    <a href="#connections">Connections</a>
+    <a href="#final-thoughts">Final Thoughts</a>
+  </div>
+</nav>
+
+<main>
+
+<section id="program">
+<p>Doors open 9:30 am · Music at 10:30 am · Open seating · Downtown parking is free before 1:00 pm on Sundays</p>
+<h3>Performers</h3>
+<ul>
+<li>James Shields — Clarinet</li>
+<li>Ben Greanya — Bassoon</li>
+<li>Joseph Berger — Horn</li>
+<li>Shintaro Taneda — Violin</li>
+<li>Mathea Goh — Violin</li>
+<li>Haojian Wang — Viola</li>
+<li>Trevor Fitzpatrick — Cello</li>
+<li>Kaden Henderson — Bass</li>
+<li>Prudence Brooks — Spoken Word</li>
+</ul>
+<h3>Program</h3>
+<p><em>(Order below is an educated guess based on prior ChatterPDX programs: spoken word in the middle, followed by ~2 minutes of silence. Confirm at the door.)</em></p>
+<ol>
+<li>Franz Schubert — <em>Octet in F major</em>, D. 803, Mvts. I–III: Adagio – Allegro – Più allegro / Adagio / Scherzo (1824) (~30–35 min)</li>
+<li>Spoken Word — Prudence Brooks (followed by ~2 minutes of silent reflection)</li>
+<li>Franz Schubert — <em>Octet in F major</em>, D. 803, Mvts. IV–VI: Andante (variations) / Menuetto / Andante molto – Allegro (1824) (~25–30 min)</li>
+</ol>
+<p>The complete Octet runs roughly an hour (recordings typically land between 58 and 62 minutes), so expect a program of about 65–70 minutes including the spoken word and silence.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="overview">
+  <h2>Overview</h2>
+<p>This is a one-work program, and it's a big one. Schubert's Octet is the largest chamber piece he ever wrote: six movements, about an hour of music, and a sound world that swings from sunny, hunting-party swagger to a hush that feels like a held breath. Splitting it in half around a poem is a natural fit, because the piece itself is built like a suite of contrasting moods rather than a single argumentative arc. The break after the Scherzo lands right between the two most cheerful movements and the second half's more varied territory.</p>
+<p>The emotional arc in one sentence: an ominous doorway opens onto a bright, dancing day (with one heartbreaking slow movement in the middle), then the spoken word and silence reset the room, and the second half moves through a set of charming variations and a courtly minuet into a finale that starts in shadow and ends in a party.</p>
+<p>Because it's played by eight people (winds and strings mixed together), it's also one of the best pieces in the repertoire for watching <em>conversation</em> happen: the clarinet and first violin trade the spotlight constantly, the horn is both a hunting call and a warm harmonic cushion, and the bass and bassoon quietly hold the floor up.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="listen">
+  <h2>Listen Before the Concert (Apple Music)</h2>
+<ul>
+<li>Schubert, Octet in F major, D. 803 (complete) — <a href="https://classical.music.apple.com/us/recording/franz-schubert-1797-pp103-1102507266" target="_blank" rel="noopener">Berlin Philharmonic Octet (Apple Music Classical)</a> · <a href="https://classical.music.apple.com/us/recording/franz-schubert-1797-pp103-1611860819" target="_blank" rel="noopener">Isabelle Faust, Lorenzo Coppola &amp; friends (Apple Music Classical)</a></li>
+<li>Related: Beethoven, Septet in E-flat major, Op. 20 — <a href="https://classical.music.apple.com/us/album/692096370" target="_blank" rel="noopener">The Nash Ensemble (Apple Music Classical)</a></li>
+<li>Related: Schubert, <em>Die Freunde von Salamanka</em>, D. 326 (source of the theme in the variations movement) — <a href="https://classical.music.apple.com/es/album/1722269213" target="_blank" rel="noopener">Hermann Prey et al. (Apple Music Classical)</a></li>
+</ul>
+<p><em>The Berlin Philharmonic Octet is a polished, modern-instrument benchmark; the Faust/Coppola group plays on period instruments, so the clarinet, horn, and gut-string violins have a gentler, more grainy sound. Worth sampling both to hear how much the tone color changes the piece.</em></p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="schubert-iiii">
+  <h2>Franz Schubert — <em>Octet in F major</em>, D. 803, Mvts. I–III (1824)</h2>
+<div class="listen"><a href="https://classical.music.apple.com/us/recording/franz-schubert-1797-pp103-1102507266" target="_blank" rel="noopener">▶ Listen (Berlin Philharmonic Octet, Apple Music Classical)</a><a class="alt" href="https://classical.music.apple.com/us/recording/franz-schubert-1797-pp103-1611860819" target="_blank" rel="noopener">▶ Isabelle Faust, Lorenzo Coppola &amp; friends (Apple Music Classical)</a></div>
+<p>The Octet was a commission. Count Ferdinand Troyer, a wealthy amateur clarinetist who served as chief steward to Archduke Rudolph (Beethoven's patron and composition student), asked Schubert in early 1824 for a piece along the lines of Beethoven's hugely popular Septet, Op. 20. Schubert took the assignment quite literally: he used Beethoven's exact lineup (clarinet, bassoon, horn, violin, viola, cello, bass), added a second violin, and copied the six-movement layout right down to the placement of a variations movement, a minuet, and a finale with a slow introduction. When it was first performed, at the Archduke's home, several of the players had reportedly been in the original Beethoven Septet performances, which gives the whole thing a nice "passing the torch" flavor.</p>
+<p>Some context on Beethoven's Septet is a fun aside: it was one of the biggest hits of his lifetime, so beloved that it eventually irritated him. He reportedly grumbled that the piece was "damn" and he wished it burned, annoyed that audiences kept requesting it over his more ambitious work. Schubert, meanwhile, was working on something other than an homage. In a letter from this same period he described writing an octet and two string quartets as a way of "paving the way" toward a big symphony. Those two quartets are the "Rosamunde" and "Death and the Maiden" quartets, so the Octet is a sibling to some of the most serious chamber music Schubert ever wrote, even though its mood is often sunny.</p>
+<h3>Movement Breakdown (Mvts. I–III, before the spoken word)</h3>
+<p>The full Octet has six movements. Here's the first half:</p>
+<ul>
+<li><strong>I. Adagio – Allegro – Più allegro:</strong> A slow, mysterious introduction full of sharp dotted rhythms (long-short, long-short) that then powers the entire Allegro that follows. The two rhythmic cells from the second bar keep re-appearing in different guises, so the movement feels of one piece despite its many themes. The horn gets a wistful moment near the close.</li>
+<li><strong>II. Adagio (Andante un poco mosso):</strong> A calm, long-breathed melody sung first by the clarinet, then paired with the first violin in a tender duet. The mood is serene, but the harmony wanders through remote keys, and a jarring low pizzicato at the end interrupts the peace, so the movement closes without fully recovering its calm. This is the emotional heart of the piece.</li>
+<li><strong>III. Scherzo: Allegro vivace – Trio – Allegro vivace:</strong> Rustic, energetic, and dance-like, with strong drones and a hunting-party spirit. The Trio shifts into a gentler Ländler (an Austrian country dance) over a walking cello line. There's no shadow in this movement at all, which is what makes it such a good place to break for the poem.</li>
+</ul>
+<h3>Listen for</h3>
+<ul>
+<li>The opening: a single unison F, then those dotted rhythms, as if someone is slowly opening a door. Keep an ear on how that same rhythm returns everywhere later</li>
+<li>The second movement's clarinet melody: 12 bars, no rush, the violin entering to duet with it. Notice how the bass and cello barely move underneath, letting the tune float</li>
+<li>That sudden low plucked note near the end of the Adagio, the moment the calm cracks</li>
+<li>The horn calls in the Scherzo: it's the hunting horn, but it's also doing double duty as the harmonic glue</li>
+<li>How Schubert keeps swapping the "lead" instrument: clarinet, violin, horn, cello, everyone gets a solo turn</li>
+</ul>
+<h3>Note</h3>
+<p>Ending the first half on the Scherzo is a happy accident of the six-movement layout: the energy is up, the mood is bright, and then the room falls into a poem and two minutes of silence. It gives the second half a real fresh start.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="spoken-word">
+  <h2>Spoken Word — Prudence Brooks</h2>
+<p>Placed at the midpoint (as usual for ChatterPDX), followed by two minutes of silence. After the ripple of the Scherzo, this is the reset: a chance to let the bright, rhythmic music recede before the second half brings back the variations, minuet, and the finale's darker opening.</p>
+<h3>About Prudence Brooks</h3>
+<p>Prudence Brooks (she/her) is a disabled, bisexual poet residing in Portland, Oregon. Prudence serves as the grubby-toed host of the Roach Reading Club on Patreon and has authored two poetry books titled <em>TRUCE</em> and <em>SAVED</em>. She spends her spare time volunteering with a grassroots abolitionist organization and pondering the etymology of random words. Brooks knows her poetry can't solve anything, but she hopes to let it soothe something. You can find more information about Prudence and her varied endeavors on Instagram (@prudence.writes) or her website (<a href="https://www.prudencewrites.com/" target="_blank" rel="noopener">prudencewrites.com</a>).</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="schubert-ivvi">
+  <h2>Franz Schubert — <em>Octet in F major</em>, D. 803, Mvts. IV–VI (1824)</h2>
+<div class="listen"><a href="https://classical.music.apple.com/us/recording/franz-schubert-1797-pp103-1102507266" target="_blank" rel="noopener">▶ Listen (Berlin Philharmonic Octet, Apple Music Classical)</a><a class="alt" href="https://classical.music.apple.com/us/recording/franz-schubert-1797-pp103-1611860819" target="_blank" rel="noopener">▶ Isabelle Faust, Lorenzo Coppola &amp; friends (Apple Music Classical)</a></div>
+<p>The second half begins with the piece's most famous borrowing. The theme for the variations comes from <em>Die Freunde von Salamanka</em> ("The Friends from Salamanca"), a comic opera Schubert wrote at 18 that was never staged in his lifetime. The tune is a <a href="https://classical.music.apple.com/es/album/1722269213" target="_blank" rel="noopener">duet from that opera (Apple Music Classical)</a>, and Schubert repurposed it in a much more elegant setting six years later. It's a small reminder that Schubert rarely wasted a good melody.</p>
+<p>The Octet wasn't published until after Schubert's death (as Op. 166, a posthumous opus number), and he died in 1828 at just 31. For years, it was played mostly by amateurs and friends. Today it's a cornerstone of the chamber repertoire and a favorite of musicians, partly because it's rare to have this many wind and string voices in one room with music this generous.</p>
+<h3>Movement Breakdown (Mvts. IV–VI, after the spoken word)</h3>
+<ul>
+<li><strong>IV. Andante (theme and variations):</strong> A charming theme (borrowed from the opera above) followed by seven variations. Each one showcases a different instrumental color: winds stress the dotted rhythms, the horn smooths them, the violin adds fluttering arpeggios and elaborate flourishes that gradually lose steam.</li>
+<li><strong>V. Menuetto: Allegretto – Trio – Coda:</strong> By 1824 the minuet was already old-fashioned, and Schubert seems to know it, giving it a graceful, slightly nostalgic elegance. Both the Minuet and Trio begin with variants of the piece's dotted-rhythm motif, so it feels like a courtly dance in a familiar accent. Simple in structure, a breather before the finale.</li>
+<li><strong>VI. Andante molto – Allegro – Andante molto – Allegro molto:</strong> Opens with ghostly tremolo in the cello and bass (a sound Schubert used in his songs when something uncanny was near), then a grieving slow introduction. The Allegro that follows begins in party mode but keeps getting interrupted by tension, with two anguished outcries from the first violin, and the music twice returns to the dark opening. Gradually, consoling violin arpeggios and a cheerful clarinet-violin exchange win the room back, and the closing Allegro molto ends in high spirits.</li>
+</ul>
+<h3>Listen for</h3>
+<ul>
+<li>The variations theme: notice how simple and song-like it is, then track what each variation does to it (which instrument leads, whether the dotted rhythm gets exaggerated or smoothed out)</li>
+<li>Each variation's "color": the horn variation, the violin's fast running notes, the cello's turn in the spotlight</li>
+<li>The minuet's slightly antique feel: elegant, unhurried, almost a bow to a vanishing tradition</li>
+<li>The finale's tremolo opening: a hush that feels like the lights dimming, then listen for it to return midway through the movement, and how the music fights its way out again</li>
+<li>The final Allegro molto: a whirl of energy, with the clarinet and first violin trading playful imitation</li>
+</ul>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="journey">
+  <h2>The Emotional Arc of the Program</h2>
+<table>
+<thead>
+<tr>
+<th>Work</th>
+<th>Character</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Schubert – Octet, Mvt. I</strong></td>
+<td>Mysterious, then bright and rhythmic</td>
+</tr>
+<tr>
+<td><strong>Schubert – Octet, Mvt. II</strong></td>
+<td>Tender, floating, cracked by a jolt</td>
+</tr>
+<tr>
+<td><strong>Schubert – Octet, Mvt. III</strong></td>
+<td>Rustic, boisterous, hunting-party joy</td>
+</tr>
+<tr>
+<td><strong>Spoken Word + Silence</strong></td>
+<td>Reflection and emotional reset</td>
+</tr>
+<tr>
+<td><strong>Schubert – Octet, Mvt. IV</strong></td>
+<td>Charming, playful, kaleidoscopic</td>
+</tr>
+<tr>
+<td><strong>Schubert – Octet, Mvt. V</strong></td>
+<td>Courtly, nostalgic, gracious</td>
+</tr>
+<tr>
+<td><strong>Schubert – Octet, Mvt. VI</strong></td>
+<td>Shadowed, anguished, then triumphant</td>
+</tr>
+</tbody>
+</table>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="connections">
+  <h2>Musical Connections</h2>
+<h3>Schubert and Beethoven</h3>
+<p>The Octet is a direct response to Beethoven's Septet, in its instrumentation, its six-movement plan, and even its key relationships. Schubert had lived in Beethoven's Vienna and carried his torch at Beethoven's funeral in 1827, so the piece sits at a crossroads of admiration and independence: the frame is Beethoven's, but the melodies are unmistakably Schubert's.</p>
+<h3>The Song Composer in the Chamber Hall</h3>
+<p>Schubert wrote over 600 songs, and you can hear it: the clarinet's melody in the Adagio reads like a wordless art song, and the variations theme is literally a borrowed opera tune. Even the ghostly tremolo that opens the finale is a gesture from his song writing. It's chamber music that thinks in melody first.</p>
+<h3>Lightness and Shadow</h3>
+<p>Written the same season as the "Death and the Maiden" quartet, the Octet is the sunny twin of some very dark music. Yet the darkness isn't absent: it slips in through the Adagio's pizzicato and the finale's opening. That coexistence of joy and sorrow is something of a Schubert signature.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="final-thoughts">
+  <h2>Final Thoughts</h2>
+<p>This is a program about a single piece that refuses to sit still in one mood. It opens on a mysterious doorway and rushes into a hunting-party day, drifts through a tender, floating slow movement, and stops at a spoken word and two minutes of silence, a pause that is at once a reset and a held breath. Then it resumes with a borrowed tune spun into seven variations, a wistful bow to a bygone minuet, and a finale that starts in shadow and ends by dancing out the door, Schubert's way of saying that grief and gladness can share the same room.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+</main>
+
+<footer>
+  <a class="back" href="../">← All companions</a>
+</footer>
+
+<script>
+  // Highlight the current section in the sticky bar.
+  var links = {};
+  document.querySelectorAll('nav.bar a').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        Object.values(links).forEach(function (a) { a.classList.remove('on'); });
+        var a = links[e.target.id];
+        if (a) { a.classList.add('on'); a.scrollIntoView({ inline: 'center', block: 'nearest' }); }
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  document.querySelectorAll('main section').forEach(function (s) { io.observe(s); });
+  // Remember checklist ticks on this device (best effort).
+  var boxes = document.querySelectorAll('input[type=checkbox]');
+  var key = 'cb:' + location.pathname;
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(key) || '{}'); } catch (e) {}
+  boxes.forEach(function (b, i) {
+    if (saved[i]) b.checked = true;
+    b.addEventListener('change', function () {
+      saved[i] = b.checked;
+      try { localStorage.setItem(key, JSON.stringify(saved)); } catch (e) {}
+    });
+  });
+</script>
+</body>
+</html>
