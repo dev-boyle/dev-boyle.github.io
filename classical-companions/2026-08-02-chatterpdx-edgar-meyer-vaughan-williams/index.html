@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ChatterPDX: Edgar Meyer &amp; Vaughan Williams — Concert Companion</title>
+<meta name="concert-title" content="ChatterPDX: Edgar Meyer &amp; Vaughan Williams">
+<meta name="concert-date" content="2026-08-02">
+<meta name="concert-label" content="Sunday, August 2, 2026">
+<meta name="concert-venue" content="851 SW 6th Ave, Portland">
+<style>
+  :root {
+    --bg: #faf7f2; --ink: #26231f; --muted: #6b645b; --accent: #2f6b4f;
+    --accent-soft: #e4efe8; --rule: #ddd5c8; --card: #fff; --warn: #fff4d6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #17191a; --ink: #ece8e0; --muted: #a39d92; --accent: #7fc4a0;
+            --accent-soft: #22302a; --rule: #34383a; --card: #1f2224; --warn: #3a3320; }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 19px/1.65 Georgia, "Iowan Old Style", serif;
+         padding-bottom: env(safe-area-inset-bottom); }
+  header { padding: 2.5rem 1.25rem 1.25rem; max-width: 46rem; margin: 0 auto; }
+  .back { display: inline-block; font: 600 .95rem -apple-system, system-ui, sans-serif; color: var(--accent);
+          text-decoration: none; padding: .7rem 0; min-height: 44px; }
+  header .kicker { font: 600 .8rem/1 -apple-system, system-ui, sans-serif; letter-spacing: .12em;
+                   text-transform: uppercase; color: var(--accent); }
+  h1 { font-size: 2.1rem; line-height: 1.2; margin: .5rem 0 .4rem; }
+  .sub { color: var(--muted); margin: 0; }
+
+  /* Sticky tap-to-navigate bar */
+  nav.bar { position: sticky; top: 0; z-index: 10; background: var(--bg);
+            border-bottom: 1px solid var(--rule); padding-top: env(safe-area-inset-top); }
+  nav.bar .chips { display: flex; gap: .5rem; overflow-x: auto; padding: .6rem 1.25rem;
+                   max-width: 46rem; margin: 0 auto; -webkit-overflow-scrolling: touch; }
+  nav.bar a { flex: none; font: 600 .95rem/1 -apple-system, system-ui, sans-serif; text-decoration: none;
+              color: var(--ink); background: var(--card); border: 1px solid var(--rule);
+              padding: .8rem 1rem; border-radius: 999px; min-height: 44px; display: inline-flex; align-items: center; }
+  nav.bar a.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  main { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem 4rem; }
+  section { padding-top: 2rem; scroll-margin-top: 4.6rem; }
+  h2 { font-size: 1.55rem; line-height: 1.25; margin: 0 0 .25rem; }
+  .meta { font: .9rem/1.5 -apple-system, system-ui, sans-serif; color: var(--muted); margin: 0 0 1rem; }
+  h3 { font: 700 .85rem/1 -apple-system, system-ui, sans-serif; letter-spacing: .1em; text-transform: uppercase;
+       color: var(--accent); margin: 1.6rem 0 .5rem; }
+
+  .listen { display: flex; flex-wrap: wrap; gap: .6rem; margin: .5rem 0 1.25rem; }
+  .listen a { font: 600 1rem/1 -apple-system, system-ui, sans-serif; text-decoration: none; color: #fff;
+              background: var(--accent); padding: .9rem 1.1rem; border-radius: 12px; min-height: 44px;
+              display: inline-flex; align-items: center; gap: .4rem; }
+  .listen a.alt { background: var(--accent-soft); color: var(--accent); }
+
+  ul.map { list-style: none; padding: 0; margin: 0; border-left: 3px solid var(--accent-soft); }
+  ul.map li { padding: .35rem 0 .35rem 1rem; }
+  ul.map b { font-family: -apple-system, system-ui, sans-serif; font-size: .9rem; color: var(--accent); }
+
+  figure.score { margin: 1.25rem 0; background: var(--card); border: 1px solid var(--rule);
+                 border-radius: 12px; padding: .75rem; }
+  figure.score img { width: 100%; height: auto; display: block; background: #fff; border-radius: 6px; }
+  figure.score .slot { display: none; padding: 1.1rem; background: var(--warn); border-radius: 6px;
+                       font: .9rem/1.5 -apple-system, system-ui, sans-serif; }
+  figure.score.missing img { display: none; }
+  figure.score.missing .slot { display: block; }
+  figcaption { font: .9rem/1.5 -apple-system, system-ui, sans-serif; color: var(--muted); margin-top: .6rem; }
+
+  .callout { background: var(--accent-soft); border-radius: 12px; padding: .9rem 1.1rem; margin: 1.25rem 0;
+             font-size: .98rem; }
+  table { width: 100%; border-collapse: collapse; font: .95rem/1.45 -apple-system, system-ui, sans-serif; }
+  th, td { text-align: left; padding: .6rem .4rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; }
+  td a { color: var(--accent); font-weight: 600; }
+  footer { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem 3rem; color: var(--muted);
+           font: .85rem/1.5 -apple-system, system-ui, sans-serif; }
+  .top { display: inline-block; margin-top: 1.25rem; font: 600 .9rem -apple-system, system-ui, sans-serif;
+         color: var(--accent); text-decoration: none; padding: .6rem 0; }
+  /* companion additions */
+  section ul, section ol { padding-left: 1.3rem; }
+  section li p { margin: .1rem 0; }
+  section h4 { font: 700 1.02rem/1.3 -apple-system, system-ui, sans-serif; margin: 1.3rem 0 .3rem; }
+  blockquote { margin: 1rem 0; padding: .1rem 1rem; border-left: 3px solid var(--rule); color: var(--muted); }
+  aside.callout { background: var(--accent-soft); border-left: 4px solid var(--accent); border-radius: 8px;
+                  padding: .8rem 1rem; margin: 1.2rem 0; font-size: .98rem; }
+  aside.callout p { margin: .4rem 0; }
+  aside.callout ul { margin: .4rem 0; }
+  aside.callout .callout-title { font: 700 .8rem/1.2 -apple-system, system-ui, sans-serif; letter-spacing: .08em;
+                                 text-transform: uppercase; color: var(--accent); margin-bottom: .2rem; }
+  aside.c-quote { background: transparent; border-left-color: var(--rule); font-style: italic; color: var(--muted); }
+  aside.c-important { background: var(--warn); border-left-color: #c58b00; }
+  aside.c-important .callout-title { color: #8a6100; }
+  @media (prefers-color-scheme: dark) { aside.c-important .callout-title { color: #e7b84a; } }
+  label.cb { display: flex; gap: .65rem; align-items: flex-start; min-height: 44px; padding: .3rem 0; cursor: pointer; }
+  label.cb input { width: 1.35rem; height: 1.35rem; margin-top: .25rem; flex: none; accent-color: var(--accent); }
+  section li:has(> label.cb), section li:has(> p > label.cb) { list-style: none; margin-left: -1.3rem; }
+  th, td { text-align: left; }
+
+</style>
+</head>
+<body>
+
+<header id="top">
+  <a class="back" href="../">← All companions</a>
+  <div class="kicker">Concert companion</div>
+  <h1>ChatterPDX: Edgar Meyer &amp; Vaughan Williams</h1>
+  <p class="sub">Sunday, August 2, 2026 · 10:30 am · 851 SW 6th Ave, Portland — enter through the doors on the NW corner of 6th and Taylor</p>
+</header>
+
+<nav class="bar" aria-label="Guide outline">
+  <div class="chips">
+    <a href="#program">Program</a>
+    <a href="#overview">Overview</a>
+    <a href="#listen">Listen</a>
+    <a href="#meyer">Meyer</a>
+    <a href="#spoken-word">Spoken Word</a>
+    <a href="#williams">Williams</a>
+    <a href="#journey">Journey</a>
+    <a href="#connections">Connections</a>
+    <a href="#final-thoughts">Final Thoughts</a>
+  </div>
+</nav>
+
+<main>
+
+<section id="program">
+<h3>Performers</h3>
+<ul>
+<li>Shin-young Kwon — Violin</li>
+<li>Charles Noble — Viola</li>
+<li>Marilyn de Oliveira — Cello</li>
+<li>Jason Schooler — Bass</li>
+<li>Yoko Greeney — Piano</li>
+<li>Stephen Meads (he/him) — Spoken Word</li>
+</ul>
+<h3>Program</h3>
+<ol>
+<li>Edgar Meyer — <em>Duo for Cello and Bass</em> (~6 min)</li>
+<li>Spoken Word — Stephen Meads (followed by a brief period of silence)</li>
+<li>Ralph Vaughan Williams — <em>Piano Quintet in C Minor</em> (1903–05) (~30 min)</li>
+</ol>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="overview">
+  <h2>Overview</h2>
+<p>This is a short, tightly built hour — six minutes of contemporary Americana-flavored duet, a spoken-word pivot with a stretch of silence, and then thirty minutes of a "lost" Edwardian quintet to close things out. It's also a program quietly built around the double bass: Meyer's duo puts it in the most exposed setting imaginable (just two voices), and the Vaughan Williams gives it a rare seat at the chamber-music table, swapping out the usual second violin from a piano quartet to make room for it instead.</p>
+<p>The arc moves from intimate and playful, through a reflective mid-morning pause, and out into something much bigger and more emotionally layered — a substantial, three-movement quintet that spans Brahmsian passion, an aching slow movement, and a set of variations that fades out quietly rather than ending with a bang.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="listen">
+  <h2>Listen Before the Concert (Apple Music)</h2>
+<ul>
+<li>Meyer, <em>Duet for Cello and Bass</em> — <a href="https://classical.music.apple.com/us/album/381427367" target="_blank" rel="noopener">Yo-Yo Ma &amp; Edgar Meyer, <em>Appalachian Journey</em></a></li>
+<li>Vaughan Williams, Piano Quintet in C Minor — <a href="https://classical.music.apple.com/us/album/1721136135" target="_blank" rel="noopener">The Nash Ensemble, <em>Early Chamber Music</em> (Apple Music Classical)</a></li>
+</ul>
+<p><em>Worth noting: the printed program calls Meyer's piece a "Duo," while its published/recorded title is "Duet for Cello and Bass" — same work, just a slight title variant.</em></p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="meyer">
+  <h2>Edgar Meyer — <em>Duo for Cello and Bass</em></h2>
+<div class="listen"><a href="https://classical.music.apple.com/us/album/381427367" target="_blank" rel="noopener">▶ Listen (Yo-Yo Ma &amp; Edgar Meyer, <em>Appalachian Journey</em>)</a></div>
+<p>Edgar Meyer is best known as a genre-crossing double bassist — a MacArthur "genius" grant winner equally at home in bluegrass, jazz, and the classical concert hall. This duet grew directly out of his long-running musical partnership with cellist Yo-Yo Ma, first appearing on their 2000 album <em>Appalachian Journey</em>, the follow-up to their earlier <em>Appalachian Waltz</em> with fiddler Mark O'Connor. Those albums were built around a specific idea: take the instrumental fluency of classical playing and point it at Appalachian and old-time American vernacular music instead of the usual European repertoire.</p>
+<p>The duet itself is a compact, conversational piece — two low, resonant voices trading lines back and forth with a warmth and directness that owes as much to fiddle-tune phrasing as to anything in the classical duo tradition. It's since taken on a life beyond that original recording, showing up as recital material for cello-bass pairs looking for something outside the standard (and fairly thin) repertoire written for that combination.</p>
+<h3>Listen for</h3>
+<ul>
+<li>The sheer novelty of the pairing — cello and bass rarely get to carry a whole piece by themselves, so listen for how they divide up melody and support between two instruments that usually sit at the bottom of an ensemble</li>
+<li>Folk- and fiddle-tune-inflected phrasing — bent notes, dance-like rhythms, a looseness that classical duets don't usually have</li>
+<li>Call-and-response between the two players, echoing the improvisatory, trading-licks feel of the bluegrass and old-time sessions this music grew out of</li>
+<li>How warm and immediate two low strings can sound in a small room — a good preview of the room's whole acoustic before the bigger ensemble piece</li>
+</ul>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="spoken-word">
+  <h2>Spoken Word — Stephen Meads</h2>
+<p>Placed in the middle of the program per Chatter's usual format, this slot (and the short stretch of silence that follows it) gives the room a chance to shift gears — from the Meyer duo's conversational give-and-take to a single voice, and then to nothing at all, before the Vaughan Williams closes out the hour.</p>
+<h3>About Stephen Meads</h3>
+<p>Stephen Meads (he/him) is a writer and thinker based out of Portland. Once in a forgotten age, he went to National Poetry Slam competition meet-ups as a member of various teams representing Bay Area cities and later as a volunteer and being the scenes mover and shaker. Now he has put a lot of that ancient knowledge to work in service of the Bigfoot Poetry Festival, a modern version of those fabled competition meet-ups that he helped to co-found. He has performed poetry across the United States from Portland, Maine to Portland, Oregon, West Palm Beach, Florida, to Honolulu, Hawaii. His work exists on platforms like YouTube and Bandcamp, as well as the shared ephemera of the moment when it is performed. He likes socks and milkshakes but not sock milkshakes, those kind of suck.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="williams">
+  <h2>Ralph Vaughan Williams — <em>Piano Quintet in C Minor</em> (1903–1905)</h2>
+<div class="listen"><a href="https://classical.music.apple.com/us/album/1721136135" target="_blank" rel="noopener">▶ Listen (The Nash Ensemble, Apple Music Classical)</a></div>
+<p>This piece has one of the stranger backstories in the chamber repertoire. Vaughan Williams wrote it in 1903 and kept revising it through 1905 — likely on the advice of his close friend and fellow composer Gustav Holst — before it premiered at London's Aeolian Hall in December 1905. It was performed a handful more times over the next decade or so, and then Vaughan Williams simply withdrew it from his catalogue around 1918, along with most of the other music he'd written before he found his mature voice. After his death, his widow Ursula kept the manuscript under embargo, and it wasn't performed again until 1999 or published until years after that — making this a genuine, decades-long "lost" work getting its due.</p>
+<p>The instrumentation is the same as Schubert's famous "Trout" Quintet — piano, violin, viola, cello, and double bass — a combination that trades away the usual second violin of a piano quartet in favor of the bass, giving the viola more room in the middle of the texture and the whole ensemble a darker, richer bottom end. The first movement leans hard on Brahms, all big Romantic gestures; the slow movement is closely related to one of Vaughan Williams's own songs, "Silent Noon," from the very same year — you can hear it in the <a href="https://classical.music.apple.com/us/album/1583520144" target="_blank" rel="noopener">expressive, hymn-like melody</a> the strings carry over the piano. The finale is a theme with five variations, and Vaughan Williams liked that theme enough to bring it back fifty years later, reworked, in his 1954 Violin Sonata.</p>
+<h3>Movement Breakdown</h3>
+<p>The quintet is in the traditional three-movement shape composers often use for a piece this substantial:</p>
+<ul>
+<li><strong>I. Allegro con fuoco:</strong> Big, sweeping, and unmistakably indebted to Brahms — full of late-Romantic passion, with harmonies that occasionally slip into a more modal, English-sounding color in the quieter moments.</li>
+<li><strong>II. Andante:</strong> The emotional center of the piece — a long, singing melody closely related to Vaughan Williams's song "Silent Noon," carried mostly by the strings over a supportive piano part.</li>
+<li><strong>III. Fantasia, quasi variazioni – Moderato:</strong> A theme and five variations that Vaughan Williams clearly thought was worth keeping — he returned to it decades later in his Violin Sonata — closing the whole work quietly rather than with a big finish.</li>
+</ul>
+<h3>Listen for</h3>
+<ul>
+<li>The double bass's presence in a chamber setting — you'll rarely hear it woven this closely into intimate string writing, since it's usually reserved for orchestral or jazz contexts</li>
+<li>The first movement's Brahmsian sweep, especially the moments where the harmony tilts modal and starts to sound more distinctly English</li>
+<li>The Andante's resemblance to a vocal line — it was written the same year as a Vaughan Williams song, and it shows in how the melody breathes</li>
+<li>The finale's variation structure — see how many different characters Vaughan Williams pulls out of a single theme before letting the piece fade rather than blaze out</li>
+<li>The sheer fact that you're hearing something withdrawn from the composer's own catalogue for eight decades — this is Vaughan Williams before he became "Vaughan Williams," still finding his way</li>
+</ul>
+<h3>Note</h3>
+<p>Coming right after the spoken-word pause, this quintet is the hour's real destination — the biggest, most emotionally sustained piece on the program, and a fitting way to send everyone out to the pastries.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="journey">
+  <h2>The Emotional Arc of the Program</h2>
+<table>
+<thead>
+<tr>
+<th>Work</th>
+<th>Character</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Meyer – Duo for Cello and Bass</strong></td>
+<td>Playful, folk-rooted, conversational</td>
+</tr>
+<tr>
+<td><strong>Spoken Word + Silence</strong></td>
+<td>Reflection and mid-morning reset</td>
+</tr>
+<tr>
+<td><strong>Vaughan Williams – Piano Quintet in C Minor</strong></td>
+<td>Brahmsian, lyrical, quietly resolving</td>
+</tr>
+</tbody>
+</table>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="connections">
+  <h2>Musical Connections</h2>
+<h3>The double bass, twice</h3>
+<p>Both musical halves of this program put the double bass somewhere it doesn't usually get to go — carrying a whole duet by itself in the Meyer, then woven into intimate chamber writing in the Vaughan Williams instead of sitting in the back of an orchestra. It's a nice thread to listen for across a program that otherwise couldn't be more different in style and era.</p>
+<h3>Folk roots, two ways</h3>
+<p>Meyer's duet grew out of a deliberate mixing of classical technique with Appalachian and old-time vernacular music. Vaughan Williams, just a year or two after writing this quintet, would throw himself into collecting English folk song — the discovery that eventually gave him his mature voice. Neither piece is "folk music" outright, but both composers were reaching toward vernacular tradition to find something classical convention alone couldn't give them.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="final-thoughts">
+  <h2>Final Thoughts</h2>
+<p>There's something fitting about opening with two instruments having a plainspoken conversation, pausing for a voice and then silence, and only then arriving at the hour's real weight — a piece so personal to its composer that he hid it away for most of his life. By the time the Vaughan Williams fades out on its quiet variations, you'll have heard a double bass do things it almost never gets to do twice over, in two pieces separated by more than a century.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+</main>
+
+<footer>
+  <a class="back" href="../">← All companions</a>
+</footer>
+
+<script>
+  // Highlight the current section in the sticky bar.
+  var links = {};
+  document.querySelectorAll('nav.bar a').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        Object.values(links).forEach(function (a) { a.classList.remove('on'); });
+        var a = links[e.target.id];
+        if (a) { a.classList.add('on'); a.scrollIntoView({ inline: 'center', block: 'nearest' }); }
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  document.querySelectorAll('main section').forEach(function (s) { io.observe(s); });
+  // Remember checklist ticks on this device (best effort).
+  var boxes = document.querySelectorAll('input[type=checkbox]');
+  var key = 'cb:' + location.pathname;
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(key) || '{}'); } catch (e) {}
+  boxes.forEach(function (b, i) {
+    if (saved[i]) b.checked = true;
+    b.addEventListener('change', function () {
+      saved[i] = b.checked;
+      try { localStorage.setItem(key, JSON.stringify(saved)); } catch (e) {}
+    });
+  });
+</script>
+</body>
+</html>
