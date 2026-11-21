@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Willamette Valley Chamber Music Festival – Esmail, Liang &amp; Beethoven — Concert Companion</title>
+<meta name="concert-title" content="Willamette Valley Chamber Music Festival – Esmail, Liang &amp; Beethoven">
+<meta name="concert-date" content="2026-08-09">
+<meta name="concert-label" content="Sunday, August 9, 2026">
+<meta name="concert-venue" content="Appassionata Estate, home of J. Christopher Wines">
+<style>
+  :root {
+    --bg: #faf7f2; --ink: #26231f; --muted: #6b645b; --accent: #2f6b4f;
+    --accent-soft: #e4efe8; --rule: #ddd5c8; --card: #fff; --warn: #fff4d6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #17191a; --ink: #ece8e0; --muted: #a39d92; --accent: #7fc4a0;
+            --accent-soft: #22302a; --rule: #34383a; --card: #1f2224; --warn: #3a3320; }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 19px/1.65 Georgia, "Iowan Old Style", serif;
+         padding-bottom: env(safe-area-inset-bottom); }
+  header { padding: 2.5rem 1.25rem 1.25rem; max-width: 46rem; margin: 0 auto; }
+  .back { display: inline-block; font: 600 .95rem -apple-system, system-ui, sans-serif; color: var(--accent);
+          text-decoration: none; padding: .7rem 0; min-height: 44px; }
+  header .kicker { font: 600 .8rem/1 -apple-system, system-ui, sans-serif; letter-spacing: .12em;
+                   text-transform: uppercase; color: var(--accent); }
+  h1 { font-size: 2.1rem; line-height: 1.2; margin: .5rem 0 .4rem; }
+  .sub { color: var(--muted); margin: 0; }
+
+  /* Sticky tap-to-navigate bar */
+  nav.bar { position: sticky; top: 0; z-index: 10; background: var(--bg);
+            border-bottom: 1px solid var(--rule); padding-top: env(safe-area-inset-top); }
+  nav.bar .chips { display: flex; gap: .5rem; overflow-x: auto; padding: .6rem 1.25rem;
+                   max-width: 46rem; margin: 0 auto; -webkit-overflow-scrolling: touch; }
+  nav.bar a { flex: none; font: 600 .95rem/1 -apple-system, system-ui, sans-serif; text-decoration: none;
+              color: var(--ink); background: var(--card); border: 1px solid var(--rule);
+              padding: .8rem 1rem; border-radius: 999px; min-height: 44px; display: inline-flex; align-items: center; }
+  nav.bar a.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  main { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem 4rem; }
+  section { padding-top: 2rem; scroll-margin-top: 4.6rem; }
+  h2 { font-size: 1.55rem; line-height: 1.25; margin: 0 0 .25rem; }
+  .meta { font: .9rem/1.5 -apple-system, system-ui, sans-serif; color: var(--muted); margin: 0 0 1rem; }
+  h3 { font: 700 .85rem/1 -apple-system, system-ui, sans-serif; letter-spacing: .1em; text-transform: uppercase;
+       color: var(--accent); margin: 1.6rem 0 .5rem; }
+
+  .listen { display: flex; flex-wrap: wrap; gap: .6rem; margin: .5rem 0 1.25rem; }
+  .listen a { font: 600 1rem/1 -apple-system, system-ui, sans-serif; text-decoration: none; color: #fff;
+              background: var(--accent); padding: .9rem 1.1rem; border-radius: 12px; min-height: 44px;
+              display: inline-flex; align-items: center; gap: .4rem; }
+  .listen a.alt { background: var(--accent-soft); color: var(--accent); }
+
+  ul.map { list-style: none; padding: 0; margin: 0; border-left: 3px solid var(--accent-soft); }
+  ul.map li { padding: .35rem 0 .35rem 1rem; }
+  ul.map b { font-family: -apple-system, system-ui, sans-serif; font-size: .9rem; color: var(--accent); }
+
+  figure.score { margin: 1.25rem 0; background: var(--card); border: 1px solid var(--rule);
+                 border-radius: 12px; padding: .75rem; }
+  figure.score img { width: 100%; height: auto; display: block; background: #fff; border-radius: 6px; }
+  figure.score .slot { display: none; padding: 1.1rem; background: var(--warn); border-radius: 6px;
+                       font: .9rem/1.5 -apple-system, system-ui, sans-serif; }
+  figure.score.missing img { display: none; }
+  figure.score.missing .slot { display: block; }
+  figcaption { font: .9rem/1.5 -apple-system, system-ui, sans-serif; color: var(--muted); margin-top: .6rem; }
+
+  .callout { background: var(--accent-soft); border-radius: 12px; padding: .9rem 1.1rem; margin: 1.25rem 0;
+             font-size: .98rem; }
+  table { width: 100%; border-collapse: collapse; font: .95rem/1.45 -apple-system, system-ui, sans-serif; }
+  th, td { text-align: left; padding: .6rem .4rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; }
+  td a { color: var(--accent); font-weight: 600; }
+  footer { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem 3rem; color: var(--muted);
+           font: .85rem/1.5 -apple-system, system-ui, sans-serif; }
+  .top { display: inline-block; margin-top: 1.25rem; font: 600 .9rem -apple-system, system-ui, sans-serif;
+         color: var(--accent); text-decoration: none; padding: .6rem 0; }
+  /* companion additions */
+  section ul, section ol { padding-left: 1.3rem; }
+  section li p { margin: .1rem 0; }
+  section h4 { font: 700 1.02rem/1.3 -apple-system, system-ui, sans-serif; margin: 1.3rem 0 .3rem; }
+  blockquote { margin: 1rem 0; padding: .1rem 1rem; border-left: 3px solid var(--rule); color: var(--muted); }
+  aside.callout { background: var(--accent-soft); border-left: 4px solid var(--accent); border-radius: 8px;
+                  padding: .8rem 1rem; margin: 1.2rem 0; font-size: .98rem; }
+  aside.callout p { margin: .4rem 0; }
+  aside.callout ul { margin: .4rem 0; }
+  aside.callout .callout-title { font: 700 .8rem/1.2 -apple-system, system-ui, sans-serif; letter-spacing: .08em;
+                                 text-transform: uppercase; color: var(--accent); margin-bottom: .2rem; }
+  aside.c-quote { background: transparent; border-left-color: var(--rule); font-style: italic; color: var(--muted); }
+  aside.c-important { background: var(--warn); border-left-color: #c58b00; }
+  aside.c-important .callout-title { color: #8a6100; }
+  @media (prefers-color-scheme: dark) { aside.c-important .callout-title { color: #e7b84a; } }
+  label.cb { display: flex; gap: .65rem; align-items: flex-start; min-height: 44px; padding: .3rem 0; cursor: pointer; }
+  label.cb input { width: 1.35rem; height: 1.35rem; margin-top: .25rem; flex: none; accent-color: var(--accent); }
+  section li:has(> label.cb), section li:has(> p > label.cb) { list-style: none; margin-left: -1.3rem; }
+  th, td { text-align: left; }
+
+</style>
+</head>
+<body>
+
+<header id="top">
+  <a class="back" href="../">← All companions</a>
+  <div class="kicker">Concert companion</div>
+  <h1>Willamette Valley Chamber Music Festival – Esmail, Liang &amp; Beethoven</h1>
+  <p class="sub">Sunday, August 9, 2026 · 5:30 p.m. · Appassionata Estate, home of J. Christopher Wines — 17150 NE Hillside Dr., Newberg, OR 97132</p>
+</header>
+
+<nav class="bar" aria-label="Guide outline">
+  <div class="chips">
+    <a href="#program">Program</a>
+    <a href="#overview">Overview</a>
+    <a href="#listen">Listen</a>
+    <a href="#esmail">Esmail</a>
+    <a href="#liang-gobi">Liang · Gobi</a>
+    <a href="#liang-6-seasons">Liang · 6 Seasons</a>
+    <a href="#beethoven">Beethoven</a>
+    <a href="#journey">Journey</a>
+    <a href="#connections">Connections</a>
+    <a href="#final-thoughts">Final Thoughts</a>
+  </div>
+</nav>
+
+<main>
+
+<section id="program">
+<h3>Performers</h3>
+<ul>
+<li>Festival musicians</li>
+<li>Lei Liang — Composer-in-Residence, joining in person</li>
+</ul>
+<h3>Program</h3>
+<ol>
+<li>Reena Esmail — <em>This Is It, part 3</em> (West Coast premiere, exact duration not yet published — expect a few short minutes total)</li>
+<li>Lei Liang — <em>Gobi Gloria</em> (~10 min)</li>
+<li>Lei Liang — <em>6 Seasons</em> (selections — length depends on how many of the six seasons are performed)</li>
+<li>Ludwig van Beethoven — String Quartet No. 2 in G major, Op. 18, No. 2 (~24 min)</li>
+</ol>
+<p><em>Admission includes a complimentary three-wine tasting paired to the program, with food and wine available afterward on the terrace.</em></p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="overview">
+  <h2>Overview</h2>
+<p>This is Season 11's opening weekend for the festival, built around its signature format: chamber music performed a few feet away in J. Christopher's barrel room, with wine specifically paired to what's being played. The throughline of the evening is Lei Liang, in residence and present in person — two of his own works anchor the middle of the program, framed by a brand-new West Coast premiere from Reena Esmail and a very old, very good-natured Beethoven quartet to send everyone out to the terrace.</p>
+<p>Entirely string-ensemble writing that moves from intimate, present-tense miniature (Esmail) into music built from field recordings of an entire ocean (Liang), then out the other side into 18th-century-flavored comedy (Beethoven) — a night that starts small, expands to planetary scale, and ends with a wink.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="listen">
+  <h2>Listen Before the Concert (Apple Music)</h2>
+<ul>
+<li>Esmail, <em>This Is It, part 3</em> — no commercial recording yet; this is a West Coast premiere of a brand-new set, so there's nothing to link to. (Sets 1 and 2 exist but aren't the material being played Sunday, so I'm not substituting them in.)</li>
+<li>Liang, <em>Gobi Gloria</em> — <a href="https://classical.music.apple.com/us/album/1512814927" target="_blank" rel="noopener">JACK Quartet, <em>Bamboo Lights</em> (Apple Music Classical)</a></li>
+<li>Liang, <em>Six Seasons</em> — <a href="https://classical.music.apple.com/us/album/1693912167" target="_blank" rel="noopener">Mivos Quartet (Apple Music Classical)</a> · <a href="https://music.apple.com/us/album/lei-liang-six-seasons/1772906004" target="_blank" rel="noopener">Marco Fusi &amp; Charles Deluga (Apple Music)</a></li>
+<li>Beethoven, String Quartet Op. 18 No. 2 — <a href="https://classical.music.apple.com/in/recording/ludwig-van-beethoven-1770-pp76-1572134918" target="_blank" rel="noopener">Belcea Quartet (Apple Music Classical)</a> · <a href="https://music.apple.com/us/album/beethoven-complete-string-quartets/694115394" target="_blank" rel="noopener">Artemis Quartet, complete cycle (Apple Music)</a></li>
+</ul>
+<p><em>Mivos Quartet's is the dedicated recording of Six Seasons; Fusi/Deluga's is a somewhat different chamber realization — worth a quick compare since the piece is written to allow real variation between performances.</em></p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="esmail">
+  <h2>Reena Esmail — <em>This Is It, part 3</em> (West Coast premiere)</h2>
+<p>🎧 No recording available yet — this is a premiere. Here is part 1: <a href="https://classical.music.apple.com/us/album/1841293070?i=1841293382&amp;l=en-US" target="_blank" rel="noopener">Apple Music Classical</a></p>
+<p>This piece belongs to an ongoing project Esmail calls <em>This Is It</em> — small sets of string-quartet miniatures, each just a minute or two long, that can be mixed and matched in performance. The title comes from a line in Jon Kabat-Zinn's meditation book <em>Wherever You Go, There You Are</em>: instead of always looking ahead to some future moment, what if this — right here — is already it? Each miniature asks the players to practice a specific kind of presence with one another: passing a melody seamlessly between instruments, locking into a tight rhythmic pattern together, or taking turns pushing each other off a musical ledge and catching one another at the bottom.</p>
+<p>Part 3 was commissioned by the Sheffield Chamber Players; Sunday's performance is its West Coast premiere, so you'll be hearing something essentially brand new, with no back catalog of interpretations to compare it against. Like the other <em>This Is It</em> sets, part 3 is built from several short, unnumbered movements rather than one continuous piece — Esmail's own catalog description doesn't give individual titles or a fixed count for this set, so expect a handful of these tiny, self-contained miniatures strung together rather than a single arc.</p>
+<h3>Listen for</h3>
+<ul>
+<li>Very short, self-contained movements — treat each one as its own tiny world rather than expecting a big architectural arc</li>
+<li>Specific modes of interaction between the players: melody handed off invisibly, tight rhythmic unison, or one voice "catching" another</li>
+<li>A sense of presence and attention rather than drama — this is chamber music about <em>listening to each other</em>, which you'll be able to watch happen live</li>
+<li>Since it's a premiere, there's no reference recording to compare — your ears on Sunday are the first draft of how this music is understood</li>
+</ul>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="liang-gobi">
+  <h2>Lei Liang — <em>Gobi Gloria</em></h2>
+<div class="listen"><a href="https://classical.music.apple.com/us/album/1512814927" target="_blank" rel="noopener">▶ Listen (JACK Quartet, <em>Bamboo Lights</em>, Apple Music Classical)</a></div>
+<p>Liang grew up in Tianjin, China, and has spoken about the contrast between the upbeat, state-approved music played on the radio during the Cultural Revolution and the "very lonely songs" of longing he encountered separately — specifically Mongolian folk music, which struck him for its raw, nomadic melancholy. <em>Gobi Gloria</em> grew directly out of that fascination. Commissioned by and dedicated to the Ying Quartet, it takes a single haunting melody and layers it against its own mirror images — played backward, upside down, and both at once — inside music that otherwise moves more like heterophonic folk performance than notated Western counterpoint. It closes with an actual folk song Liang heard on a visit to Inner Mongolia in 1996.</p>
+<h3>Listen for</h3>
+<ul>
+<li>A central melody that keeps reappearing distorted — inverted, reversed, or both — rather than developed in the usual sonata-form sense</li>
+<li>Textures that evoke Mongolian musical traditions: long-chant-like melodic lines, dance rhythms, and music associated with shamanic ritual</li>
+<li>A closing folk-song quotation that lands very differently from everything that came before it — simpler, more direct, almost like the music suddenly speaking plainly after an hour of dreaming</li>
+</ul>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="liang-6-seasons">
+  <h2>Lei Liang — <em>6 Seasons</em> (selections)</h2>
+<div class="listen"><a href="https://classical.music.apple.com/us/album/1693912167" target="_blank" rel="noopener">▶ Listen (Mivos Quartet, Apple Music Classical)</a><a class="alt" href="https://music.apple.com/us/album/lei-liang-six-seasons/1772906004" target="_blank" rel="noopener">▶ Marco Fusi &amp; Charles Deluga (Apple Music)</a></div>
+<p>This is the most unusual piece on the program, and its origin is genuinely scientific. Working with oceanographers at UC San Diego's Scripps Institution, Liang had hydrophones placed roughly 300 meters below the sea surface off Utqiagvik (Point Barrow), Alaska — in the Chukchi Sea, one of the least accessible places on Earth for humans. Those hydrophones recorded an entire year of underwater sound: sea ice cracking and shifting, marine mammal calls, ocean noise. Liang then built a piece for live musicians who respond to and interweave with that recorded material, organized not around the four familiar calendar seasons but around six seasons the Inuit recognize by what can actually be heard changing in the environment.</p>
+<p>Because the piece is written for "any number of improvising musicians" alongside the fixed electronic track, no two performances are identical — tonight's version will be its own specific realization, shaped by whichever musicians and however many of the six seasons are used.</p>
+<h3>Movement Breakdown</h3>
+<p>The full work is a cycle of six movements plus a coda, though Sunday's performance is only a portion of it:</p>
+<ul>
+<li><strong>Season 1, New Ice:</strong> Built entirely from recorded ice sounds — cracking, crunching, and hissing as water freezes and ice plates shift against each other.</li>
+<li><strong>Season 2, Darkness:</strong> Continues in recorded ice/underwater sound, deepening the sense of an environment with no visual reference.</li>
+<li><strong>Season 3, Sunrise:</strong> The live musicians begin actively "echolocating" against the recorded soundscape rather than simply sitting inside it.</li>
+<li><strong>Season 4, Migration:</strong> Birdlike, airier textures enter alongside real harmonic material.</li>
+<li><strong>Season 5, Cacophony:</strong> The densest, most active movement — despite the name, more layered and exploratory than truly chaotic.</li>
+<li><strong>Season 6, Bloom:</strong> A more life-filled, almost animal-populated close (listeners have described hearing echoes of birds, or even larger creatures, in the texture).</li>
+<li><strong>Coda:</strong> Closes the cycle, resolving the piece's long arc from ice back toward warmth and growth.</li>
+</ul>
+<h3>Listen for</h3>
+<ul>
+<li>The underwater recordings themselves — genuinely alien sounds (ice, whale and marine-mammal calls, deep ocean noise) functioning as a second "instrument" alongside the strings</li>
+<li>How the live players choose to enter, echo, or contrast against that recorded soundscape rather than simply accompanying it</li>
+<li>A very different sense of time from the rest of the program — nothing here follows a Western symphonic pulse; the "seasons" unfold at the pace of an actual Arctic year compressed into minutes</li>
+<li>This being a genuine science/art collaboration — not a tone poem <em>about</em> the ocean, but built directly from real oceanographic field recordings</li>
+</ul>
+<h3>Note</h3>
+<p>Between Liang's own two pieces, this is the clear centerpiece of the "Composer-in-Residence" format — hearing the actual maker of both works talk about them, in the room, right before or after they're performed, is part of the evening's design.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="beethoven">
+  <h2>Ludwig van Beethoven — String Quartet No. 2 in G major, Op. 18, No. 2 (1798–1800)</h2>
+<div class="listen"><a href="https://classical.music.apple.com/in/recording/ludwig-van-beethoven-1770-pp76-1572134918" target="_blank" rel="noopener">▶ Listen (Belcea Quartet, Apple Music Classical)</a><a class="alt" href="https://music.apple.com/us/album/beethoven-complete-string-quartets/694115394" target="_blank" rel="noopener">▶ Artemis Quartet, complete cycle (Apple Music)</a></div>
+<p>This was actually the third of the six Op. 18 quartets Beethoven wrote, though it was published second. Of the whole set, it's the one that leans hardest on Haydn's example rather than pointing ahead to Beethoven's later, more radical quartets — early players nicknamed it the "Komplimentierungsquartett" ("compliments quartet") for the courtly, bowing-and-curtseying exchange of phrases that opens the first movement. It's dedicated to Prince Joseph Franz von Lobkowitz, one of Beethoven's most important patrons.</p>
+<p>Don't take the "compliments" nickname too literally as a story — it's more about the music's gracious, sociable atmosphere than any specific scene. The one real surprise comes in the slow second movement: a smooth, well-mannered Adagio is interrupted out of nowhere by a fast, almost frantic Allegro passage, which vanishes again just as quickly, before the movement returns to its original calm.</p>
+<h3>Movement Breakdown</h3>
+<p>The work is structured in the traditional four-movement format:</p>
+<ul>
+<li><strong>I. Allegro:</strong> Opens with a graceful, polite motif that gives the quartet its "Compliment" nickname. Features a simple phrase structure, an embellished, singing melody, and a playful false recapitulation.</li>
+<li><strong>II. Adagio cantabile:</strong> A courtly, singing (cantabile) movement heavily inspired by the operatic arias of the era. Prominently features the first violin soaring over gentle, supportive accompaniment from the rest of the ensemble — interrupted midway by that surprise fast passage before returning to calm.</li>
+<li><strong>III. Scherzo &amp; Trio:</strong> A lively, brisk dance movement that injects a sense of humor and rhythmic vitality before the final movement.</li>
+<li><strong>IV. Allegro molto, quasi presto:</strong> A fast, virtuosic rondo finale brimming with sudden dynamic shifts, playful syncopations, and abrupt silences that preview Beethoven's later, more mature stylistic wit.</li>
+</ul>
+<h3>Listen for</h3>
+<ul>
+<li>The opening "bowing and curtseying" phrase exchange between instruments — light, conversational, almost like polite party small talk set to music</li>
+<li>The Adagio's sudden detour into a fast, unexpected passage before settling back into its original serenity</li>
+<li>Haydn's fingerprints throughout — this is young Beethoven still very much working inside an inherited tradition, not yet breaking from it</li>
+<li>A genuinely funny, good-humored spirit — of the six Op. 18 quartets, this one comes closest to being outright comic</li>
+</ul>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="journey">
+  <h2>The Emotional Arc of the Program</h2>
+<table>
+<thead>
+<tr>
+<th>Work</th>
+<th>Character</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Esmail – This Is It, part 3</strong></td>
+<td>Intimate, present-tense, exploratory</td>
+</tr>
+<tr>
+<td><strong>Liang – Gobi Gloria</strong></td>
+<td>Nostalgic, folk-rooted, hypnotic</td>
+</tr>
+<tr>
+<td><strong>Liang – Six Seasons</strong></td>
+<td>Vast, alien, environmentally scaled</td>
+</tr>
+<tr>
+<td><strong>Beethoven – Op. 18 No. 2</strong></td>
+<td>Courtly, witty, good-humored</td>
+</tr>
+</tbody>
+</table>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="connections">
+  <h2>Musical Connections</h2>
+<h3>Esmail &amp; Liang (Composer-in-Residence pairing)</h3>
+<p>Both pieces on this half of the program are, in different ways, about <em>listening carefully</em> — Esmail to the other musicians in the room, Liang to an ocean most people will never hear directly. Placing a brand-new premiere next to an established Liang classic (Gobi Gloria) before the genuinely experimental Six Seasons builds outward in scale: from a few musicians paying attention to each other, to a whole ecosystem recorded and reanimated in concert.</p>
+<h3>Liang's two works</h3>
+<p>Gobi Gloria (2006) and Six Seasons (2022) sit sixteen years apart in Liang's catalog but share a method: both take real-world sound — remembered Mongolian folk melody in one case, literal hydrophone recordings in the other — and build a concert piece that lets that source material speak through transformation rather than direct quotation alone.</p>
+<h3>Beethoven</h3>
+<p>Placed last, the Beethoven is a deliberate change of era and temperament — after two contemporary works built from field recordings and meditation texts, closing on 18th-century-flavored comedy sends the evening out on warmth and familiarity rather than the evening's more exploratory material.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="final-thoughts">
+  <h2>Final Thoughts</h2>
+<p>This is a program about scale — it moves from a handful of players learning to listen to one another in real time, through one composer's memory of Mongolian folk song, out into an entire Arctic ecosystem recorded on the ocean floor, and finally back down to earth with young Beethoven's good-natured, Haydn-flavored wit. With the composer himself in the room for two of the four pieces, and a glass of Willamette Valley Pinot in hand, it's as much a chance to hear music being explained as to hear it performed.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+</main>
+
+<footer>
+  <a class="back" href="../">← All companions</a>
+</footer>
+
+<script>
+  // Highlight the current section in the sticky bar.
+  var links = {};
+  document.querySelectorAll('nav.bar a').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        Object.values(links).forEach(function (a) { a.classList.remove('on'); });
+        var a = links[e.target.id];
+        if (a) { a.classList.add('on'); a.scrollIntoView({ inline: 'center', block: 'nearest' }); }
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  document.querySelectorAll('main section').forEach(function (s) { io.observe(s); });
+  // Remember checklist ticks on this device (best effort).
+  var boxes = document.querySelectorAll('input[type=checkbox]');
+  var key = 'cb:' + location.pathname;
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(key) || '{}'); } catch (e) {}
+  boxes.forEach(function (b, i) {
+    if (saved[i]) b.checked = true;
+    b.addEventListener('change', function () {
+      saved[i] = b.checked;
+      try { localStorage.setItem(key, JSON.stringify(saved)); } catch (e) {}
+    });
+  });
+</script>
+</body>
+</html>

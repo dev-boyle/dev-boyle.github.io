@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Three Cellos &amp; Piano — Concert Companion</title>
+<meta name="concert-title" content="Three Cellos &amp; Piano">
+<meta name="concert-date" content="2026-07-12">
+<meta name="concert-label" content="Sunday, July 12, 2026">
+<meta name="concert-venue" content="ChatterPDX">
+<style>
+  :root {
+    --bg: #faf7f2; --ink: #26231f; --muted: #6b645b; --accent: #2f6b4f;
+    --accent-soft: #e4efe8; --rule: #ddd5c8; --card: #fff; --warn: #fff4d6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #17191a; --ink: #ece8e0; --muted: #a39d92; --accent: #7fc4a0;
+            --accent-soft: #22302a; --rule: #34383a; --card: #1f2224; --warn: #3a3320; }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 19px/1.65 Georgia, "Iowan Old Style", serif;
+         padding-bottom: env(safe-area-inset-bottom); }
+  header { padding: 2.5rem 1.25rem 1.25rem; max-width: 46rem; margin: 0 auto; }
+  .back { display: inline-block; font: 600 .95rem -apple-system, system-ui, sans-serif; color: var(--accent);
+          text-decoration: none; padding: .7rem 0; min-height: 44px; }
+  header .kicker { font: 600 .8rem/1 -apple-system, system-ui, sans-serif; letter-spacing: .12em;
+                   text-transform: uppercase; color: var(--accent); }
+  h1 { font-size: 2.1rem; line-height: 1.2; margin: .5rem 0 .4rem; }
+  .sub { color: var(--muted); margin: 0; }
+
+  /* Sticky tap-to-navigate bar */
+  nav.bar { position: sticky; top: 0; z-index: 10; background: var(--bg);
+            border-bottom: 1px solid var(--rule); padding-top: env(safe-area-inset-top); }
+  nav.bar .chips { display: flex; gap: .5rem; overflow-x: auto; padding: .6rem 1.25rem;
+                   max-width: 46rem; margin: 0 auto; -webkit-overflow-scrolling: touch; }
+  nav.bar a { flex: none; font: 600 .95rem/1 -apple-system, system-ui, sans-serif; text-decoration: none;
+              color: var(--ink); background: var(--card); border: 1px solid var(--rule);
+              padding: .8rem 1rem; border-radius: 999px; min-height: 44px; display: inline-flex; align-items: center; }
+  nav.bar a.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  main { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem 4rem; }
+  section { padding-top: 2rem; scroll-margin-top: 4.6rem; }
+  h2 { font-size: 1.55rem; line-height: 1.25; margin: 0 0 .25rem; }
+  .meta { font: .9rem/1.5 -apple-system, system-ui, sans-serif; color: var(--muted); margin: 0 0 1rem; }
+  h3 { font: 700 .85rem/1 -apple-system, system-ui, sans-serif; letter-spacing: .1em; text-transform: uppercase;
+       color: var(--accent); margin: 1.6rem 0 .5rem; }
+
+  .listen { display: flex; flex-wrap: wrap; gap: .6rem; margin: .5rem 0 1.25rem; }
+  .listen a { font: 600 1rem/1 -apple-system, system-ui, sans-serif; text-decoration: none; color: #fff;
+              background: var(--accent); padding: .9rem 1.1rem; border-radius: 12px; min-height: 44px;
+              display: inline-flex; align-items: center; gap: .4rem; }
+  .listen a.alt { background: var(--accent-soft); color: var(--accent); }
+
+  ul.map { list-style: none; padding: 0; margin: 0; border-left: 3px solid var(--accent-soft); }
+  ul.map li { padding: .35rem 0 .35rem 1rem; }
+  ul.map b { font-family: -apple-system, system-ui, sans-serif; font-size: .9rem; color: var(--accent); }
+
+  figure.score { margin: 1.25rem 0; background: var(--card); border: 1px solid var(--rule);
+                 border-radius: 12px; padding: .75rem; }
+  figure.score img { width: 100%; height: auto; display: block; background: #fff; border-radius: 6px; }
+  figure.score .slot { display: none; padding: 1.1rem; background: var(--warn); border-radius: 6px;
+                       font: .9rem/1.5 -apple-system, system-ui, sans-serif; }
+  figure.score.missing img { display: none; }
+  figure.score.missing .slot { display: block; }
+  figcaption { font: .9rem/1.5 -apple-system, system-ui, sans-serif; color: var(--muted); margin-top: .6rem; }
+
+  .callout { background: var(--accent-soft); border-radius: 12px; padding: .9rem 1.1rem; margin: 1.25rem 0;
+             font-size: .98rem; }
+  table { width: 100%; border-collapse: collapse; font: .95rem/1.45 -apple-system, system-ui, sans-serif; }
+  th, td { text-align: left; padding: .6rem .4rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; }
+  td a { color: var(--accent); font-weight: 600; }
+  footer { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem 3rem; color: var(--muted);
+           font: .85rem/1.5 -apple-system, system-ui, sans-serif; }
+  .top { display: inline-block; margin-top: 1.25rem; font: 600 .9rem -apple-system, system-ui, sans-serif;
+         color: var(--accent); text-decoration: none; padding: .6rem 0; }
+  /* companion additions */
+  section ul, section ol { padding-left: 1.3rem; }
+  section li p { margin: .1rem 0; }
+  section h4 { font: 700 1.02rem/1.3 -apple-system, system-ui, sans-serif; margin: 1.3rem 0 .3rem; }
+  blockquote { margin: 1rem 0; padding: .1rem 1rem; border-left: 3px solid var(--rule); color: var(--muted); }
+  aside.callout { background: var(--accent-soft); border-left: 4px solid var(--accent); border-radius: 8px;
+                  padding: .8rem 1rem; margin: 1.2rem 0; font-size: .98rem; }
+  aside.callout p { margin: .4rem 0; }
+  aside.callout ul { margin: .4rem 0; }
+  aside.callout .callout-title { font: 700 .8rem/1.2 -apple-system, system-ui, sans-serif; letter-spacing: .08em;
+                                 text-transform: uppercase; color: var(--accent); margin-bottom: .2rem; }
+  aside.c-quote { background: transparent; border-left-color: var(--rule); font-style: italic; color: var(--muted); }
+  aside.c-important { background: var(--warn); border-left-color: #c58b00; }
+  aside.c-important .callout-title { color: #8a6100; }
+  @media (prefers-color-scheme: dark) { aside.c-important .callout-title { color: #e7b84a; } }
+  label.cb { display: flex; gap: .65rem; align-items: flex-start; min-height: 44px; padding: .3rem 0; cursor: pointer; }
+  label.cb input { width: 1.35rem; height: 1.35rem; margin-top: .25rem; flex: none; accent-color: var(--accent); }
+  section li:has(> label.cb), section li:has(> p > label.cb) { list-style: none; margin-left: -1.3rem; }
+  th, td { text-align: left; }
+
+</style>
+</head>
+<body>
+
+<header id="top">
+  <a class="back" href="../">← All companions</a>
+  <div class="kicker">Concert companion</div>
+  <h1>Three Cellos &amp; Piano</h1>
+  <p class="sub">Sunday, July 12, 2026 · 10:30pm · ChatterPDX</p>
+</header>
+
+<nav class="bar" aria-label="Guide outline">
+  <div class="chips">
+    <a href="#overview">Overview</a>
+    <a href="#program">Program</a>
+    <a href="#ensemble">Ensemble</a>
+    <a href="#rachmaninoff">Rachmaninoff</a>
+    <a href="#beethoven">Beethoven</a>
+    <a href="#spoken-word">Spoken Word</a>
+    <a href="#raum">Raum</a>
+    <a href="#popper">Popper</a>
+    <a href="#journey">Journey</a>
+    <a href="#themes">Themes</a>
+    <a href="#listening-checklist">Listening Checklist</a>
+    <a href="#reflection">Reflection</a>
+  </div>
+</nav>
+
+<main>
+
+<section id="overview">
+<h3>Performers</h3>
+<ul>
+<li>
+<p><strong>Marilyn de Oliveira</strong> — Cello</p>
+</li>
+<li>
+<p><strong>Trevor Fitzpatrick</strong> — Cello</p>
+</li>
+<li>
+<p><strong>Daniel Scoggins</strong> — Cello</p>
+</li>
+<li>
+<p><strong>Cary Lewis</strong> — Piano</p>
+</li>
+<li>
+<p><strong>Brianna Renae</strong> — Spoken Word</p>
+</li>
+</ul>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="program">
+  <h2>Program</h2>
+<table>
+<thead>
+<tr>
+<th>Composer</th>
+<th>Work</th>
+<th>Year</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sergei Rachmaninoff</td>
+<td><em>Vocalise</em>, Op. 34 No. 14</td>
+<td><strong>1915</strong></td>
+</tr>
+<tr>
+<td>Ludwig van Beethoven</td>
+<td><em>Variations on "Là ci darem la mano"</em> (arr. Blaise Déjardin)</td>
+<td><strong>1795</strong></td>
+</tr>
+<tr>
+<td>Elizabeth Raum</td>
+<td><em>Ballade and Dance</em></td>
+<td>Contemporary</td>
+</tr>
+<tr>
+<td>David Popper</td>
+<td><em>Requiem</em>, Op. 66</td>
+<td><strong>1892</strong></td>
+</tr>
+</tbody>
+</table>
+<aside class="callout c-abstract"><div class="callout-title">At a Glance</div><p>This concert spans more than <strong>220 years</strong> of musical history yet feels remarkably unified.</p>
+<p>The cello becomes:</p>
+<ul>
+<li>
+<p>🎤 Singer (Rachmaninoff)</p>
+</li>
+<li>
+<p>🎭 Conversationalist &amp; virtuoso (Beethoven)</p>
+</li>
+<li>
+<p>📖 Storyteller (Raum)</p>
+</li>
+<li>
+<p>🕯️ Elegist (Popper)</p>
+</li>
+</ul></aside>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="ensemble">
+  <h2>About the Ensemble</h2>
+<p>Three cellos and piano create a surprisingly orchestral sound.</p>
+<p>Instead of functioning as three identical instruments, the players continually exchange roles:</p>
+<ul>
+<li>
+<p>one carries the melody</p>
+</li>
+<li>
+<p>one supplies counterpoint</p>
+</li>
+<li>
+<p>one supports the harmony</p>
+</li>
+<li>
+<p>the piano acts almost like a miniature orchestra</p>
+</li>
+</ul>
+<aside class="callout c-tip"><div class="callout-title">What to Listen For</div><p>Try to identify each player's musical personality.</p>
+<p>Even on identical instruments, experienced performers develop distinct voices through:</p>
+<ul>
+<li>
+<p>tone color</p>
+</li>
+<li>
+<p>vibrato</p>
+</li>
+<li>
+<p>phrasing</p>
+</li>
+<li>
+<p>articulation</p>
+</li>
+<li>
+<p>bow speed</p>
+</li>
+</ul>
+<p>By the second half of the concert, you may find yourself recognizing individual players simply by their sound.</p></aside>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="rachmaninoff">
+  <h2>Sergei Rachmaninoff — <em>Vocalise</em> (1915)</h2>
+<h3>Background</h3>
+<p>Originally written for <strong>voice and piano</strong>, <em>Vocalise</em> contains <strong>no words</strong>.</p>
+<p>The singer performs entirely on a single vowel sound, making the melody itself the emotional message.</p>
+<p>The cello has become one of the work's most natural homes because its expressive range closely resembles the human voice.</p>
+<h3>Listen For</h3>
+<ul>
+<li>
+<p>Long, uninterrupted melodic lines</p>
+</li>
+<li>
+<p>Rich late-Romantic harmonies</p>
+</li>
+<li>
+<p>Quiet emotional intensity</p>
+</li>
+<li>
+<p>The melody flowing naturally between the three cellos</p>
+</li>
+<li>
+<p>The piano creating an almost shimmering orchestral backdrop</p>
+</li>
+</ul>
+<aside class="callout c-quote"><p>If performed well, you'll almost forget the piece was ever written for a singer.</p></aside>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="beethoven">
+  <h2>Beethoven — <em>Variations on "Là ci darem la mano"</em> (1795)</h2>
+<h3>Background</h3>
+<p>The theme comes from Mozart's <strong>Don Giovanni</strong>.</p>
+<p>Don Giovanni attempts to charm Zerlina by singing:</p>
+<blockquote>
+<p>"Là ci darem la mano"</p>
+<p><em>"There we'll join hands."</em></p>
+</blockquote>
+<p>Beethoven originally wrote these variations for <strong>two oboes and English horn</strong>, making them an excellent fit for three cellos.</p>
+<p>This performance uses an arrangement by <strong>Blaise Déjardin</strong>, principal cellist of the Boston Symphony Orchestra.</p>
+<h3>Listen For</h3>
+<ul>
+<li>
+<p>the original Mozart melody</p>
+</li>
+<li>
+<p>playful exchanges between instruments</p>
+</li>
+<li>
+<p>imitation</p>
+</li>
+<li>
+<p>brilliant technical passages</p>
+</li>
+<li>
+<p>Classical elegance</p>
+</li>
+<li>
+<p>increasingly inventive variations</p>
+</li>
+</ul>
+<aside class="callout c-note"><div class="callout-title">Note</div><p>Beethoven never loses sight of Mozart's tune. Every variation transforms it while keeping it recognizable.</p></aside>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="spoken-word">
+  <h2>Spoken Word</h2>
+<p>Placed in the center of the concert, the spoken word performance functions as an emotional pivot.</p>
+<p>It allows the audience to shift from listening to music toward listening to language before returning to music again.</p>
+<p>Depending on the text, it may provide a natural bridge into the reflective world of Popper's <em>Requiem</em>.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="raum">
+  <h2>Elizabeth Raum — <em>Ballade and Dance</em></h2>
+<h3>About the Composer</h3>
+<p>Elizabeth Raum (born 1945) is one of Canada's most frequently performed living composers.</p>
+<p>Before composing full time she served as principal oboist of the Regina Symphony Orchestra.</p>
+<p>Her music is known for being:</p>
+<ul>
+<li>
+<p>lyrical</p>
+</li>
+<li>
+<p>tonal</p>
+</li>
+<li>
+<p>rhythmically engaging</p>
+</li>
+<li>
+<p>emotionally direct</p>
+</li>
+<li>
+<p>audience-friendly</p>
+</li>
+</ul>
+<p>Rather than embracing highly experimental modernism, Raum writes music that communicates immediately.</p>
+<h3>Ballade</h3>
+<p>Expect:</p>
+<ul>
+<li>
+<p>broad singing melodies</p>
+</li>
+<li>
+<p>warmth</p>
+</li>
+<li>
+<p>reflection</p>
+</li>
+<li>
+<p>expressive lyricism</p>
+</li>
+</ul>
+<h3>Dance</h3>
+<p>Expect:</p>
+<ul>
+<li>
+<p>rhythmic vitality</p>
+</li>
+<li>
+<p>playful interaction</p>
+</li>
+<li>
+<p>folk-inspired energy</p>
+</li>
+<li>
+<p>lively exchanges among the three cellos</p>
+</li>
+</ul>
+<aside class="callout c-seealso"><div class="callout-title">Musical Relatives</div><p>Raum's style occasionally recalls:</p>
+<ul>
+<li>
+<p>Aaron Copland — spacious harmonies</p>
+</li>
+<li>
+<p>Samuel Barber — lyrical warmth</p>
+</li>
+<li>
+<p>Malcolm Arnold — rhythmic energy</p>
+</li>
+</ul>
+<p>without directly imitating any of them.</p></aside>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="popper">
+  <h2>David Popper — <em>Requiem</em>, Op. 66 (1892)</h2>
+<h3>About the Composer</h3>
+<p>David Popper (1843–1913) was one of the greatest virtuoso cellists of the nineteenth century.</p>
+<p>Although modern audiences mostly know him through his famous cello études, he was also a gifted Romantic composer.</p>
+<p>He wrote <em>Requiem</em> in memory of his friend and publisher Daniel Rahter.</p>
+<p>Unlike many of his virtuosic works, <em>Requiem</em> is deeply personal.</p>
+<h3>Listen For</h3>
+<ul>
+<li>
+<p>solemn opening</p>
+</li>
+<li>
+<p>rich cello harmonies</p>
+</li>
+<li>
+<p>organ-like sonorities</p>
+</li>
+<li>
+<p>long lyrical melodies</p>
+</li>
+<li>
+<p>moments where the three cellos seem to breathe together</p>
+</li>
+</ul>
+<p>The piano supports rather than dominates, allowing the cellos to carry the emotional weight.</p>
+<aside class="callout c-important"><div class="callout-title">Important</div><p>This is likely to be the emotional centerpiece of the concert.</p></aside>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="journey">
+  <h2>Emotional Journey</h2>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Character</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rachmaninoff</td>
+<td>Warm • lyrical • contemplative</td>
+</tr>
+<tr>
+<td>Beethoven</td>
+<td>Elegant • witty • virtuosic</td>
+</tr>
+<tr>
+<td>Spoken Word</td>
+<td>Reflection • transition</td>
+</tr>
+<tr>
+<td>Raum</td>
+<td>Narrative • colorful • energetic</td>
+</tr>
+<tr>
+<td>Popper</td>
+<td>Intimate • profound • deeply moving</td>
+</tr>
+</tbody>
+</table>
+<p>The program progresses naturally from song, to conversation, to storytelling, and finally to remembrance.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="themes">
+  <h2>Themes Running Through the Evening</h2>
+<h3>Melody</h3>
+<p>Every work values beautiful melodic writing.</p>
+<h3>Conversation</h3>
+<p>Especially in Beethoven, listen for musical dialogue rather than soloist and accompaniment.</p>
+<h3>Blend</h3>
+<p>Three cellos often sound less like individual instruments and more like a choir or small string orchestra.</p>
+<h3>Contrast</h3>
+<p>The evening alternates between intimacy and brilliance, reflection and energy.</p>
+<h3>The Piano</h3>
+<p>The piano functions as:</p>
+<ul>
+<li>
+<p>harmonic foundation</p>
+</li>
+<li>
+<p>rhythmic engine</p>
+</li>
+<li>
+<p>orchestral color</p>
+</li>
+<li>
+<p>dramatic support</p>
+</li>
+</ul>
+<p>rather than simply accompaniment.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="listening-checklist">
+  <h2>Listening Checklist</h2>
+<h3>Rachmaninoff</h3>
+<ul>
+<li>
+<p><label class="cb"><input type="checkbox"> Can I hear the melody move from one cello to another?</label></p>
+</li>
+<li>
+<p><label class="cb"><input type="checkbox"> Does the cello sound like a human voice?</label></p>
+</li>
+</ul>
+<h3>Beethoven</h3>
+<ul>
+<li>
+<p><label class="cb"><input type="checkbox"> Can I still recognize Mozart's original tune?</label></p>
+</li>
+<li>
+<p><label class="cb"><input type="checkbox"> Which variation is my favorite?</label></p>
+</li>
+</ul>
+<h3>Spoken Word</h3>
+<ul>
+<li><label class="cb"><input type="checkbox"> Does the text change how I hear the second half?</label></li>
+</ul>
+<h3>Raum</h3>
+<ul>
+<li>
+<p><label class="cb"><input type="checkbox"> Where does the Ballade become the Dance?</label></p>
+</li>
+<li>
+<p><label class="cb"><input type="checkbox"> What rhythms stand out?</label></p>
+</li>
+</ul>
+<h3>Popper</h3>
+<ul>
+<li>
+<p><label class="cb"><input type="checkbox"> Which passage feels most emotionally powerful?</label></p>
+</li>
+<li>
+<p><label class="cb"><input type="checkbox"> How do the three cellos blend together?</label></p>
+</li>
+</ul>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="reflection">
+  <h2>Final Reflection</h2>
+<p>This is not simply a concert showcasing three excellent cellists.</p>
+<p>It is an exploration of what makes the cello one of the most expressive instruments ever created.</p>
+<p>Across more than two centuries of music, the program demonstrates the instrument's remarkable ability to sing, converse, dance, comfort, and mourn.</p>
+<p>By the final notes of Popper's <em>Requiem</em>, you've heard the cello speak in nearly every emotional language it possesses.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+</main>
+
+<footer>
+  <a class="back" href="../">← All companions</a>
+</footer>
+
+<script>
+  // Highlight the current section in the sticky bar.
+  var links = {};
+  document.querySelectorAll('nav.bar a').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        Object.values(links).forEach(function (a) { a.classList.remove('on'); });
+        var a = links[e.target.id];
+        if (a) { a.classList.add('on'); a.scrollIntoView({ inline: 'center', block: 'nearest' }); }
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  document.querySelectorAll('main section').forEach(function (s) { io.observe(s); });
+  // Remember checklist ticks on this device (best effort).
+  var boxes = document.querySelectorAll('input[type=checkbox]');
+  var key = 'cb:' + location.pathname;
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(key) || '{}'); } catch (e) {}
+  boxes.forEach(function (b, i) {
+    if (saved[i]) b.checked = true;
+    b.addEventListener('change', function () {
+      saved[i] = b.checked;
+      try { localStorage.setItem(key, JSON.stringify(saved)); } catch (e) {}
+    });
+  });
+</script>
+</body>
+</html>

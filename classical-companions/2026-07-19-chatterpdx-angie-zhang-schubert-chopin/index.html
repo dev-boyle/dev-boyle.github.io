@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Angie Zhang: Schubert &amp; Chopin — Concert Companion</title>
+<meta name="concert-title" content="Angie Zhang: Schubert &amp; Chopin">
+<meta name="concert-date" content="2026-07-19">
+<meta name="concert-label" content="Sunday, July 19, 2026">
+<meta name="concert-venue" content="Pacific Center, 851 SW 6th Ave, PDX">
+<style>
+  :root {
+    --bg: #faf7f2; --ink: #26231f; --muted: #6b645b; --accent: #2f6b4f;
+    --accent-soft: #e4efe8; --rule: #ddd5c8; --card: #fff; --warn: #fff4d6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #17191a; --ink: #ece8e0; --muted: #a39d92; --accent: #7fc4a0;
+            --accent-soft: #22302a; --rule: #34383a; --card: #1f2224; --warn: #3a3320; }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 19px/1.65 Georgia, "Iowan Old Style", serif;
+         padding-bottom: env(safe-area-inset-bottom); }
+  header { padding: 2.5rem 1.25rem 1.25rem; max-width: 46rem; margin: 0 auto; }
+  .back { display: inline-block; font: 600 .95rem -apple-system, system-ui, sans-serif; color: var(--accent);
+          text-decoration: none; padding: .7rem 0; min-height: 44px; }
+  header .kicker { font: 600 .8rem/1 -apple-system, system-ui, sans-serif; letter-spacing: .12em;
+                   text-transform: uppercase; color: var(--accent); }
+  h1 { font-size: 2.1rem; line-height: 1.2; margin: .5rem 0 .4rem; }
+  .sub { color: var(--muted); margin: 0; }
+
+  /* Sticky tap-to-navigate bar */
+  nav.bar { position: sticky; top: 0; z-index: 10; background: var(--bg);
+            border-bottom: 1px solid var(--rule); padding-top: env(safe-area-inset-top); }
+  nav.bar .chips { display: flex; gap: .5rem; overflow-x: auto; padding: .6rem 1.25rem;
+                   max-width: 46rem; margin: 0 auto; -webkit-overflow-scrolling: touch; }
+  nav.bar a { flex: none; font: 600 .95rem/1 -apple-system, system-ui, sans-serif; text-decoration: none;
+              color: var(--ink); background: var(--card); border: 1px solid var(--rule);
+              padding: .8rem 1rem; border-radius: 999px; min-height: 44px; display: inline-flex; align-items: center; }
+  nav.bar a.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  main { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem 4rem; }
+  section { padding-top: 2rem; scroll-margin-top: 4.6rem; }
+  h2 { font-size: 1.55rem; line-height: 1.25; margin: 0 0 .25rem; }
+  .meta { font: .9rem/1.5 -apple-system, system-ui, sans-serif; color: var(--muted); margin: 0 0 1rem; }
+  h3 { font: 700 .85rem/1 -apple-system, system-ui, sans-serif; letter-spacing: .1em; text-transform: uppercase;
+       color: var(--accent); margin: 1.6rem 0 .5rem; }
+
+  .listen { display: flex; flex-wrap: wrap; gap: .6rem; margin: .5rem 0 1.25rem; }
+  .listen a { font: 600 1rem/1 -apple-system, system-ui, sans-serif; text-decoration: none; color: #fff;
+              background: var(--accent); padding: .9rem 1.1rem; border-radius: 12px; min-height: 44px;
+              display: inline-flex; align-items: center; gap: .4rem; }
+  .listen a.alt { background: var(--accent-soft); color: var(--accent); }
+
+  ul.map { list-style: none; padding: 0; margin: 0; border-left: 3px solid var(--accent-soft); }
+  ul.map li { padding: .35rem 0 .35rem 1rem; }
+  ul.map b { font-family: -apple-system, system-ui, sans-serif; font-size: .9rem; color: var(--accent); }
+
+  figure.score { margin: 1.25rem 0; background: var(--card); border: 1px solid var(--rule);
+                 border-radius: 12px; padding: .75rem; }
+  figure.score img { width: 100%; height: auto; display: block; background: #fff; border-radius: 6px; }
+  figure.score .slot { display: none; padding: 1.1rem; background: var(--warn); border-radius: 6px;
+                       font: .9rem/1.5 -apple-system, system-ui, sans-serif; }
+  figure.score.missing img { display: none; }
+  figure.score.missing .slot { display: block; }
+  figcaption { font: .9rem/1.5 -apple-system, system-ui, sans-serif; color: var(--muted); margin-top: .6rem; }
+
+  .callout { background: var(--accent-soft); border-radius: 12px; padding: .9rem 1.1rem; margin: 1.25rem 0;
+             font-size: .98rem; }
+  table { width: 100%; border-collapse: collapse; font: .95rem/1.45 -apple-system, system-ui, sans-serif; }
+  th, td { text-align: left; padding: .6rem .4rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; }
+  td a { color: var(--accent); font-weight: 600; }
+  footer { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem 3rem; color: var(--muted);
+           font: .85rem/1.5 -apple-system, system-ui, sans-serif; }
+  .top { display: inline-block; margin-top: 1.25rem; font: 600 .9rem -apple-system, system-ui, sans-serif;
+         color: var(--accent); text-decoration: none; padding: .6rem 0; }
+  /* companion additions */
+  section ul, section ol { padding-left: 1.3rem; }
+  section li p { margin: .1rem 0; }
+  section h4 { font: 700 1.02rem/1.3 -apple-system, system-ui, sans-serif; margin: 1.3rem 0 .3rem; }
+  blockquote { margin: 1rem 0; padding: .1rem 1rem; border-left: 3px solid var(--rule); color: var(--muted); }
+  aside.callout { background: var(--accent-soft); border-left: 4px solid var(--accent); border-radius: 8px;
+                  padding: .8rem 1rem; margin: 1.2rem 0; font-size: .98rem; }
+  aside.callout p { margin: .4rem 0; }
+  aside.callout ul { margin: .4rem 0; }
+  aside.callout .callout-title { font: 700 .8rem/1.2 -apple-system, system-ui, sans-serif; letter-spacing: .08em;
+                                 text-transform: uppercase; color: var(--accent); margin-bottom: .2rem; }
+  aside.c-quote { background: transparent; border-left-color: var(--rule); font-style: italic; color: var(--muted); }
+  aside.c-important { background: var(--warn); border-left-color: #c58b00; }
+  aside.c-important .callout-title { color: #8a6100; }
+  @media (prefers-color-scheme: dark) { aside.c-important .callout-title { color: #e7b84a; } }
+  label.cb { display: flex; gap: .65rem; align-items: flex-start; min-height: 44px; padding: .3rem 0; cursor: pointer; }
+  label.cb input { width: 1.35rem; height: 1.35rem; margin-top: .25rem; flex: none; accent-color: var(--accent); }
+  section li:has(> label.cb), section li:has(> p > label.cb) { list-style: none; margin-left: -1.3rem; }
+  th, td { text-align: left; }
+
+</style>
+</head>
+<body>
+
+<header id="top">
+  <a class="back" href="../">← All companions</a>
+  <div class="kicker">Concert companion</div>
+  <h1>Angie Zhang: Schubert &amp; Chopin</h1>
+  <p class="sub">Sunday, July 19, 2026 · 10:30 am · Pacific Center, 851 SW 6th Ave, PDX</p>
+</header>
+
+<nav class="bar" aria-label="Guide outline">
+  <div class="chips">
+    <a href="#program">Program</a>
+    <a href="#overview">Overview</a>
+    <a href="#listen">Listen</a>
+    <a href="#chopin-polonaise">Chopin · Polonaise</a>
+    <a href="#glass">Glass</a>
+    <a href="#spoken-word">Spoken Word</a>
+    <a href="#chopin-prelude">Chopin · Prelude</a>
+    <a href="#schubert">Schubert</a>
+    <a href="#journey">Journey</a>
+    <a href="#connections">Connections</a>
+    <a href="#final-thoughts">Final Thoughts</a>
+  </div>
+</nav>
+
+<main>
+
+<section id="program">
+<h3>Performers</h3>
+<ul>
+<li>Angie Zhang — Piano</li>
+<li>Emily Newberry — Spoken Word</li>
+</ul>
+<h3>Program</h3>
+<ol>
+<li>Frédéric Chopin — <em>Polonaise No. 15 in B-flat minor, "Adieu,"</em> B. 13 (1826) (~5 min)</li>
+<li>Philip Glass — <em>Etude No. 6</em> (2003) (~7 min)</li>
+<li>Spoken Word — Emily Newberry (followed by ~2 minutes of silent reflection)</li>
+<li>Frédéric Chopin — <em>Prelude in C-sharp minor</em>, Op. 45 (1841) (~5 min)</li>
+<li>Franz Schubert — <em>Sonata No. 21 in B-flat major</em>, D. 960, Mvt. 1 (1828) (~15–22 min, depending on repeats)</li>
+</ol>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="overview">
+  <h2>Overview</h2>
+<p>This is a compact but emotionally wide-ranging program built almost entirely around solo piano, spanning exactly 200 years — from a teenage Chopin's earliest surviving polonaises (1826) to Philip Glass's 21st-century etudes (2003). Despite the gap, all four works share an intimate, confessional quality: none of them is written to dazzle a crowd so much as to let a single instrument think out loud.</p>
+<p>The arc moves from youthful farewell (Chopin's <em>Adieu</em> Polonaise), through hypnotic, cumulative minimalism (Glass), into late-Romantic harmonic wandering (Chopin's final Prelude), and finally into one of the most searching openings in the entire piano repertoire — the first movement of Schubert's last sonata, written in the final months of his life.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="listen">
+  <h2>Listen Before the Concert (Apple Music)</h2>
+<ul>
+<li>Chopin, Polonaise "Adieu," B. 13 — <a href="https://music.apple.com/us/song/polonaise-in-b-flat-minor-adieu/695518630" target="_blank" rel="noopener">Garrick Ohlsson</a> · <a href="https://classical.music.apple.com/us/album/3320698?i=3320690" target="_blank" rel="noopener">İdil Biret (Apple Music Classical)</a></li>
+<li>Glass, Etude No. 6 — <a href="https://music.apple.com/us/album/philip-glass-the-complete-piano-etudes/928609780" target="_blank" rel="noopener">Maki Namekawa, complete etudes (Apple Music)</a></li>
+<li>Chopin, Prelude Op. 45 — <a href="https://classical.music.apple.com/us/album/1775941115" target="_blank" rel="noopener">Jan Lisiecki, <em>Preludes</em> (Apple Music Classical)</a></li>
+<li>Schubert, Sonata D. 960 (Mvt. 1 and complete) — <a href="https://music.apple.com/us/album/schubert-piano-sonata-no-21-in-b-flat-major-d-960/1561193361" target="_blank" rel="noopener">Alfred Brendel (Apple Music)</a> · <a href="https://music.apple.com/us/album/schubert-piano-sonata-d-960-3-klavierst%C3%BCcke-d-946/1452165676" target="_blank" rel="noopener">Mitsuko Uchida (Apple Music)</a></li>
+</ul>
+<p><em>Both Brendel and Uchida are considered benchmark recordings of the Schubert — Brendel more classically restrained, Uchida more overtly Romantic — worth sampling both if you have time before Sunday.</em></p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="chopin-polonaise">
+  <h2>Frédéric Chopin — <em>Polonaise No. 15 in B-flat minor, "Adieu"</em>, B. 13 (1826)</h2>
+<div class="listen"><a href="https://music.apple.com/us/song/polonaise-in-b-flat-minor-adieu/695518630" target="_blank" rel="noopener">▶ Listen (Garrick Ohlsson, Apple Music)</a></div>
+<p>Chopin wrote this polonaise at 16, and its subtitle comes from the dedication <em>"Adieu à Guillaume Kolberg"</em> — farewell to his close friend Wilhelm (Guillaume) Kolberg. Chopin composed it spontaneously after attending a Warsaw production of Rossini's opera <em>La gazza ladra</em> with Kolberg, and worked a paraphrase of one of the opera's melodies — the tenor cavatina <a href="https://music.apple.com/us/artist/juan-diego-fl%C3%B3rez/4796665" target="_blank" rel="noopener">"Vieni fra queste braccia" ("Come into my arms"), heard here sung by Juan Diego Flórez (Apple Music)</a> — into the piece as its central trio section. The farewell in the title is layered: Chopin was about to leave school for the Warsaw Conservatory, and within days would also part from Kolberg for the summer.</p>
+<p>Notably, Chopin reportedly asked that this piece be destroyed after his death, and it was only published posthumously in 1879. So this is very much "early, private Chopin" rather than a piece he shaped for the public eye.</p>
+<h3>Listen for</h3>
+<ul>
+<li>A stately, minor-key polonaise rhythm (the recurring long-short-short pulse under the melody)</li>
+<li>A shift into the operatic trio section — you'll hear the borrowed Rossini melody rendered as ornamented, singing piano writing rather than polonaise stomp</li>
+<li>A slightly "young Chopin" quality: earnest sentiment, not yet the harmonic sophistication of his mature work</li>
+<li>The dual sense of "goodbye" — to a friend, and to childhood</li>
+</ul>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="glass">
+  <h2>Philip Glass — <em>Etude No. 6</em> (2003)</h2>
+<div class="listen"><a href="https://music.apple.com/us/album/philip-glass-the-complete-piano-etudes/928609780" target="_blank" rel="noopener">▶ Listen (Maki Namekawa, complete etudes, Apple Music)</a></div>
+<p>Glass composed 20 piano etudes between 1991 and 2012 (this one, No. 6, dates to 2003), originally intending them partly as a way to improve his own piano technique, and partly as a systematic exploration of what could be built from small repeating cells. Etude No. 6 is often singled out among the twenty for its unusual formal clarity: rather than the multiple small waves of tension and release typical of Glass's other etudes, it builds through a single continuous arc — increasing density and rhythmic complexity across its first section, a sustained climax, then a gradual unwinding back toward stillness.</p>
+<p>Following two Chopin polonaises/preludes rooted in Romantic harmony and personal narrative, the Glass will land very differently: pulse-driven, hypnotic, built from repetition and gradual transformation rather than melody-plus-development.</p>
+<h3>Listen for</h3>
+<ul>
+<li>A small musical cell (a short pattern) that repeats and very gradually accumulates notes, voices, and rhythmic tension</li>
+<li>One long trajectory rather than a "theme and variations" feel — density builds to a single climax, then recedes</li>
+<li>Rhythmic layering that can create a subtle sense of shifting meter, even though the pulse never actually stops</li>
+<li>How the piano is used almost orchestrally here — sustain pedal and register shifts standing in for changes in "instrumentation"</li>
+</ul>
+<h3>Note</h3>
+<p>This is the clearest programmatic pivot point before the spoken word: it deliberately steps outside the Chopin/Schubert Romantic idiom to reset the ear.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="spoken-word">
+  <h2>Spoken Word — Emily Newberry</h2>
+<p>Placed mid-program (as usual for ChatterPDX), followed by two minutes of silence. Whatever text is chosen, this pause functions as the emotional hinge of the concert — a place to let the Polonaise and Glass etude recede before the two more inward pieces that close the program: the Prelude and the Schubert.</p>
+<h3>About Emily Newberry</h3>
+<p>Newberry is a writer, accidental thought partner, and performance poet. OneSpirit Press of Portland published her first full-length poetry collection, <em>Butterfly A Rose</em>, and her memoir <em>Turning Inside Out</em>; her most recent chapbook, <em>Signs</em>, came from The Poetry Box, with its title poem nominated for a Pushcart Prize in 2014. She's collaborated with visual artists on several projects, including writing the poetry for Shu-Ju Wang's artists' book <em>Water</em>, and has used her poetry readings to advocate for transgender rights, including ending the prohibition on insurance coverage for gender-affirming care. She was named one of Queer Heroes NW in 2017, and podcasts monthly at <em>W W II Baby</em> on Substack (wwiibaby.substack.com).</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="chopin-prelude">
+  <h2>Frédéric Chopin — <em>Prelude No. 25 in C-sharp minor</em>, Op. 45 (1841)</h2>
+<div class="listen"><a href="https://classical.music.apple.com/us/album/1775941115" target="_blank" rel="noopener">▶ Listen (Jan Lisiecki, Apple Music Classical)</a></div>
+<p>This was Chopin's last prelude, composed two years after the famous set of 24 (Op. 28) and published as a standalone work rather than part of a cycle. Chopin wrote it in 1841 at Nohant during the same prolific summer that produced his Ballade in A-flat major, the Op. 48 Nocturnes, and the Fantasy in F minor. Unlike the Op. 28 preludes, which are each firmly anchored in their titular key, Op. 45 drifts freely away from C-sharp minor, with the left hand sliding into distant keys so smoothly that the listener is never jarred.</p>
+<p>There's a nice anecdote behind it, too: the Chopin scholar Jean-Jacques Eigeldinger has suggested the piece may be a kind of musical response to conversations Chopin had with his close friend, the painter Eugène Delacroix, about color, logic, and structure in art — an attempt to translate a painter's sense of color into harmony. When Chopin sent the finished score off to his publisher, he described it with characteristic understatement as simply "well modulated."</p>
+<h3>Listen for</h3>
+<ul>
+<li>An improvisatory, searching quality — it can feel like you're overhearing Chopin thinking rather than performing a fixed structure</li>
+<li>Long-breathed, chromatically wandering harmony that keeps drifting from the home key without ever losing its thread</li>
+<li>A dramatic, unusually free cadenza-like passage near the end, before the piece settles back to C-sharp minor</li>
+<li>A dreamier, more inward mood than the bright Op. 28 preludes many audiences already know</li>
+</ul>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="schubert">
+  <h2>Franz Schubert — Sonata No. 21 in B-flat major, D. 960, Mvt. 1: Molto moderato (1828)</h2>
+<div class="listen"><a href="https://music.apple.com/us/album/schubert-piano-sonata-no-21-in-b-flat-major-d-960/1561193361" target="_blank" rel="noopener">▶ Listen (Alfred Brendel, Apple Music)</a><a class="alt" href="https://music.apple.com/us/album/schubert-piano-sonata-d-960-3-klavierst%C3%BCcke-d-946/1452165676" target="_blank" rel="noopener">▶ Mitsuko Uchida (Apple Music)</a></div>
+<p>This is one of the great "last works" in the piano literature. D. 960 was Schubert's final instrumental composition, completed in the autumn of 1828, in the last months of his life. It's the last of a trio of piano sonatas written in that final year, works a biographer once described as housing meditation, charm, wistfulness, sadness, and joy within noble structures.</p>
+<p>The movement opens with what may be the most famous "interrupted calm" in the piano repertoire: a serene, hymn-like opening melody is abruptly broken by a low, ghostly trill deep in the bass register, which then dissolves back into silence before the melody continues. That trill returns throughout the movement almost like a memory or a warning, and some scholars hear an echo of a similar low trembling gesture in Beethoven — a composer Schubert revered and whose funeral he had been a torchbearer at just a year earlier.</p>
+<p>The movement begins in serenity with a simple, gentle melody, but gradually opens into more tense, haunted territory, moving through grief and loneliness before eventually finding its way back to calm.</p>
+<h3>Movement Breakdown</h3>
+<p>Tonight's program is only the first movement, but the full sonata is in four movements, and knowing where this one sits in the larger arc adds some context:</p>
+<ul>
+<li><strong>I. Molto moderato</strong> (today’s movement): The famous "interrupted calm" — a serene opening melody broken by a low bass trill, unfolding into one of the longest, most spacious movements Schubert ever wrote.</li>
+<li><strong>II. Andante sostenuto:</strong> A hushed, almost frozen slow movement in a distant key, often described as the emotional center of the whole sonata — grief-stricken but restrained.</li>
+<li><strong>III. Scherzo: Allegro vivace con delicatezza:</strong> A lighter, dance-like relief after the Andante's weight — quick, delicate, and comparatively playful.</li>
+<li><strong>IV. Allegro ma non troppo:</strong> A rondo finale that keeps circling back to a single repeated-note motif, ending the sonata with an ambiguous mix of resolve and unease rather than a triumphant close.</li>
+</ul>
+<h3>Listen for</h3>
+<ul>
+<li>The opening theme — plain, hymn-like, almost too simple, which is exactly what makes the first interruption so unsettling</li>
+<li>The low bass trill: listen for how it recurs, each time changing the emotional temperature of what surrounds it</li>
+<li>Long, unhurried harmonic paragraphs — Schubert lets ideas breathe far longer than a listener might expect, especially compared to the concision of the Chopin pieces earlier in the program</li>
+<li>The alternation between major and minor within the same theme — a hallmark of late Schubert, where joy and sorrow sit right next to each other rather than in separate sections</li>
+<li>A sense of valediction — knowing the biographical context (Schubert would die within about a year of writing this) tends to color how audiences hear the movement, whether or not that's "fair" to the music itself</li>
+</ul>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="journey">
+  <h2>The Emotional Arc of the Program</h2>
+<table>
+<thead>
+<tr>
+<th>Work</th>
+<th>Character</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Chopin – Polonaise "Adieu"</strong></td>
+<td>Youthful, wistful, operatic</td>
+</tr>
+<tr>
+<td><strong>Glass – Etude No. 6</strong></td>
+<td>Hypnotic, cumulative, impersonal-turned-intense</td>
+</tr>
+<tr>
+<td><strong>Spoken Word + Silence</strong></td>
+<td>Reflection and emotional reset</td>
+</tr>
+<tr>
+<td><strong>Chopin – Prelude Op. 45</strong></td>
+<td>Improvisatory, harmonically restless, dreamlike</td>
+</tr>
+<tr>
+<td><strong>Schubert – Sonata D.960, Mvt. 1</strong></td>
+<td>Serene, haunted, valedictory</td>
+</tr>
+</tbody>
+</table>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="connections">
+  <h2>Musical Connections</h2>
+<h3>Chopin (Polonaise &amp; Prelude)</h3>
+<p>Two very different moments in the same composer's life — an eager 16-year-old paying tribute to a friend and an opera he loved, versus a mature composer, near the height of his powers, writing something closer to notated improvisation. Bookending them around the Glass etude highlights just how far Chopin's own harmonic language traveled between 1826 and 1841.</p>
+<h3>Glass</h3>
+<p>Deliberately the odd piece out — its minimalist language has more in common with a slowly turning kaleidoscope than with sonata-style development. It works well as a structural counterweight in the middle of two harmonically rich Romantic works.</p>
+<h3>Schubert</h3>
+<p>Composed in the same general Romantic tradition as Chopin, but with a very different relationship to time — where Chopin compresses feeling into a few minutes, Schubert lets a single movement unfold at its own unhurried pace. Placing it last, after the emotional reset of the spoken word, gives it room to be heard as its own world.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="final-thoughts">
+  <h2>Final Thoughts</h2>
+<p>This is a program about the piano as a confessional instrument. It begins with a teenager's farewell to a friend, detours through a 21st-century minimalist's exercise in accumulation, drifts through one of Chopin's most harmonically free late miniatures, pauses for spoken reflection, and closes with the opening movement of a dying composer's final sonata — music that begins in complete calm and never quite lets you forget the tremor underneath it.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+</main>
+
+<footer>
+  <a class="back" href="../">← All companions</a>
+</footer>
+
+<script>
+  // Highlight the current section in the sticky bar.
+  var links = {};
+  document.querySelectorAll('nav.bar a').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        Object.values(links).forEach(function (a) { a.classList.remove('on'); });
+        var a = links[e.target.id];
+        if (a) { a.classList.add('on'); a.scrollIntoView({ inline: 'center', block: 'nearest' }); }
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  document.querySelectorAll('main section').forEach(function (s) { io.observe(s); });
+  // Remember checklist ticks on this device (best effort).
+  var boxes = document.querySelectorAll('input[type=checkbox]');
+  var key = 'cb:' + location.pathname;
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(key) || '{}'); } catch (e) {}
+  boxes.forEach(function (b, i) {
+    if (saved[i]) b.checked = true;
+    b.addEventListener('change', function () {
+      saved[i] = b.checked;
+      try { localStorage.setItem(key, JSON.stringify(saved)); } catch (e) {}
+    });
+  });
+</script>
+</body>
+</html>
