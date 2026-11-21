@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ChatterPDX: Convergence – Brahms &amp; Shields — Concert Companion</title>
+<meta name="concert-title" content="ChatterPDX: Convergence – Brahms &amp; Shields">
+<meta name="concert-date" content="2026-09-20">
+<meta name="concert-label" content="Sunday, September 20, 2026">
+<meta name="concert-minutes" content="630">
+<meta name="concert-venue" content="Pacific Center">
+<style>
+  :root {
+    --bg: #faf7f2; --ink: #26231f; --muted: #6b645b; --accent: #2f6b4f;
+    --accent-soft: #e4efe8; --rule: #ddd5c8; --card: #fff; --warn: #fff4d6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #17191a; --ink: #ece8e0; --muted: #a39d92; --accent: #7fc4a0;
+            --accent-soft: #22302a; --rule: #34383a; --card: #1f2224; --warn: #3a3320; }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 19px/1.65 Georgia, "Iowan Old Style", serif;
+         padding-bottom: env(safe-area-inset-bottom); }
+  header { padding: 2.5rem 1.25rem 1.25rem; max-width: 46rem; margin: 0 auto; }
+  .back { display: inline-block; font: 600 .95rem -apple-system, system-ui, sans-serif; color: var(--accent);
+          text-decoration: none; padding: .7rem 0; min-height: 44px; }
+  header .kicker { font: 600 .8rem/1 -apple-system, system-ui, sans-serif; letter-spacing: .12em;
+                   text-transform: uppercase; color: var(--accent); }
+  h1 { font-size: 2.1rem; line-height: 1.2; margin: .5rem 0 .4rem; }
+  .sub { color: var(--muted); margin: 0; }
+
+  /* Sticky tap-to-navigate bar */
+  nav.bar { position: sticky; top: 0; z-index: 10; background: var(--bg);
+            border-bottom: 1px solid var(--rule); padding-top: env(safe-area-inset-top); }
+  nav.bar .chips { display: flex; gap: .5rem; overflow-x: auto; padding: .6rem 1.25rem;
+                   max-width: 46rem; margin: 0 auto; -webkit-overflow-scrolling: touch; }
+  nav.bar a { flex: none; font: 600 .95rem/1 -apple-system, system-ui, sans-serif; text-decoration: none;
+              color: var(--ink); background: var(--card); border: 1px solid var(--rule);
+              padding: .8rem 1rem; border-radius: 999px; min-height: 44px; display: inline-flex; align-items: center; }
+  nav.bar a.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  main { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem 4rem; }
+  section { padding-top: 2rem; scroll-margin-top: 4.6rem; }
+  h2 { font-size: 1.55rem; line-height: 1.25; margin: 0 0 .25rem; }
+  .meta { font: .9rem/1.5 -apple-system, system-ui, sans-serif; color: var(--muted); margin: 0 0 1rem; }
+  h3 { font: 700 .85rem/1 -apple-system, system-ui, sans-serif; letter-spacing: .1em; text-transform: uppercase;
+       color: var(--accent); margin: 1.6rem 0 .5rem; }
+
+  .listen { display: flex; flex-wrap: wrap; gap: .6rem; margin: .5rem 0 1.25rem; }
+  .listen a { font: 600 1rem/1 -apple-system, system-ui, sans-serif; text-decoration: none; color: #fff;
+              background: var(--accent); padding: .9rem 1.1rem; border-radius: 12px; min-height: 44px;
+              display: inline-flex; align-items: center; gap: .4rem; }
+  .listen a.alt { background: var(--accent-soft); color: var(--accent); }
+
+  ul.map { list-style: none; padding: 0; margin: 0; border-left: 3px solid var(--accent-soft); }
+  ul.map li { padding: .35rem 0 .35rem 1rem; }
+  ul.map b { font-family: -apple-system, system-ui, sans-serif; font-size: .9rem; color: var(--accent); }
+
+  figure.score { margin: 1.25rem 0; background: var(--card); border: 1px solid var(--rule);
+                 border-radius: 12px; padding: .75rem; }
+  figure.score img { width: 100%; height: auto; display: block; background: #fff; border-radius: 6px; }
+  figure.score .slot { display: none; padding: 1.1rem; background: var(--warn); border-radius: 6px;
+                       font: .9rem/1.5 -apple-system, system-ui, sans-serif; }
+  figure.score.missing img { display: none; }
+  figure.score.missing .slot { display: block; }
+  figcaption { font: .9rem/1.5 -apple-system, system-ui, sans-serif; color: var(--muted); margin-top: .6rem; }
+
+  .callout { background: var(--accent-soft); border-radius: 12px; padding: .9rem 1.1rem; margin: 1.25rem 0;
+             font-size: .98rem; }
+  table { width: 100%; border-collapse: collapse; font: .95rem/1.45 -apple-system, system-ui, sans-serif; }
+  th, td { text-align: left; padding: .6rem .4rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; }
+  td a { color: var(--accent); font-weight: 600; }
+  footer { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem 3rem; color: var(--muted);
+           font: .85rem/1.5 -apple-system, system-ui, sans-serif; }
+  .top { display: inline-block; margin-top: 1.25rem; font: 600 .9rem -apple-system, system-ui, sans-serif;
+         color: var(--accent); text-decoration: none; padding: .6rem 0; }
+  /* companion additions */
+  section ul, section ol { padding-left: 1.3rem; }
+  section li p { margin: .1rem 0; }
+  section h4 { font: 700 1.02rem/1.3 -apple-system, system-ui, sans-serif; margin: 1.3rem 0 .3rem; }
+  blockquote { margin: 1rem 0; padding: .1rem 1rem; border-left: 3px solid var(--rule); color: var(--muted); }
+  aside.callout { background: var(--accent-soft); border-left: 4px solid var(--accent); border-radius: 8px;
+                  padding: .8rem 1rem; margin: 1.2rem 0; font-size: .98rem; }
+  aside.callout p { margin: .4rem 0; }
+  aside.callout ul { margin: .4rem 0; }
+  aside.callout .callout-title { font: 700 .8rem/1.2 -apple-system, system-ui, sans-serif; letter-spacing: .08em;
+                                 text-transform: uppercase; color: var(--accent); margin-bottom: .2rem; }
+  aside.c-quote { background: transparent; border-left-color: var(--rule); font-style: italic; color: var(--muted); }
+  aside.c-important { background: var(--warn); border-left-color: #c58b00; }
+  aside.c-important .callout-title { color: #8a6100; }
+  @media (prefers-color-scheme: dark) { aside.c-important .callout-title { color: #e7b84a; } }
+  label.cb { display: flex; gap: .65rem; align-items: flex-start; min-height: 44px; padding: .3rem 0; cursor: pointer; }
+  label.cb input { width: 1.35rem; height: 1.35rem; margin-top: .25rem; flex: none; accent-color: var(--accent); }
+  section li:has(> label.cb), section li:has(> p > label.cb) { list-style: none; margin-left: -1.3rem; }
+  th, td { text-align: left; }
+
+</style>
+</head>
+<body>
+
+<header id="top">
+  <a class="back" href="../">← All companions</a>
+  <div class="kicker">ChatterPDX</div>
+  <h1>Convergence – Brahms &amp; Shields</h1>
+  <p class="sub">Sunday, September 20, 2026 · 10:30 am · Pacific Center — 851 SW 6th Ave, PDX</p>
+</header>
+
+<nav class="bar" aria-label="Guide outline">
+  <div class="chips">
+    <a href="#program">Program</a>
+    <a href="#overview">Overview</a>
+    <a href="#listen">Listen</a>
+    <a href="#shields">Shields</a>
+    <a href="#spoken-word">Spoken Word</a>
+    <a href="#brahms">Brahms</a>
+    <a href="#journey">Journey</a>
+    <a href="#connections">Connections</a>
+    <a href="#final-thoughts">Final Thoughts</a>
+  </div>
+</nav>
+
+<main>
+
+<section id="program">
+<p><em>Doors 9:30 am · enter through the doors at the NW corner of 6th &amp; Taylor · free downtown parking before 1:00 pm on Sundays · open seating</em></p>
+<h3>Performers</h3>
+<ul>
+<li>Emily Cole — Violin</li>
+<li>Trevor Fitzpatrick — Cello</li>
+<li>Teddy Robie — Piano</li>
+<li>Camille T. McDaniel — Spoken Word</li>
+</ul>
+<h3>Program</h3>
+<ol>
+<li>James Shields — <em>3 Circles for Violin and Piano</em> (duration not yet published)</li>
+<li>Spoken Word — Camille T. McDaniel</li>
+<li>Johannes Brahms — <em>Piano Trio No. 3 in C minor</em>, Op. 101 (1886) (~21 min)</li>
+</ol>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="overview">
+  <h2>Overview</h2>
+<p>This program takes its title — <em>Convergence</em> — seriously: it's built to bring a brand-new, homegrown piece into the same room as one of Brahms's most tightly wound late chamber works, with a poet's voice as the hinge between them. Total music runs a little over 20 minutes, but the emotional distance covered is much longer than the clock suggests.</p>
+<p>The morning opens on unusually personal ground. James Shields — ChatterPDX's own founder and artistic director, and the Oregon Symphony's principal clarinetist — steps outside his usual instrument to offer a new work for violin and piano, played here by his wife and frequent duo partner, violinist Emily Cole, alongside pianist Teddy Robie. From there, Camille T. McDaniel's spoken word offers a moment of reflection before the program turns to Brahms's Piano Trio No. 3, a compact, muscular late work that a friend once described as almost too economical for its own good — in the best way.</p>
+<p>It's a nice shape for a Sunday morning: a living composer's private offering, a poet's public one, and then a 19th-century master distilling a lifetime of craft into twenty-one tightly argued minutes.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="listen">
+  <h2>Listen Before the Concert (Apple Music)</h2>
+<ul>
+<li>Shields, <em>3 Circles for Violin and Piano</em> — no recording available yet</li>
+<li>Brahms, Piano Trio No. 3, Op. 101 — <a href="https://classical.music.apple.com/us/recording/johannes-brahms-1833-pp31-1272287210?l=en-US" target="_blank" rel="noopener">Leonidas Kavakos, Yo-Yo Ma, Emanuel Ax</a></li>
+</ul>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="shields">
+  <h2>James Shields — <em>3 Circles for Violin and Piano</em></h2>
+<p>No recording available yet — there's no publicly released performance of this piece to point you to before Sunday.</p>
+<p>Shields is better known to Portland audiences from the other side of the stage: he's been the Oregon Symphony's principal clarinetist since 2016, trained at Juilliard under Ricardo Morales (principal clarinet of the Philadelphia Orchestra), and holds a Master's in composition from the University of New Mexico, where he continues to write regularly alongside his performing career. He's also the founder and artistic director of ChatterPDX itself, so this piece is about as close to "the house composer" as this series gets. Violinist Emily Cole, who plays it this morning, is his wife and a longtime chamber-music partner — the two perform together often with groups like Fear No Music and Third Angle New Music — so there's a real personal thread running through this particular pairing of composer and performer, even if Shields hasn't published program notes explaining the piece's title.</p>
+<p>Because there's no press or public writing yet on <em>3 Circles</em> specifically, it's worth hearing it on its own terms rather than arriving with fixed expectations — a rare chance to encounter a new piece by a familiar face with genuinely fresh ears.</p>
+<h3>Listen for</h3>
+<ul>
+<li>How a clarinetist's ear shapes writing for violin and piano — listen for melodic lines that feel almost breath-shaped, a habit that can carry over from wind writing</li>
+<li>Whatever the title's "circles" turn out to mean in practice — recurring material, a returning idea, or a literal circling back to where the piece began</li>
+<li>The give-and-take between Cole's violin and Robie's piano — is one leading and one answering, or do they trade that role back and forth?</li>
+<li>The simple novelty of a true first hearing: no recording to have already shaped your expectations</li>
+</ul>
+<h3>Note</h3>
+<p>Opening the morning with a piece this personal — written by the series' own founder for his wife to play — sets an intimate tone before the program turns outward to spoken word and then to Brahms.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="spoken-word">
+  <h2>Spoken Word — Camille T. McDaniel</h2>
+<p>Placed between the two musical works, McDaniel's piece functions as the morning's turn inward — a chance to sit with language after the newness of the Shields and before the density of the Brahms.</p>
+<h3>About Camille T. McDaniel</h3>
+<p>Camille T. McDaniel is a Portland, Oregon-based poet, book editor, and the founder of Benniefairy Books. Her poetry pushes the Black-disabled-queer agenda and has been published in <em>Black Fox Literary Magazine</em>, <em>Currency</em>, <em>Sundress Publications</em>, and more. In 2023, she received nominations for the Pushcart Prize and Best New Poets Anthology. Her debut book, <em>Blood, Skin, and Water</em>, is available online through World Stage Press and at Broadway Books in Portland.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="brahms">
+  <h2>Johannes Brahms — <em>Piano Trio No. 3 in C minor</em>, Op. 101 (1886)</h2>
+<div class="listen"><a href="https://classical.music.apple.com/us/album/1766041849" target="_blank" rel="noopener">▶ Listen (Kalichstein-Laredo-Robinson Trio, Apple Music Classical)</a><a class="alt" href="https://classical.music.apple.com/ca/recording/johannes-brahms-1833-pp31-1823706247" target="_blank" rel="noopener">▶ Renaud Capuçon (Apple Music Classical)</a></div>
+<p>Brahms wrote this trio in the summer of 1886 while staying at Hofstetten, on Lake Thun in Switzerland — one of the most productive stretches of his life, which also produced his Cello Sonata No. 2 and Violin Sonata No. 2 in the same few months. It's the shortest and most concentrated of his three piano trios, and Brahms seems to have known it: he cuts the opening movement's usual repeat entirely, moving straight through rather than doubling back. His friend and fellow composer Heinrich von Herzogenberg noticed the same economy and put it well: "Smaller men will hardly trust themselves to proceed so laconically" without losing the thread. The trio premiered that December with Brahms himself at the piano, alongside violinist Jenő Hubay and cellist David Popper — in other words, Brahms brought his own close circle of collaborators to introduce it, not unlike this morning's program.</p>
+<p>What makes the piece distinctive isn't just its brevity but its concentration: almost every movement finds a single idea and works it hard, rather than spreading out across multiple contrasting themes the way Brahms's earlier trios do.</p>
+<h3>Movement Breakdown</h3>
+<p>The trio is in the traditional four movements, but each one compresses more than it expands:</p>
+<ul>
+<li><strong>I. Allegro energico:</strong> Opens with Beethovenian force before settling into a more aristocratic second idea — and then, unusually, skips the customary repeat of the opening material, part of the movement's overall economy.</li>
+<li><strong>II. Presto non assai:</strong> A hushed, evanescent scherzo played with muted strings for much of its length — closer to a "will-o'-the-wisp" flickering past than a traditional dance movement, built almost entirely from one small repeating idea.</li>
+<li><strong>III. Andante grazioso:</strong> Marked as a graceful slow movement but harder to settle into than that marking suggests — it keeps shifting between triple and duple meter (3/4, 2/4, 9/8, 6/8 all make an appearance), a rhythmic restlessness some scholars trace to Hungarian and Serbian folk-dance patterns Brahms knew well.</li>
+<li><strong>IV. Allegro molto:</strong> A driving, rhythmically obsessive finale built on hemiolas, displaced accents, and cross-rhythms — the same rhythmic instability of the third movement, but turned outward into real forward motion.</li>
+</ul>
+<h3>Listen for</h3>
+<ul>
+<li>The missing repeat at the start of the first movement — a small structural choice that signals how tightly argued this piece is going to be</li>
+<li>The muted strings in the second movement, and how much atmosphere Brahms gets from so little material</li>
+<li>The meter changes in the third movement — see if you can feel the ground shift under the melody even as it keeps its lyrical surface</li>
+<li>The hemiolas and displaced accents driving the finale — moments where the beat seems to land somewhere other than where you'd expect</li>
+<li>The overall sense of a composer near the height of his powers choosing to say less, more precisely, rather than more</li>
+</ul>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="journey">
+  <h2>The Emotional Arc of the Program</h2>
+<table>
+<thead>
+<tr>
+<th>Work</th>
+<th>Character</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Shields – <em>3 Circles</em></strong></td>
+<td>Personal, unguarded, freshly heard</td>
+</tr>
+<tr>
+<td><strong>Spoken Word – McDaniel</strong></td>
+<td>Reflective, grounded, socially aware</td>
+</tr>
+<tr>
+<td><strong>Brahms – Piano Trio No. 3</strong></td>
+<td>Concentrated, driving, masterly</td>
+</tr>
+</tbody>
+</table>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="connections">
+  <h2>Musical Connections</h2>
+<h3>Two circles of collaborators</h3>
+<p>There's a quiet symmetry between the two musical works, even though they're separated by 140 years: Shields wrote his piece for his own wife and duo partner to premiere, and Brahms brought his own close personal circle — violinist Jenő Hubay and cellist David Popper — to introduce his trio in 1886. Both pieces, in other words, were built inside a small, trusted circle of musicians before they ever reached an audience.</p>
+<h3>A new voice framed by an old master</h3>
+<p>Pairing an undocumented, brand-new piece with one of the most analyzed works in the chamber repertoire is a deliberate contrast — one work you can look up in exhaustive detail, and one you simply have to be in the room for.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="final-thoughts">
+  <h2>Final Thoughts</h2>
+<p>This is a morning that earns its title. It opens with something made inside a marriage and a musical partnership, turns to a poet's public reckoning with identity and place, and closes with a 19th-century composer at his most disciplined — saying exactly as much as he needs to and not a note more. Three very different circles, meeting in the same room on a Sunday morning.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+</main>
+
+<footer>
+  <a class="back" href="../">← All companions</a>
+</footer>
+
+<script>
+  // Highlight the current section in the sticky bar.
+  var links = {};
+  document.querySelectorAll('nav.bar a').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        Object.values(links).forEach(function (a) { a.classList.remove('on'); });
+        var a = links[e.target.id];
+        if (a) { a.classList.add('on'); a.scrollIntoView({ inline: 'center', block: 'nearest' }); }
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  document.querySelectorAll('main section').forEach(function (s) { io.observe(s); });
+  // Remember checklist ticks on this device (best effort).
+  var boxes = document.querySelectorAll('input[type=checkbox]');
+  var key = 'cb:' + location.pathname;
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(key) || '{}'); } catch (e) {}
+  boxes.forEach(function (b, i) {
+    if (saved[i]) b.checked = true;
+    b.addEventListener('change', function () {
+      saved[i] = b.checked;
+      try { localStorage.setItem(key, JSON.stringify(saved)); } catch (e) {}
+    });
+  });
+</script>
+</body>
+</html>

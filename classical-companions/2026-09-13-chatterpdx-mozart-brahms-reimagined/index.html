@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ChatterPDX: Mozart &amp; Brahms Reimagined — Concert Companion</title>
+<meta name="concert-title" content="ChatterPDX: Mozart &amp; Brahms Reimagined">
+<meta name="concert-date" content="2026-09-13">
+<meta name="concert-label" content="Sunday, September 13, 2026">
+<meta name="concert-minutes" content="630">
+<meta name="concert-venue" content="Pacific Center">
+<style>
+  :root {
+    --bg: #faf7f2; --ink: #26231f; --muted: #6b645b; --accent: #2f6b4f;
+    --accent-soft: #e4efe8; --rule: #ddd5c8; --card: #fff; --warn: #fff4d6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #17191a; --ink: #ece8e0; --muted: #a39d92; --accent: #7fc4a0;
+            --accent-soft: #22302a; --rule: #34383a; --card: #1f2224; --warn: #3a3320; }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 19px/1.65 Georgia, "Iowan Old Style", serif;
+         padding-bottom: env(safe-area-inset-bottom); }
+  header { padding: 2.5rem 1.25rem 1.25rem; max-width: 46rem; margin: 0 auto; }
+  .back { display: inline-block; font: 600 .95rem -apple-system, system-ui, sans-serif; color: var(--accent);
+          text-decoration: none; padding: .7rem 0; min-height: 44px; }
+  header .kicker { font: 600 .8rem/1 -apple-system, system-ui, sans-serif; letter-spacing: .12em;
+                   text-transform: uppercase; color: var(--accent); }
+  h1 { font-size: 2.1rem; line-height: 1.2; margin: .5rem 0 .4rem; }
+  .sub { color: var(--muted); margin: 0; }
+
+  /* Sticky tap-to-navigate bar */
+  nav.bar { position: sticky; top: 0; z-index: 10; background: var(--bg);
+            border-bottom: 1px solid var(--rule); padding-top: env(safe-area-inset-top); }
+  nav.bar .chips { display: flex; gap: .5rem; overflow-x: auto; padding: .6rem 1.25rem;
+                   max-width: 46rem; margin: 0 auto; -webkit-overflow-scrolling: touch; }
+  nav.bar a { flex: none; font: 600 .95rem/1 -apple-system, system-ui, sans-serif; text-decoration: none;
+              color: var(--ink); background: var(--card); border: 1px solid var(--rule);
+              padding: .8rem 1rem; border-radius: 999px; min-height: 44px; display: inline-flex; align-items: center; }
+  nav.bar a.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  main { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem 4rem; }
+  section { padding-top: 2rem; scroll-margin-top: 4.6rem; }
+  h2 { font-size: 1.55rem; line-height: 1.25; margin: 0 0 .25rem; }
+  .meta { font: .9rem/1.5 -apple-system, system-ui, sans-serif; color: var(--muted); margin: 0 0 1rem; }
+  h3 { font: 700 .85rem/1 -apple-system, system-ui, sans-serif; letter-spacing: .1em; text-transform: uppercase;
+       color: var(--accent); margin: 1.6rem 0 .5rem; }
+
+  .listen { display: flex; flex-wrap: wrap; gap: .6rem; margin: .5rem 0 1.25rem; }
+  .listen a { font: 600 1rem/1 -apple-system, system-ui, sans-serif; text-decoration: none; color: #fff;
+              background: var(--accent); padding: .9rem 1.1rem; border-radius: 12px; min-height: 44px;
+              display: inline-flex; align-items: center; gap: .4rem; }
+  .listen a.alt { background: var(--accent-soft); color: var(--accent); }
+
+  ul.map { list-style: none; padding: 0; margin: 0; border-left: 3px solid var(--accent-soft); }
+  ul.map li { padding: .35rem 0 .35rem 1rem; }
+  ul.map b { font-family: -apple-system, system-ui, sans-serif; font-size: .9rem; color: var(--accent); }
+
+  figure.score { margin: 1.25rem 0; background: var(--card); border: 1px solid var(--rule);
+                 border-radius: 12px; padding: .75rem; }
+  figure.score img { width: 100%; height: auto; display: block; background: #fff; border-radius: 6px; }
+  figure.score .slot { display: none; padding: 1.1rem; background: var(--warn); border-radius: 6px;
+                       font: .9rem/1.5 -apple-system, system-ui, sans-serif; }
+  figure.score.missing img { display: none; }
+  figure.score.missing .slot { display: block; }
+  figcaption { font: .9rem/1.5 -apple-system, system-ui, sans-serif; color: var(--muted); margin-top: .6rem; }
+
+  .callout { background: var(--accent-soft); border-radius: 12px; padding: .9rem 1.1rem; margin: 1.25rem 0;
+             font-size: .98rem; }
+  table { width: 100%; border-collapse: collapse; font: .95rem/1.45 -apple-system, system-ui, sans-serif; }
+  th, td { text-align: left; padding: .6rem .4rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; }
+  td a { color: var(--accent); font-weight: 600; }
+  footer { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem 3rem; color: var(--muted);
+           font: .85rem/1.5 -apple-system, system-ui, sans-serif; }
+  .top { display: inline-block; margin-top: 1.25rem; font: 600 .9rem -apple-system, system-ui, sans-serif;
+         color: var(--accent); text-decoration: none; padding: .6rem 0; }
+  /* companion additions */
+  section ul, section ol { padding-left: 1.3rem; }
+  section li p { margin: .1rem 0; }
+  section h4 { font: 700 1.02rem/1.3 -apple-system, system-ui, sans-serif; margin: 1.3rem 0 .3rem; }
+  blockquote { margin: 1rem 0; padding: .1rem 1rem; border-left: 3px solid var(--rule); color: var(--muted); }
+  aside.callout { background: var(--accent-soft); border-left: 4px solid var(--accent); border-radius: 8px;
+                  padding: .8rem 1rem; margin: 1.2rem 0; font-size: .98rem; }
+  aside.callout p { margin: .4rem 0; }
+  aside.callout ul { margin: .4rem 0; }
+  aside.callout .callout-title { font: 700 .8rem/1.2 -apple-system, system-ui, sans-serif; letter-spacing: .08em;
+                                 text-transform: uppercase; color: var(--accent); margin-bottom: .2rem; }
+  aside.c-quote { background: transparent; border-left-color: var(--rule); font-style: italic; color: var(--muted); }
+  aside.c-important { background: var(--warn); border-left-color: #c58b00; }
+  aside.c-important .callout-title { color: #8a6100; }
+  @media (prefers-color-scheme: dark) { aside.c-important .callout-title { color: #e7b84a; } }
+  label.cb { display: flex; gap: .65rem; align-items: flex-start; min-height: 44px; padding: .3rem 0; cursor: pointer; }
+  label.cb input { width: 1.35rem; height: 1.35rem; margin-top: .25rem; flex: none; accent-color: var(--accent); }
+  section li:has(> label.cb), section li:has(> p > label.cb) { list-style: none; margin-left: -1.3rem; }
+  th, td { text-align: left; }
+
+</style>
+</head>
+<body>
+
+<header id="top">
+  <a class="back" href="../">← All companions</a>
+  <div class="kicker">ChatterPDX</div>
+  <h1>Mozart &amp; Brahms Reimagined</h1>
+  <p class="sub">Sunday, September 13, 2026 · 10:30 am (doors at 9:30 am) · Pacific Center — 851 SW 6th Ave, PDX</p>
+</header>
+
+<nav class="bar" aria-label="Guide outline">
+  <div class="chips">
+    <a href="#program">Program</a>
+    <a href="#overview">Overview</a>
+    <a href="#listen">Listen</a>
+    <a href="#brahms">Brahms</a>
+    <a href="#spoken-word">Spoken Word</a>
+    <a href="#mozart">Mozart</a>
+    <a href="#journey">Journey</a>
+    <a href="#connections">Connections</a>
+    <a href="#final-thoughts">Final Thoughts</a>
+  </div>
+</nav>
+
+<main>
+
+<section id="program">
+<h3>Performers</h3>
+<ul>
+<li>James Shields — Clarinet</li>
+<li>Matei Varga — Piano</li>
+<li>Adam LaMotte — Violin</li>
+<li>Emily Cole — Violin</li>
+<li>Haojian Wang — Viola</li>
+<li>Felix Fan — Cello</li>
+<li>Justin Rigamonti — Spoken Word</li>
+</ul>
+<h3>Program</h3>
+<ol>
+<li>Johannes Brahms — <em>Sonata No. 2 in A major for Violin and Piano</em>, Op. 100 (arr. for Clarinet and Piano) (1886) (~20 min)</li>
+<li>Spoken Word — Justin Rigamonti (followed by a brief silence)</li>
+<li>W.A. Mozart — <em>Concerto No. 20 in D minor for Piano and Chamber Ensemble</em>, K. 466 (1785) (~28 min)</li>
+</ol>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="overview">
+  <h2>Overview</h2>
+<p>This is a program built on reimagining: a Brahms sonata written for violin gets a clarinet in its place, and a Mozart piano concerto written for full orchestra gets condensed to a chamber sextet gathered close around the piano. Both pieces still arrive essentially intact — Brahms's warmth, Mozart's storm — but heard through a different lens than the one their composers first imagined.</p>
+<p>The arc runs from song into shadow. Brahms's Op. 100 is the sunniest and most lyrical of his three violin sonatas, practically overflowing with melody; moving it to clarinet only deepens that vocal, singing quality, since the clarinet was the instrument Brahms himself would fall in love with a few years later. After Justin Rigamonti's spoken word and a moment of shared silence, the mood turns hard: Mozart's D minor concerto is one of only two piano concertos he wrote in a minor key, and it's the one that would later make Beethoven — and eventually the entire Romantic era — sit up and take notice.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="listen">
+  <h2>Listen Before the Concert (Apple Music)</h2>
+<ul>
+<li>Brahms, Violin Sonata No. 2, Op. 100 — <a href="https://music.apple.com/za/album/brahms-violin-sonata-no-2-in-a-major-op-100/1523254742" target="_blank" rel="noopener">Isaac Stern &amp; Alexander Zakin, paired with Brahms's own Clarinet Sonata (Apple Music)</a> · <a href="https://music.apple.com/us/album/brahms-schumann-dietrich-violin-sonatas/1016936097" target="_blank" rel="noopener">Isabelle Faust &amp; Alexander Melnikov (Apple Music)</a></li>
+<li>Mozart, Piano Concerto No. 20, K. 466 — <a href="https://classical.music.apple.com/us/recording/wolfgang-amadeus-mozart-1756-pp246-329464454" target="_blank" rel="noopener">Clara Haskil (Apple Music Classical)</a> · <a href="https://music.apple.com/us/album/mozart-piano-concertos-no-20-in-d-minor-k-466-no-27/1452542890" target="_blank" rel="noopener">Mitsuko Uchida &amp; The Cleveland Orchestra (Apple Music)</a></li>
+</ul>
+<p><em>Both recordings above are of the original violin-and-piano version of the Brahms — no recording of today's clarinet arrangement exists yet. Haskil and Uchida make a nice study in contrast for the Mozart: Haskil's is lean, classically poised playing from the mid-20th century; Uchida's is a more expansive, Romantically shaded modern reading.</em></p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="brahms">
+  <h2>Johannes Brahms — <em>Sonata No. 2 in A major for Violin and Piano</em>, Op. 100 (1886)</h2>
+<p>🎧 <a href="https://music.apple.com/us/album/brahms-schumann-dietrich-violin-sonatas/1016936097" target="_blank" rel="noopener">Listen (Isabelle Faust &amp; Alexander Melnikov, Apple Music)</a> — original violin-and-piano version; no recording of the clarinet arrangement is available yet.</p>
+<p>Brahms wrote this sonata in a single burst during the summer of 1886, while vacationing in Thun, Switzerland — a place he loved so much for its sheer musical fertility that he once said it was "so full of melodies that one has to be careful not to step on any." That abundance shows: this is the shortest and most purely lyrical of his three violin sonatas, and it carries two nicknames as a result. "Thun" simply marks where it was born; "Meistersinger" comes from the opening theme's uncanny resemblance to Walther's Prize Song from Wagner's opera — a resemblance scholars still debate as either homage or coincidence.</p>
+<p>Brahms also packed the sonata with quotations from his own songs, written that same period for the singer Hermine Spies. The soaring second theme of the first movement is drawn straight from his song "Wie Melodien zieht es mir" ("Like melodies it steals through my mind"), and the finale folds in melodic material from two more of his songs, "Immer leiser wird mein Schlummer" and "Auf dem Kirchhofe." Even the sonata's formal title is a small, telling gesture: Brahms called it a "Sonata for Piano and Violin," not the usual reverse, letting the piano introduce the very first melody.</p>
+<p>This morning's performance swaps the violin for clarinet — an instrument Brahms hadn't yet fallen for in 1886, but soon would. Within a few years of writing this sonata, he'd hear the clarinetist Richard Mühlfeld and be moved to write his own late clarinet works (including two clarinet sonatas he authorized for alternate performance on viola). Hearing an early "violin" work of his voiced through the clarinet, in a sense, runs that story in reverse.</p>
+<h3>Movement Breakdown</h3>
+<p>The sonata is in three movements, the middle one an unusual hybrid of slow movement and scherzo:</p>
+<ul>
+<li><strong>I. Allegro amabile:</strong> "Amabile" means lovable, and the marking fits — a warm, unhurried opening built from long, singing phrases, with the piano introducing the main theme before the melody instrument takes it up.</li>
+<li><strong>II. Andante tranquillo — Vivace:</strong> Brahms folds a slow movement and a scherzo into one, alternating a hushed, tranquil Andante with faster, more agitated Vivace outbursts rather than giving each its own separate movement.</li>
+<li><strong>III. Allegretto grazioso, quasi Andante:</strong> A graceful, moderately paced rondo finale that keeps circling back to its opening idea, closing the sonata in the same unforced warmth it began with.</li>
+</ul>
+<h3>Listen for</h3>
+<ul>
+<li>The opening phrase's kinship with Wagner's "Prize Song" — close enough that early audiences noticed it too</li>
+<li>The soaring melody partway through the first movement, lifted directly from Brahms's own song "Wie Melodien zieht es mir"</li>
+<li>How naturally the clarinet's voice sits in music this vocal — long Brahmsian phrases that ask for breath control, not just bow control</li>
+<li>The second movement's back-and-forth between calm and agitation, rather than a clean split between "slow movement" and "scherzo"</li>
+<li>The finale's unhurried, songlike close — this sonata ends in contentment, not triumph</li>
+</ul>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="spoken-word">
+  <h2>Spoken Word — Justin Rigamonti</h2>
+<p>Placed between the Brahms and the Mozart, tonight's spoken word (and the brief silence that follows it) functions as the hinge of the morning — a chance to let the Brahms sonata's warmth settle before the turn into Mozart's darker key.</p>
+<h3>About Justin Rigamonti</h3>
+<p>Rigamonti teaches English at Portland Community College and serves as the Poetry Coordinator for Chatter PDX. His poems have recently appeared in American Poetry Review, Ploughshares, Rattle, New Ohio Review, and Best New Poets 2025, and his poem "News Crawler" won the 2026 West Trade Review Prize for Poetry. He lives in Cottage Grove, Oregon with his partner and two chihuahuas.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="mozart">
+  <h2>W.A. Mozart — <em>Concerto No. 20 in D minor for Piano and Chamber Ensemble</em>, K. 466 (1785)</h2>
+<div class="listen"><a href="https://classical.music.apple.com/us/recording/wolfgang-amadeus-mozart-1756-pp246-329464454" target="_blank" rel="noopener">▶ Listen (Clara Haskil, Apple Music Classical)</a><a class="alt" href="https://music.apple.com/us/album/mozart-piano-concertos-no-20-in-d-minor-k-466-no-27/1452542890" target="_blank" rel="noopener">▶ Mitsuko Uchida &amp; The Cleveland Orchestra (Apple Music)</a></div>
+<p>Mozart finished this concerto on February 10, 1785 — reportedly with the ink barely dry in time for its premiere the very next night, with Mozart himself at the keyboard and conducting from the piano. It's a striking piece for exactly that reason: out of 27 piano concertos, this is only the second Mozart ever wrote in a minor key, and D minor meant something specific to him. He'd reach for it again for the arrival of the stone guest in <em>Don Giovanni</em> and for the opening of his Requiem — it was his key for the demonic and the fateful, not his usual concerto territory of charm and wit.</p>
+<p>This morning's performance trades the original orchestra for a chamber ensemble — piano, two violins, viola, and cello standing in for what Mozart wrote for full strings, winds, and timpani. It's a format change in the same spirit as the Brahms: the notes and drama stay, but the sound world tightens into something more intimate, with the "orchestra" reduced to five string-and-keyboard voices instead of a full pit. Beethoven, coming up in Mozart's wake, admired this concerto (and its C minor sibling, K. 491) enough to write his own cadenza for it — a rare case of one great composer leaving fingerprints directly inside another's score, and a sign of how strongly this piece pointed toward the Romantic era still decades away.</p>
+<h3>Movement Breakdown</h3>
+<p>The concerto keeps the traditional three-movement fast–slow–fast concerto shape, though the outer movements are anything but Mozart's usual composure:</p>
+<ul>
+<li><strong>I. Allegro:</strong> Opens not with a tune but with a restless, syncopated murmur in the strings — dark and unsettled from the very first bar, with the piano entering on its own material rather than the orchestra's.</li>
+<li><strong>II. Romanza:</strong> A songful, hymn-like reprieve in B-flat major — though its middle section erupts into agitated, rushing minor-key turbulence before the opening calm returns.</li>
+<li><strong>III. Rondo: Allegro assai:</strong> A stormy, rhythmically driven finale that circles back again and again to its urgent opening idea, before an unexpected pivot: the music brightens into D major in the closing pages, and the drama resolves into a bright, almost triumphant close.</li>
+</ul>
+<h3>Listen for</h3>
+<ul>
+<li>The very opening bars — an unsettled, syncopated string murmur that establishes the mood before a single melody appears</li>
+<li>The piano's first entrance, which ignores the orchestra's opening material entirely and introduces its own new theme</li>
+<li>The Romanza's sudden mid-movement swerve from calm hymn to agitated minor-key storm and back</li>
+<li>How differently five chamber players render Mozart's "orchestral" drama compared to a full orchestra — every syncopation and dark harmony more exposed, less padded</li>
+<li>The finale's late turn to D major — Mozart pulling the whole concerto out of its minor-key storm in the last possible moment</li>
+</ul>
+<h3>Note</h3>
+<p>Coming right after the spoken word's pause, the Mozart's opening murmur lands as a real change in temperature — the morning's one true storm, framed on both sides by lyricism.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="journey">
+  <h2>The Emotional Arc of the Program</h2>
+<table>
+<thead>
+<tr>
+<th>Work</th>
+<th>Character</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Brahms – Violin Sonata No. 2 (arr. clarinet)</strong></td>
+<td>Warm, songful, contented</td>
+</tr>
+<tr>
+<td><strong>Spoken Word + Silence</strong></td>
+<td>Reflection and emotional hinge</td>
+</tr>
+<tr>
+<td><strong>Mozart – Piano Concerto No. 20, K. 466</strong></td>
+<td>Stormy, dramatic, ultimately resolved</td>
+</tr>
+</tbody>
+</table>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="connections">
+  <h2>Musical Connections</h2>
+<h3>Two acts of "reimagining"</h3>
+<p>Both works on this program are heard in a form their composers didn't originally write: Brahms's violin part recast for clarinet, Mozart's orchestra condensed to five chamber voices. Neither change touches the substance of the music — the melodies, harmonies, and drama are all still there — but both put the listener closer to the notes themselves, with less orchestral or idiomatic cushioning between the ear and the composer's ideas.</p>
+<h3>Brahms and the clarinet</h3>
+<p>The clarinet arrangement heard this morning is, in a way, an accident of history running backwards. Brahms wrote Op. 100 in 1886 for violin, years before he ever heard Richard Mühlfeld play — the encounter that would later inspire his Clarinet Trio, Clarinet Quintet, and two late clarinet sonatas (which Brahms himself sanctioned for viola as an alternate). Playing this earlier "violin" sonata on clarinet tonight lets you hear, a few years early, just how naturally Brahms's melodic voice sits on that instrument.</p>
+<h3>Mozart and the Romantics</h3>
+<p>K. 466's minor-key drama and Beethoven's own cadenza for it are a reminder that Mozart didn't stay neatly boxed into the "Classical" era listeners sometimes assume. This is Mozart reaching toward the stormier, more personal expression that Beethoven and the Romantics would make their default mode — one of the clearest bridges in his output between 18th-century poise and 19th-century intensity.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="final-thoughts">
+  <h2>Final Thoughts</h2>
+<p>This is a morning about hearing familiar music slightly askew — a violin sonata sung through a clarinet, an orchestral concerto squeezed down to five players and a piano — and discovering that the reimagining reveals rather than obscures. It moves from Brahms at his most contented, through a poet's pause and a shared silence, into Mozart's one true storm of the morning, before that storm breaks into D major sunlight in the concerto's final pages. </p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+</main>
+
+<footer>
+  <a class="back" href="../">← All companions</a>
+</footer>
+
+<script>
+  // Highlight the current section in the sticky bar.
+  var links = {};
+  document.querySelectorAll('nav.bar a').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        Object.values(links).forEach(function (a) { a.classList.remove('on'); });
+        var a = links[e.target.id];
+        if (a) { a.classList.add('on'); a.scrollIntoView({ inline: 'center', block: 'nearest' }); }
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  document.querySelectorAll('main section').forEach(function (s) { io.observe(s); });
+  // Remember checklist ticks on this device (best effort).
+  var boxes = document.querySelectorAll('input[type=checkbox]');
+  var key = 'cb:' + location.pathname;
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(key) || '{}'); } catch (e) {}
+  boxes.forEach(function (b, i) {
+    if (saved[i]) b.checked = true;
+    b.addEventListener('change', function () {
+      saved[i] = b.checked;
+      try { localStorage.setItem(key, JSON.stringify(saved)); } catch (e) {}
+    });
+  });
+</script>
+</body>
+</html>

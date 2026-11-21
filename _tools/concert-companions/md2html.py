@@ -52,17 +52,27 @@ def title_from_filename(name):
     if parts and re.match(r'\d{4}-\d{2}-\d{2}$', parts[0]):
         parts = parts[1:]
 
-    def fix(p):
+    def fix(p, first=False):
         n = p.count('___')
-        if n >= 2:                       # first one separates organisation from program: "Org: Program"
-            p = p.replace('___', ': ', 1)
+        if n >= 2:                       # first one separates "Org: Program" (or "Program \u2013 Pieces" in a later part)
+            p = p.replace('___', ': ' if first else ' \u2013 ', 1)
         p = p.replace('___', ' & ').replace('__', ', ').replace('_', ' ')
         return p.strip()
-    parts = [fix(p) for p in parts]
+    parts = [fix(p, i == 0) for i, p in enumerate(parts)]
     if not parts:
         return base
     # "Organisation: Performer \u2013 Program" (first separator is a colon, later ones an en dash)
     return parts[0] + (': ' + ' \u2013 '.join(parts[1:]) if len(parts) > 1 else '')
+
+
+def time_minutes(t):
+    """Start time in minutes after midnight ('6:00\u20137:00 pm' -> 1080); 0 if unknown. Used to order same-day concerts."""
+    m = re.search(r'(\d{1,2})(?::(\d\d))?', t or '')
+    ap = re.findall(r'([ap])\.?m', (t or '').lower())
+    if not m:
+        return 0
+    h = int(m.group(1)) % 12 + (12 if ap and ap[-1] == 'p' else 0)
+    return h * 60 + int(m.group(2) or 0)
 
 
 def parse_date(s):
@@ -166,6 +176,8 @@ def render(md_text, slug, filename, date_override=None, title_override=None):
         title = title or m.group(1).strip()
         body = body[:m.start()] + body[m.end():]
     title = re.sub(r'\s*[\u2013\u2014-]\s*Concert Companion\s*$', '', title, flags=re.I).strip()
+    if title and ': ' not in title:
+        title = re.sub(r'^(.+?) [-\u2013\u2014] (.+)$', r'\1: \2', title, count=1)   # "Org - Program" -> "Org: Program"
     if title_override:
         title = title_override
     elif not title:
@@ -189,6 +201,10 @@ def render(md_text, slug, filename, date_override=None, title_override=None):
                 meta['Time'] = parts_[1].strip()
             venue = (mm.group(2) or '').strip() or (mm.group(3) or '').strip()
             venue = re.sub(r'^[\u2014\u2013-]\s*', '', venue)
+            pm = re.match(r'^(\([^)]*\))\s*(.*)$', venue)          # "(doors at 9:30 am) Venue, ..." belongs to the time
+            if pm:
+                meta['Time'] = (meta.get('Time', '') + ' ' + pm.group(1)).strip()
+                venue = pm.group(2)
             if venue:
                 meta['Location'] = venue
             body = body[mm.end():]
@@ -252,6 +268,7 @@ def render(md_text, slug, filename, date_override=None, title_override=None):
     page = page.replace('@@H1@@', html.escape(prog))
     page = page.replace('@@TITLE@@', html.escape(title))
     page = page.replace('@@SUB@@', sub)
+    page = page.replace('@@MINUTES@@', str(time_minutes(meta.get('Time', ''))))
     page = page.replace('@@CHIPS@@', chips_html)
     page = page.replace('@@SECTIONS@@', '\n'.join(html_sections))
     page = page.replace('@@ISO@@', iso or '')
@@ -288,8 +305,8 @@ def rebuild_index(root):
         t = open(f, encoding='utf-8').read()
         g = lambda n: (re.search(r'<meta name="%s" content="([^"]*)"' % n, t) or [None, ''])[1]
         items.append((g('concert-date'), g('concert-title'), g('concert-label'), g('concert-venue'),
-                      os.path.basename(os.path.dirname(f))))
-    items.sort(key=lambda x: x[0], reverse=True)
+                      os.path.basename(os.path.dirname(f)), int(g('concert-minutes') or 0)))
+    items.sort(key=lambda x: (x[0], x[5]), reverse=True)     # newest first; later start first on the same day
     idx_path = os.path.join(folder, 'index.html')
     idx = open(idx_path, encoding='utf-8').read()
     if items:
@@ -298,7 +315,7 @@ def rebuild_index(root):
             return (f'<i>{html.escape(o)}</i><b>{html.escape(p)}</b>' if sp else f'<b>{t}</b>')
         lis = '\n'.join(
             f'    <li><a href="{s}/">{split(t)}<span>{" · ".join(x for x in (lab, v) if x)}</span></a></li>'
-            for d, t, lab, v, s in items)
+            for d, t, lab, v, s, _m in items)
         block = f'<ul>\n{lis}\n  </ul>'
     else:
         block = '<div class="empty">None yet.</div>'
@@ -317,6 +334,7 @@ TEMPLATE = '''<!DOCTYPE html>
 <meta name="concert-title" content="@@TITLE@@">
 <meta name="concert-date" content="@@ISO@@">
 <meta name="concert-label" content="@@DATELABEL@@">
+<meta name="concert-minutes" content="@@MINUTES@@">
 <meta name="concert-venue" content="@@VENUE@@">
 <style>
 @@CSS@@
