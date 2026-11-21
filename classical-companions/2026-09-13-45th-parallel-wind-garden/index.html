@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>45th Parallel: Wind Garden — Concert Companion</title>
+<meta name="concert-title" content="45th Parallel: Wind Garden">
+<meta name="concert-date" content="2026-09-13">
+<meta name="concert-label" content="Sunday, September 13, 2026">
+<meta name="concert-venue" content="Lux Perennials Garden">
+<style>
+  :root {
+    --bg: #faf7f2; --ink: #26231f; --muted: #6b645b; --accent: #2f6b4f;
+    --accent-soft: #e4efe8; --rule: #ddd5c8; --card: #fff; --warn: #fff4d6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #17191a; --ink: #ece8e0; --muted: #a39d92; --accent: #7fc4a0;
+            --accent-soft: #22302a; --rule: #34383a; --card: #1f2224; --warn: #3a3320; }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 19px/1.65 Georgia, "Iowan Old Style", serif;
+         padding-bottom: env(safe-area-inset-bottom); }
+  header { padding: 2.5rem 1.25rem 1.25rem; max-width: 46rem; margin: 0 auto; }
+  .back { display: inline-block; font: 600 .95rem -apple-system, system-ui, sans-serif; color: var(--accent);
+          text-decoration: none; padding: .7rem 0; min-height: 44px; }
+  header .kicker { font: 600 .8rem/1 -apple-system, system-ui, sans-serif; letter-spacing: .12em;
+                   text-transform: uppercase; color: var(--accent); }
+  h1 { font-size: 2.1rem; line-height: 1.2; margin: .5rem 0 .4rem; }
+  .sub { color: var(--muted); margin: 0; }
+
+  /* Sticky tap-to-navigate bar */
+  nav.bar { position: sticky; top: 0; z-index: 10; background: var(--bg);
+            border-bottom: 1px solid var(--rule); padding-top: env(safe-area-inset-top); }
+  nav.bar .chips { display: flex; gap: .5rem; overflow-x: auto; padding: .6rem 1.25rem;
+                   max-width: 46rem; margin: 0 auto; -webkit-overflow-scrolling: touch; }
+  nav.bar a { flex: none; font: 600 .95rem/1 -apple-system, system-ui, sans-serif; text-decoration: none;
+              color: var(--ink); background: var(--card); border: 1px solid var(--rule);
+              padding: .8rem 1rem; border-radius: 999px; min-height: 44px; display: inline-flex; align-items: center; }
+  nav.bar a.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  main { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem 4rem; }
+  section { padding-top: 2rem; scroll-margin-top: 4.6rem; }
+  h2 { font-size: 1.55rem; line-height: 1.25; margin: 0 0 .25rem; }
+  .meta { font: .9rem/1.5 -apple-system, system-ui, sans-serif; color: var(--muted); margin: 0 0 1rem; }
+  h3 { font: 700 .85rem/1 -apple-system, system-ui, sans-serif; letter-spacing: .1em; text-transform: uppercase;
+       color: var(--accent); margin: 1.6rem 0 .5rem; }
+
+  .listen { display: flex; flex-wrap: wrap; gap: .6rem; margin: .5rem 0 1.25rem; }
+  .listen a { font: 600 1rem/1 -apple-system, system-ui, sans-serif; text-decoration: none; color: #fff;
+              background: var(--accent); padding: .9rem 1.1rem; border-radius: 12px; min-height: 44px;
+              display: inline-flex; align-items: center; gap: .4rem; }
+  .listen a.alt { background: var(--accent-soft); color: var(--accent); }
+
+  ul.map { list-style: none; padding: 0; margin: 0; border-left: 3px solid var(--accent-soft); }
+  ul.map li { padding: .35rem 0 .35rem 1rem; }
+  ul.map b { font-family: -apple-system, system-ui, sans-serif; font-size: .9rem; color: var(--accent); }
+
+  figure.score { margin: 1.25rem 0; background: var(--card); border: 1px solid var(--rule);
+                 border-radius: 12px; padding: .75rem; }
+  figure.score img { width: 100%; height: auto; display: block; background: #fff; border-radius: 6px; }
+  figure.score .slot { display: none; padding: 1.1rem; background: var(--warn); border-radius: 6px;
+                       font: .9rem/1.5 -apple-system, system-ui, sans-serif; }
+  figure.score.missing img { display: none; }
+  figure.score.missing .slot { display: block; }
+  figcaption { font: .9rem/1.5 -apple-system, system-ui, sans-serif; color: var(--muted); margin-top: .6rem; }
+
+  .callout { background: var(--accent-soft); border-radius: 12px; padding: .9rem 1.1rem; margin: 1.25rem 0;
+             font-size: .98rem; }
+  table { width: 100%; border-collapse: collapse; font: .95rem/1.45 -apple-system, system-ui, sans-serif; }
+  th, td { text-align: left; padding: .6rem .4rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; }
+  td a { color: var(--accent); font-weight: 600; }
+  footer { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem 3rem; color: var(--muted);
+           font: .85rem/1.5 -apple-system, system-ui, sans-serif; }
+  .top { display: inline-block; margin-top: 1.25rem; font: 600 .9rem -apple-system, system-ui, sans-serif;
+         color: var(--accent); text-decoration: none; padding: .6rem 0; }
+  /* companion additions */
+  section ul, section ol { padding-left: 1.3rem; }
+  section li p { margin: .1rem 0; }
+  section h4 { font: 700 1.02rem/1.3 -apple-system, system-ui, sans-serif; margin: 1.3rem 0 .3rem; }
+  blockquote { margin: 1rem 0; padding: .1rem 1rem; border-left: 3px solid var(--rule); color: var(--muted); }
+  aside.callout { background: var(--accent-soft); border-left: 4px solid var(--accent); border-radius: 8px;
+                  padding: .8rem 1rem; margin: 1.2rem 0; font-size: .98rem; }
+  aside.callout p { margin: .4rem 0; }
+  aside.callout ul { margin: .4rem 0; }
+  aside.callout .callout-title { font: 700 .8rem/1.2 -apple-system, system-ui, sans-serif; letter-spacing: .08em;
+                                 text-transform: uppercase; color: var(--accent); margin-bottom: .2rem; }
+  aside.c-quote { background: transparent; border-left-color: var(--rule); font-style: italic; color: var(--muted); }
+  aside.c-important { background: var(--warn); border-left-color: #c58b00; }
+  aside.c-important .callout-title { color: #8a6100; }
+  @media (prefers-color-scheme: dark) { aside.c-important .callout-title { color: #e7b84a; } }
+  label.cb { display: flex; gap: .65rem; align-items: flex-start; min-height: 44px; padding: .3rem 0; cursor: pointer; }
+  label.cb input { width: 1.35rem; height: 1.35rem; margin-top: .25rem; flex: none; accent-color: var(--accent); }
+  section li:has(> label.cb), section li:has(> p > label.cb) { list-style: none; margin-left: -1.3rem; }
+  th, td { text-align: left; }
+
+</style>
+</head>
+<body>
+
+<header id="top">
+  <a class="back" href="../">← All companions</a>
+  <div class="kicker">45th Parallel</div>
+  <h1>Wind Garden</h1>
+  <p class="sub">Sunday, September 13, 2026 · 6:00–7:00 pm · Lux Perennials Garden — 13610 NW Skyline Blvd, Portland, OR 97231</p>
+</header>
+
+<nav class="bar" aria-label="Guide outline">
+  <div class="chips">
+    <a href="#program">Program</a>
+    <a href="#overview">Overview</a>
+    <a href="#listen">Listen</a>
+    <a href="#harmoniemusik">Harmoniemusik</a>
+    <a href="#mozart-s-operas">Mozart&#x27;s Operas</a>
+    <a href="#performers">Performers</a>
+    <a href="#45th-parallel">45th Parallel</a>
+    <a href="#venue">Venue</a>
+    <a href="#listen-for">Listen For</a>
+    <a href="#final-thoughts">Final Thoughts</a>
+  </div>
+</nav>
+
+<main>
+
+<section id="program">
+<h3>Performers</h3>
+<ul>
+<li>Joe Berger — Horn</li>
+<li>Kai Rocke — Bassoon</li>
+<li>James Shields — Clarinet</li>
+</ul>
+<h3>Program</h3>
+<p>A specific piece-by-piece program hasn't been published for this one — 45th Parallel's listing describes it only as a set of Harmoniemusik-style arrangements built around Mozart's operas, performed by this trio of horn, bassoon, and clarinet. Rather than guess at movements or opus numbers that aren't public, this guide covers the tradition itself, the operas most likely to turn up, and the people playing them, so you're prepared for whatever the trio actually plays from stage.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="overview">
+  <h2>Overview</h2>
+<p>Tonight is really a concert about a forgotten format as much as it's about specific pieces. Harmoniemusik — music written or arranged for small court wind ensembles — was hugely popular in Mozart's Vienna, especially outdoors, and this program revives that tradition in a genuinely fitting setting: a garden on a ridge above the city at sunset, rather than a concert hall.</p>
+<p>It's also, happily, a bit of a companion piece to your morning at Chatter — James Shields turns up in both programs today, going from the Brahms sonata reimagined for clarinet this morning to a rarer wind trio (clarinet, bassoon, horn) built for outdoor court entertainment this evening. Where the standard Harmonie ensemble is a wind octet (paired oboes, clarinets, horns, and bassoons), tonight's group strips that down to one player per line — a more intimate, chamber-sized take on a format that itself once stood in for the price of a full orchestra.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="listen">
+  <h2>Listen Before the Concert (Apple Music)</h2>
+<ul>
+<li>Harmoniemusik arrangements of Mozart's operas — <a href="https://classical.music.apple.com/us/album/1073254547" target="_blank" rel="noopener"><em>Harmoniemusik from Mozart's Favourite Operas</em>, Winds Unlimited (Apple Music Classical)</a> · <a href="https://music.apple.com/us/album/mozart-harmoniemusik-operas-arranged-for-wind-ensemble/285758609" target="_blank" rel="noopener"><em>Mozart: Harmoniemusik — Operas Arranged for Wind Ensemble</em>, The Amadeus Ensemble (Apple Music)</a></li>
+<li>The originals, for reference — <a href="https://music.apple.com/us/album/mozart-overtures/695528047" target="_blank" rel="noopener"><em>Mozart: Overtures</em>, Academy of St Martin in the Fields, Neville Marriner (Apple Music)</a></li>
+</ul>
+<p><em>The two Harmoniemusik albums above are the closest you can get to previewing tonight's actual format — full wind-ensemble arrangements of Mozart opera highlights — even though we can't confirm which specific numbers 45th Parallel will play. The orchestral originals are worth a spin too, just to have the source material in your ear.</em></p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="harmoniemusik">
+  <h2>Harmoniemusik: The Tradition Behind Tonight's Program</h2>
+<p>A "Harmonie" was a wind band of five to eight players — typically pairs of oboes, horns, and bassoons, with clarinets joining the mix after about 1770 — kept by aristocratic households across German-speaking Europe. They were a status symbol nobles could afford even when a full orchestra was out of reach, and they did double duty as both a stand-alone ensemble and the wind section of whatever small orchestra the household could muster. Crucially for tonight's setting, Harmonies were also the era's outdoor band of choice: they serenaded banquets, garden parties, and hunts, precisely the kind of open-air occasion 45th Parallel is recreating at Lux Perennials.</p>
+<p>One of the format's most popular uses was "auf Harmonie setzen" — literally "setting for Harmonie" — the practice of arranging popular operas for wind band so a household could enjoy the hit tunes of the day without paying for singers or an orchestra. Mozart's own operas were prime material for this: the oboist Johann Nepomuk Wendt, who played in the pit for the Vienna premiere of <em>The Marriage of Figaro</em>, arranged the opera for wind octet within a few years of its 1786 debut, reportedly with Mozart's blessing, and that Wendt arrangement (edited for modern performance in 1975) remains the version most ensembles still play today. Mozart even wrote a version of this practice directly into <em>Don Giovanni</em> — the Act II banquet scene features an onstage Harmonie playing quotations of recent operatic hits, a wink at an audience who would have recognized the joke immediately.</p>
+<p>Tonight's format is a further compression of that idea: rather than the full octet, three players — clarinet, bassoon, and horn — carry entire opera scores between them. It asks each musician to cover far more melodic and harmonic ground than the original arrangers ever expected of any single voice, which is part of what makes hearing it live, rather than on record, genuinely interesting.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="mozart-s-operas">
+  <h2>Mozart's Operas, Arranged for Wind</h2>
+<p>Any of Mozart's mature operas could plausibly show up in a program billed around "a shared love of Mozart's operas": <em>The Marriage of Figaro</em>, <em>Don Giovanni</em>, <em>Così fan tutte</em>, <em>The Abduction from the Seraglio</em>, and <em>The Magic Flute</em> were all arranged for Harmonie during or shortly after Mozart's lifetime, since each was a genuine popular hit whose tunes audiences wanted to keep hearing outside the opera house. Overtures were especially common targets for these arrangements, since they were self-contained, tune-driven, and didn't require reworking recitative or ensemble scenes — but well-loved arias and duets (Figaro and Susanna's exchanges, the Queen of the Night's arias, Papageno's tunes) were fair game too.</p>
+<p>If you want a guess at what's most likely to appear, the overtures to <em>Figaro</em> and <em>The Magic Flute</em> are the two most frequently arranged and most enduringly popular in the Harmoniemusik repertoire — both tune-forward, both built for exactly this kind of outdoor, crowd-pleasing occasion.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="performers">
+  <h2>About the Performers</h2>
+<h3>James Shields, clarinet</h3>
+<p>Shields is a Portland-based clarinetist, composer, and the Artistic Director of Chatter PDX, the weekly chamber-music-and-poetry series you may have caught this morning. A Juilliard-trained player described by colleagues as "truly world class," he's known as much for his community-building instincts as his playing, curating programs that pair serious musicianship with genuine warmth and accessibility.</p>
+<h3>Kai Rocke, bassoon</h3>
+<p>Rocke is Principal Acting Bassoonist and Contrabassoonist with the Oregon Symphony. Originally from Woodbridge, Virginia, he trained at the New England Conservatory and Rice University, and completed the Good Fellowship with the Minnesota Orchestra. Beyond his Oregon Symphony post, he's performed with the Minnesota Orchestra, the St. Paul Chamber Orchestra, and the Shreveport Symphony, and maintains an active studio of bassoon students.</p>
+<h3>Joe Berger, horn</h3>
+<p>Berger is Associate Principal Horn of the Oregon Symphony, bringing an orchestral hornist's blend and stamina to a format that asks a single horn to do the work an entire Harmonie section once shared.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="45th-parallel">
+  <h2>About 45th Parallel</h2>
+<p>45th Parallel (formally 45th Parallel Universe) is a musician-run Portland chamber collective founded in 2009 by Oregon Symphony violinist Gregory Ewer, built explicitly as an alternative to the traditional concert-hall experience — chamber music in whatever intimate, sometimes unconventional space suits the program, gardens included. Since expanding under executive director Ron Blessinger, the organization has leaned further into outdoor and site-specific programming, of which tonight's sunset concert in a private garden is a good example.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="venue">
+  <h2>About the Venue</h2>
+<p>Lux Perennials is a working plant nursery and private garden in Portland's West Hills, about 25 minutes from downtown along NW Skyline Boulevard. Its two-acre English-style garden — ponds, waterfalls, fountains, mountain views, and some 8,000 blooming plants — makes it an unusually scenic stand-in for the aristocratic gardens Harmoniemusik was originally written for.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="listen-for">
+  <h2>What to Listen For</h2>
+<ul>
+<li>How three instruments cover music originally spread across an entire wind octet — listen for the clarinet, bassoon, and horn trading off melody, harmony, and bass roles that would normally be split among six to eight players</li>
+<li>Tunes you may already know from the operas themselves, translated from singers' voices into wind timbres — notice how a clarinet can approximate a soprano's line, or a horn a baritone's</li>
+<li>The outdoor, unamplified sound of the ensemble against the garden setting — a very different listening experience from a concert hall, much closer to the original 18th-century context for this music</li>
+<li>Individual instrumental color: the clarinet's vocal, reedy warmth, the bassoon's woody depth (and occasional comic agility), and the horn's rounded, hunting-call resonance</li>
+<li>The good humor built into the format itself — Harmoniemusik was popular entertainment in its own time, not solemn art music, and this trio's evident enjoyment of Mozart's tunes is very much in that spirit</li>
+</ul>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="final-thoughts">
+  <h2>Final Thoughts</h2>
+<p>This is a concert about music finding its way outdoors and back again — opera arias written for the stage, arranged for garden parties two centuries ago, now returned to an actual garden on a ridge above Portland at sunset. Whatever specific tunes the trio chooses tonight, they'll be drawing from some of the most beloved melodies Mozart ever wrote, stripped down to three voices and set loose in the open air.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+</main>
+
+<footer>
+  <a class="back" href="../">← All companions</a>
+</footer>
+
+<script>
+  // Highlight the current section in the sticky bar.
+  var links = {};
+  document.querySelectorAll('nav.bar a').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        Object.values(links).forEach(function (a) { a.classList.remove('on'); });
+        var a = links[e.target.id];
+        if (a) { a.classList.add('on'); a.scrollIntoView({ inline: 'center', block: 'nearest' }); }
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  document.querySelectorAll('main section').forEach(function (s) { io.observe(s); });
+  // Remember checklist ticks on this device (best effort).
+  var boxes = document.querySelectorAll('input[type=checkbox]');
+  var key = 'cb:' + location.pathname;
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(key) || '{}'); } catch (e) {}
+  boxes.forEach(function (b, i) {
+    if (saved[i]) b.checked = true;
+    b.addEventListener('change', function () {
+      saved[i] = b.checked;
+      try { localStorage.setItem(key, JSON.stringify(saved)); } catch (e) {}
+    });
+  });
+</script>
+</body>
+</html>

@@ -148,6 +148,11 @@ def chip_label(heading, work=False):
             k = 2 if (len(w) > 1 and (w[0].isdigit() or len(w[0]) <= 2)) else 1
             return name + ' \u00b7 ' + re.sub(r'[^\w\u00c0-\u024f]+$', '', ' '.join(w[:k]))
         return name
+    # plain headings: keep chips short ("About the Venue" -> "Venue", "Tradition: Behind..." -> "Tradition")
+    h = h.split(':')[0].split(',')[0].strip()
+    h = re.sub(r'^(About (the )?|What to )', '', h, flags=re.I).strip()
+    if len(h) > 20:
+        h = ' '.join(h.split()[:2])
     return h
 
 
