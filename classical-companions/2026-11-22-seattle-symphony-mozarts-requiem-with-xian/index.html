@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Seattle Symphony: Mozart&#x27;s Requiem with Xian — Concert Companion</title>
+<meta name="concert-title" content="Seattle Symphony: Mozart&#x27;s Requiem with Xian">
+<meta name="concert-date" content="2026-11-22">
+<meta name="concert-label" content="Sunday, November 22, 2026">
+<meta name="concert-minutes" content="840">
+<meta name="concert-venue" content="S. Mark Taper Foundation Auditorium, Benaroya Hall">
+<style>
+  :root {
+    --bg: #faf7f2; --ink: #26231f; --muted: #6b645b; --accent: #2f6b4f;
+    --accent-soft: #e4efe8; --rule: #ddd5c8; --card: #fff; --warn: #fff4d6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #17191a; --ink: #ece8e0; --muted: #a39d92; --accent: #7fc4a0;
+            --accent-soft: #22302a; --rule: #34383a; --card: #1f2224; --warn: #3a3320; }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 19px/1.65 Georgia, "Iowan Old Style", serif;
+         padding-bottom: env(safe-area-inset-bottom); }
+  header { padding: 2.5rem 1.25rem 1.25rem; max-width: 46rem; margin: 0 auto; }
+  .back { display: inline-block; font: 600 .95rem -apple-system, system-ui, sans-serif; color: var(--accent);
+          text-decoration: none; padding: .7rem 0; min-height: 44px; }
+  header .kicker { font: 600 .8rem/1 -apple-system, system-ui, sans-serif; letter-spacing: .12em;
+                   text-transform: uppercase; color: var(--accent); }
+  h1 { font-size: 2.1rem; line-height: 1.2; margin: .5rem 0 .4rem; }
+  .sub { color: var(--muted); margin: 0; }
+
+  /* Sticky tap-to-navigate bar */
+  nav.bar { position: sticky; top: 0; z-index: 10; background: var(--bg);
+            border-bottom: 1px solid var(--rule); padding-top: env(safe-area-inset-top); }
+  nav.bar .chips { display: flex; gap: .5rem; overflow-x: auto; padding: .6rem 1.25rem;
+                   max-width: 46rem; margin: 0 auto; -webkit-overflow-scrolling: touch; }
+  nav.bar a { flex: none; font: 600 .95rem/1 -apple-system, system-ui, sans-serif; text-decoration: none;
+              color: var(--ink); background: var(--card); border: 1px solid var(--rule);
+              padding: .8rem 1rem; border-radius: 999px; min-height: 44px; display: inline-flex; align-items: center; }
+  nav.bar a.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  main { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem 4rem; }
+  section { padding-top: 2rem; scroll-margin-top: 4.6rem; }
+  h2 { font-size: 1.55rem; line-height: 1.25; margin: 0 0 .25rem; }
+  .meta { font: .9rem/1.5 -apple-system, system-ui, sans-serif; color: var(--muted); margin: 0 0 1rem; }
+  h3 { font: 700 .85rem/1 -apple-system, system-ui, sans-serif; letter-spacing: .1em; text-transform: uppercase;
+       color: var(--accent); margin: 1.6rem 0 .5rem; }
+
+  .listen { display: flex; flex-wrap: wrap; gap: .6rem; margin: .5rem 0 1.25rem; }
+  .listen a { font: 600 1rem/1 -apple-system, system-ui, sans-serif; text-decoration: none; color: #fff;
+              background: var(--accent); padding: .9rem 1.1rem; border-radius: 12px; min-height: 44px;
+              display: inline-flex; align-items: center; gap: .4rem; }
+  .listen a.alt { background: var(--accent-soft); color: var(--accent); }
+
+  ul.map { list-style: none; padding: 0; margin: 0; border-left: 3px solid var(--accent-soft); }
+  ul.map li { padding: .35rem 0 .35rem 1rem; }
+  ul.map b { font-family: -apple-system, system-ui, sans-serif; font-size: .9rem; color: var(--accent); }
+
+  figure.score { margin: 1.25rem 0; background: var(--card); border: 1px solid var(--rule);
+                 border-radius: 12px; padding: .75rem; }
+  figure.score img { width: 100%; height: auto; display: block; background: #fff; border-radius: 6px; }
+  figure.score .slot { display: none; padding: 1.1rem; background: var(--warn); border-radius: 6px;
+                       font: .9rem/1.5 -apple-system, system-ui, sans-serif; }
+  figure.score.missing img { display: none; }
+  figure.score.missing .slot { display: block; }
+  figcaption { font: .9rem/1.5 -apple-system, system-ui, sans-serif; color: var(--muted); margin-top: .6rem; }
+
+  .callout { background: var(--accent-soft); border-radius: 12px; padding: .9rem 1.1rem; margin: 1.25rem 0;
+             font-size: .98rem; }
+  table { width: 100%; border-collapse: collapse; font: .95rem/1.45 -apple-system, system-ui, sans-serif; }
+  th, td { text-align: left; padding: .6rem .4rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; }
+  td a { color: var(--accent); font-weight: 600; }
+  footer { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem 3rem; color: var(--muted);
+           font: .85rem/1.5 -apple-system, system-ui, sans-serif; }
+  .top { display: inline-block; margin-top: 1.25rem; font: 600 .9rem -apple-system, system-ui, sans-serif;
+         color: var(--accent); text-decoration: none; padding: .6rem 0; }
+  /* companion additions */
+  section ul, section ol { padding-left: 1.3rem; }
+  section li p { margin: .1rem 0; }
+  section h4 { font: 700 1.02rem/1.3 -apple-system, system-ui, sans-serif; margin: 1.3rem 0 .3rem; }
+  blockquote { margin: 1rem 0; padding: .1rem 1rem; border-left: 3px solid var(--rule); color: var(--muted); }
+  aside.callout { background: var(--accent-soft); border-left: 4px solid var(--accent); border-radius: 8px;
+                  padding: .8rem 1rem; margin: 1.2rem 0; font-size: .98rem; }
+  aside.callout p { margin: .4rem 0; }
+  aside.callout ul { margin: .4rem 0; }
+  aside.callout .callout-title { font: 700 .8rem/1.2 -apple-system, system-ui, sans-serif; letter-spacing: .08em;
+                                 text-transform: uppercase; color: var(--accent); margin-bottom: .2rem; }
+  aside.c-quote { background: transparent; border-left-color: var(--rule); font-style: italic; color: var(--muted); }
+  aside.c-important { background: var(--warn); border-left-color: #c58b00; }
+  aside.c-important .callout-title { color: #8a6100; }
+  @media (prefers-color-scheme: dark) { aside.c-important .callout-title { color: #e7b84a; } }
+  label.cb { display: flex; gap: .65rem; align-items: flex-start; min-height: 44px; padding: .3rem 0; cursor: pointer; }
+  label.cb input { width: 1.35rem; height: 1.35rem; margin-top: .25rem; flex: none; accent-color: var(--accent); }
+  section li:has(> label.cb), section li:has(> p > label.cb) { list-style: none; margin-left: -1.3rem; }
+  th, td { text-align: left; }
+
+</style>
+</head>
+<body>
+
+<header id="top">
+  <a class="back" href="../">← All companions</a>
+  <div class="kicker">Seattle Symphony</div>
+  <h1>Mozart&#x27;s Requiem with Xian</h1>
+  <p class="sub">Sunday, November 22, 2026 · 2:00 pm · S. Mark Taper Foundation Auditorium, Benaroya Hall — 200 University Street, Seattle, WA</p>
+</header>
+
+<nav class="bar" aria-label="Guide outline">
+  <div class="chips">
+    <a href="#program">Program</a>
+    <a href="#overview">Overview</a>
+    <a href="#listen">Listen</a>
+    <a href="#pereira">Pereira</a>
+    <a href="#mozart">Mozart</a>
+    <a href="#journey">Journey</a>
+    <a href="#connections">Connections</a>
+    <a href="#final-thoughts">Final Thoughts</a>
+  </div>
+</nav>
+
+<main>
+
+<section id="program">
+<p><strong>Before the concert:</strong> Boeing Company Gallery opens at 12:00 · Grand Lobby doors at 12:30 · Pre-concert talk at 1:00 (William White, Music Director of Harmonia Orchestra &amp; Chorus — <em>Mozart's Final Testament</em>)</p>
+<h3>Performers</h3>
+<ul>
+<li>Xian Zhang — Conductor (Seattle Symphony Music Director)</li>
+<li>Eric Schweikert — Timpani soloist (Seattle Symphony Principal Timpani)</li>
+<li>Mei Gui Zhang — Soprano</li>
+<li>Sarah Larsen — Mezzo-soprano</li>
+<li>Eric Ferring — Tenor</li>
+<li>Dashon Burton — Bass-baritone</li>
+<li>Seattle Symphony Chorale</li>
+</ul>
+<h3>Program</h3>
+<ol>
+<li>Joseph Pereira — <em>Virtù for Solo Timpani and String Orchestra</em> (2026, world premiere; exact duration not yet published)</li>
+<li>Wolfgang Amadeus Mozart — <em>Requiem in D minor</em>, K. 626, completed by Franz Xaver Süssmayr (1791–92) (~50 min)</li>
+</ol>
+<p><em>One 20-minute intermission (the details don't say where; most likely between the two works).</em></p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="overview">
+  <h2>Overview</h2>
+<p>This is a program of two very different kinds of "unfinished business." The first half is brand new: a timpani concerto-in-miniature, written this year for strings and one drum soloist, that exists mostly to ask what it means to imitate a sound the instrument physically can't make. The second half is one of the most mythologized scores in the repertoire, a Requiem that its composer left incomplete at his death in December 1791, finished by a student and argued over ever since.</p>
+<p>The through-line is <em>simulation versus the real thing</em>. Pereira builds a whole piece around the timpani's inability to sustain a tone or produce a true overtone series, so the player has to fake long notes with rolls. Mozart's Requiem asks a quieter version of the same question: how much of what we hear is Mozart, and how much is a convincing stand-in? A new work that opens with strings and a single set of drums, and then a full chorus, four soloists and orchestra in D minor, is a big sonic swing, so the evening runs from intimate and strange to monumental and communal.</p>
+<p>One housekeeping note: the second work is long and continuous in feel, with the choir carrying most of the weight. The Requiem's best-known stretch (Dies irae through Lacrimosa) lands in the middle, so pace your attention.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="listen">
+  <h2>Listen Before the Concert (Apple Music)</h2>
+<ul>
+<li>Pereira, <em>Virtù</em> — no recording available yet; this is a world premiere. (Pereira's earlier concertos aren't the piece being played, so I'm not substituting one in.)</li>
+<li>Mozart, Requiem, K. 626 — <a href="https://music.apple.com/album/1452216684" target="_blank" rel="noopener">John Eliot Gardiner, English Baroque Soloists &amp; Monteverdi Choir, 1987 (Apple Music)</a> · <a href="https://music.apple.com/album/1561275217" target="_blank" rel="noopener">John Butt, Dunedin Consort (Apple Music)</a></li>
+</ul>
+<p><em>Both of these use the traditional Süssmayr completion you'll hear on Sunday, but on period instruments with a fairly lean sound. Seattle's chorus and modern orchestra will be bigger and warmer, so expect the same notes with more mass and weight.</em></p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="pereira">
+  <h2>Joseph Pereira — <em>Virtù for Solo Timpani and String Orchestra</em> (2026)</h2>
+<p>🎧 No recording available yet — this is a world premiere.</p>
+<p>Pereira is a rare dual-threat: Principal Timpanist of the Los Angeles Philharmonic since 2007, previously Assistant Principal Timpanist at the New York Philharmonic, and also an active composer, conductor and teacher (he runs the percussion studio at USC Thornton). His other recent concertos include <em>Threshold</em> (2018, timpani and two percussionists) and <em>Naru</em> (2025, percussion concerto for LA Phil). <em>Virtù</em> is a Seattle Symphony co-commission with the New Jersey Symphony, and it began with Xian: she and Pereira go back to their New York Philharmonic days together, and she's the one who got the project started. Eric Schweikert, Seattle's own principal timpanist, is the soloist.</p>
+<p>The title is the clue to the whole piece. Pereira traces <em>virtù</em> back through its older meanings (the root of both "virtue" and "virtual") to a Renaissance idea of transforming yourself while keeping your identity through instability and change. He ties that to the modern "virtual," as in digital simulation shaping what we take to be real. The musical trigger was a discovery about the instrument itself: a timpani's fundamental pitch actually sits an octave below what we hear, and the drums don't produce the neat, consistent overtone series that strings, winds, brass and voices do. Because of that, anything that sounds like a sustained note, a resonance or a long tone is a <em>simulation</em>, built from rolls, touch and mallet choice.</p>
+<p>Structurally, Pereira describes the piece as the same music repeated and transformed each time, a "virtual version of itself," which makes it a kind of modern variations. Partway through there are two quotations, which he likens to a wrong turn into a sudden virtual room, first of Beethoven and then of Bartók (he doesn't say which works). Reporting from rehearsal notes that some sections lean on rhythm and a couple feature a more melodic theme. A report from a Seattle rehearsal noted it was only the orchestra's second time playing the piece together, so this is genuinely fresh material.</p>
+<h3>Listen for</h3>
+<ul>
+<li><strong>Timpani as a pitched instrument.</strong> Pedals change the drumhead tension, so the soloist can play real tunes and even slide between notes. Watch the soloist's feet as well as the sticks.</li>
+<li><strong>Rolls pretending to be long notes.</strong> The drums can't sustain like a violin, so notice how a smooth-sounding "held" tone is really fast, careful rolling, and how mallet choice changes the color.</li>
+<li><strong>A glissando on the drum.</strong> It's the closest the instrument gets to a vocal slide, and one of the most theatrical gestures in the writing.</li>
+<li><strong>The same material coming back changed.</strong> Because the form is variation-like, try to catch a rhythm or short melodic idea each time it returns in a different guise.</li>
+<li><strong>The two "wrong turns."</strong> Listen for the moment the texture suddenly sounds like somebody else's music (Beethoven first, then Bartók), then dissolves back into Pereira's own voice.</li>
+<li><strong>How the strings behave.</strong> With no winds, brass or percussion beyond the soloist, the strings can imitate resonance and sustain, which is exactly what the drums can't do.</li>
+</ul>
+<h3>Note</h3>
+<p>This is a concerto for an instrument that usually plays a supporting role (Pereira himself has noted that timpani concertos are rare, with only a handful in existence). Treat the evening's first half as a spotlight on the part of the orchestra you rarely get to watch up close.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="mozart">
+  <h2>Wolfgang Amadeus Mozart — <em>Requiem in D minor</em>, K. 626, completed by Süssmayr (1791–92)</h2>
+<div class="listen"><a href="https://music.apple.com/album/1452216684" target="_blank" rel="noopener">▶ Listen (Gardiner, Apple Music)</a><a class="alt" href="https://music.apple.com/album/1561275217" target="_blank" rel="noopener">▶ Listen (Butt / Dunedin Consort, Apple Music)</a></div>
+<p>The legend starts in early July 1791, when a "gray stranger" turned up at Mozart's door with an anonymous commission for a Requiem and the condition that Mozart never try to learn who it was for. Mozart was juggling <em>The Magic Flute</em> and <em>La clemenza di Tito</em>, and his wife Constanze was about to give birth. By October he was seriously unwell, and by mid-November he was bedridden. He grew obsessed with the Requiem, calling it his swan song, but he died on December 5 with only the opening sections truly finished. For most of the long middle (the Dies irae through the Hostias) he had sketched just the vocal parts and the bass line.</p>
+<p>The "mysterious stranger" turns out to be less sinister than the <em>Amadeus</em> version of the story. He was Anton Leitgeb, valet to Count Franz von Walsegg-Stuppach, a nobleman with a habit of passing off other people's music as his own, who wanted the piece to memorialize his late wife Anna. Constanze, desperate to collect the commission, first asked Joseph Eybler to finish the score; he orchestrated much of the Sequence, then handed the job to Süssmayr, a former student to whom Mozart had given detailed instructions. Süssmayr touched up Eybler's orchestration, wrote the Sanctus, Benedictus and Agnus Dei, finished the Lacrimosa, and copied the whole score in his own hand, which is why it's nearly impossible to say who wrote what. A decade later Constanze persuaded Walsegg to acknowledge the true composer, though she had to pay him for the publication rights. The first performance on December 10, 1791, was a tribute concert at St. Michael's Church in Vienna that used only the parts Mozart had completed.</p>
+<p>Musically, it's a collision of eras. Mozart knew his Bach and Handel (he'd even re-orchestrated <em>Messiah</em> in 1789), and you can hear it: the Kyrie is a rich double fugue with real Baroque grandeur. The Dies irae, by contrast, is blunt, homophonic and almost Romantic in its drama, and its opening has the same stormy D-minor energy as the Queen of the Night's furious aria, <a href="https://classical.music.apple.com/us/album/734557407" target="_blank" rel="noopener">"Der Hölle Rache,"</a> from <em>The Magic Flute</em> (it's track 14 on that album). How much of the later music really came from sketches that Süssmayr was working from is still debated, but a first sketch in Mozart's own hand turned up in 1962 and has made scholars think very little of the piece came from anyone other than Mozart, apart from the Eybler/Süssmayr orchestration.</p>
+<h3>Movement Breakdown</h3>
+<p>Süssmayr's completion falls into eight large sections, several with sub-movements:</p>
+<ul>
+<li><strong>I. Introitus (Requiem aeternam):</strong> Dark, hushed opening with the soprano soloist singing the chant-like "Te decet hymnus" over the chorus. This is the most fully finished music in Mozart's own hand.</li>
+<li><strong>II. Kyrie:</strong> A driving double fugue, the most Bach-like moment in the piece.</li>
+<li><strong>III. Sequentia:</strong> The core of the work, in six parts.</li>
+<li><em>Dies irae:</em> The day-of-wrath chorus, fast and furious.</li>
+<li><em>Tuba mirum:</em> Opens with a trombone solo (extended by Süssmayr from Mozart's sketch), then passes through all four soloists together for the first time.</li>
+<li><em>Rex tremendae:</em> A grand, imposing chorus, followed by a radiant hush.</li>
+<li><em>Recordare:</em> The solo quartet's tender plea for mercy.</li>
+<li><em>Confutatis:</em> A sharp contrast: the men's choral threats of flame against the sopranos' pleading "Voca me," with some "learned" canonic writing too.</li>
+<li><em>Lacrimosa:</em> Mozart wrote only the first eight bars; Süssmayr wrote the rest. The best-known weeping music in the repertoire.</li>
+<li><strong>IV. Offertorium:</strong> <em>Domine Jesu</em> (a contrapuntal chorus) and <em>Hostias</em> (a homophonic, more intimate one).</li>
+<li><strong>V. Sanctus:</strong> Short and bright, in the major, ending with a lively "Hosanna."</li>
+<li><strong>VI. Benedictus:</strong> The solo quartet again, gentler and more song-like.</li>
+<li><strong>VII. Agnus Dei:</strong> The chorus returns, quieter and searching.</li>
+<li><strong>VIII. Communio (Lux aeterna / Cum sanctis tuis):</strong> Süssmayr reuses Mozart's own music from the opening Requiem aeternam and Kyrie to close the circle, a clever (and moving) structural gesture.</li>
+</ul>
+<h3>Listen for</h3>
+<ul>
+<li><strong>The opening bars.</strong> Low strings and winds in a muted D minor, then the chorus entering with the soprano's chant-like line floating above it.</li>
+<li><strong>The Kyrie fugue entering voice by voice.</strong> Try to follow the subject as it passes among sections, then notice how the orchestra doubles the voices.</li>
+<li><strong>The Dies irae's first beat.</strong> It hits with almost no warning, and the strings' churning figure underneath keeps it unstable the whole way through.</li>
+<li><strong>The trombone at the start of the Tuba mirum.</strong> A solo brass voice standing in for the last trumpet, handed off to the bass soloist.</li>
+<li><strong>The Confutatis's two worlds.</strong> Low, aggressive strings and men's voices in flames, then the sopranos floating in with "Voca me" as though from somewhere above.</li>
+<li><strong>The Lacrimosa's first eight bars.</strong> After those, listen for whether you can hear the point where the writing changes hands from Mozart to Süssmayr.</li>
+<li><strong>The return of the opening music at the end.</strong> The final "Cum sanctis tuis" is the Kyrie fugue again with new words; hearing it come back is the work's real farewell.</li>
+</ul>
+<h3>Note</h3>
+<p>Your Sunday soloists get a lot of ensemble work (Tuba mirum, Recordare, Benedictus) and only a few solo moments, so the quartet works as one voice more than as four. Watch how they pass lines between them.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="journey">
+  <h2>The Emotional Arc of the Program</h2>
+<table>
+<thead>
+<tr>
+<th>Work</th>
+<th>Character</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Pereira – Virtù</strong></td>
+<td>Curious, rhythmic, shape-shifting</td>
+</tr>
+<tr>
+<td><strong>Mozart – Introitus &amp; Kyrie</strong></td>
+<td>Solemn, then driven</td>
+</tr>
+<tr>
+<td><strong>Mozart – Dies irae to Confutatis</strong></td>
+<td>Terrifying, then pleading</td>
+</tr>
+<tr>
+<td><strong>Mozart – Lacrimosa</strong></td>
+<td>Grief at its most exposed</td>
+</tr>
+<tr>
+<td><strong>Mozart – Offertorium to Agnus Dei</strong></td>
+<td>Consoling, searching</td>
+</tr>
+<tr>
+<td><strong>Mozart – Communio</strong></td>
+<td>Return, peace, closure</td>
+</tr>
+</tbody>
+</table>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="connections">
+  <h2>Musical Connections</h2>
+<h3>Mozart, Bach &amp; Handel</h3>
+<p>The Kyrie's double fugue and the contrapuntal <em>Domine Jesu</em> are Mozart looking backward at Baroque models he'd absorbed and, in the case of Handel's <em>Messiah</em>, actually re-orchestrated. The more modern-sounding Dies irae and Confutatis show him looking forward at the same time, which is a lot of why the Requiem feels so layered.</p>
+<h3>Mozart and the opera house</h3>
+<p>The Dies irae's stormy D minor shares its mood with the Queen of the Night's aria in <em>The Magic Flute</em>, which Mozart wrote in the same year. The sacred and the theatrical are never far apart in his late music.</p>
+<h3>Pereira and Mozart</h3>
+<p>They share an interest in what it means to complete or imitate something. <em>Virtù</em> is built on the gap between what timpani can actually do and what they simulate; the Requiem is built on the gap between what Mozart wrote and what Süssmayr and Eybler supplied. Each piece asks you to listen to the stand-in as though it were the real thing.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="final-thoughts">
+  <h2>Final Thoughts</h2>
+<p>The evening begins with a single drum trying to sound like something it isn't, and ends with a chorus returning to the very music it started with, now carrying new words and a different kind of weight. In between is the same question from two directions: what counts as the real thing when the original isn't enough, and who gets to finish the sentence? Pereira answers with transformation that keeps its identity through flux, and Süssmayr answers with loyalty to a dead teacher's sketches. Either way, what you leave with is the sound of someone listening very hard to an absence and filling it in with their best attempt at faithfulness.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+</main>
+
+<footer>
+  <a class="back" href="../">← All companions</a>
+</footer>
+
+<script>
+  // Highlight the current section in the sticky bar.
+  var links = {};
+  document.querySelectorAll('nav.bar a').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        Object.values(links).forEach(function (a) { a.classList.remove('on'); });
+        var a = links[e.target.id];
+        if (a) { a.classList.add('on'); a.scrollIntoView({ inline: 'center', block: 'nearest' }); }
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  document.querySelectorAll('main section').forEach(function (s) { io.observe(s); });
+  // Remember checklist ticks on this device (best effort).
+  var boxes = document.querySelectorAll('input[type=checkbox]');
+  var key = 'cb:' + location.pathname;
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(key) || '{}'); } catch (e) {}
+  boxes.forEach(function (b, i) {
+    if (saved[i]) b.checked = true;
+    b.addEventListener('change', function () {
+      saved[i] = b.checked;
+      try { localStorage.setItem(key, JSON.stringify(saved)); } catch (e) {}
+    });
+  });
+</script>
+</body>
+</html>
