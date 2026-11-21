@@ -229,6 +229,11 @@ def render(md_text, slug, filename, date_override=None, title_override=None):
     sub = ' · '.join(html.escape(x) for x in sub_bits)
     page = TEMPLATE
     page = page.replace('@@CSS@@', load_css())
+    org, sep, prog = title.partition(': ')
+    if not sep:
+        org, prog = 'Concert companion', title
+    page = page.replace('@@KICKER@@', html.escape(org))
+    page = page.replace('@@H1@@', html.escape(prog))
     page = page.replace('@@TITLE@@', html.escape(title))
     page = page.replace('@@SUB@@', sub)
     page = page.replace('@@CHIPS@@', chips_html)
@@ -272,8 +277,11 @@ def rebuild_index(root):
     idx_path = os.path.join(folder, 'index.html')
     idx = open(idx_path, encoding='utf-8').read()
     if items:
+        def split(t):
+            o, sp, p = html.unescape(t).partition(': ')
+            return (f'<i>{html.escape(o)}</i><b>{html.escape(p)}</b>' if sp else f'<b>{t}</b>')
         lis = '\n'.join(
-            f'    <li><a href="{s}/"><b>{t}</b><span>{" · ".join(x for x in (lab, v) if x)}</span></a></li>'
+            f'    <li><a href="{s}/">{split(t)}<span>{" · ".join(x for x in (lab, v) if x)}</span></a></li>'
             for d, t, lab, v, s in items)
         block = f'<ul>\n{lis}\n  </ul>'
     else:
@@ -302,8 +310,8 @@ TEMPLATE = '''<!DOCTYPE html>
 
 <header id="top">
   <a class="back" href="../">← All companions</a>
-  <div class="kicker">Concert companion</div>
-  <h1>@@TITLE@@</h1>
+  <div class="kicker">@@KICKER@@</div>
+  <h1>@@H1@@</h1>
   <p class="sub">@@SUB@@</p>
 </header>
 
