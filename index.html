@@ -14,7 +14,7 @@
          padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom); -webkit-text-size-adjust:100%; }
   main { max-width:52rem; margin:0 auto; padding:3rem 1.25rem 4rem; }
   .kicker { font:600 .8rem/1 -apple-system,system-ui,sans-serif; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
-  h1 { font-size:2.3rem; line-height:1.2; margin:.5rem 0 .3rem; }
+  h1 { font-size:2.3rem; line-height:1.2; margin:.5rem 0 2rem; }
   .sub { color:var(--muted); margin:0 0 2rem; }
   .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(15rem,1fr)); gap:.9rem; }
   .card { display:block; text-decoration:none; color:var(--ink); background:var(--card); border:1px solid var(--rule);
@@ -28,9 +28,16 @@
 <main>
   <div class="kicker">Personal projects</div>
   <h1>Dev Boyle</h1>
-  <p class="sub">Small tools and guides I build for my own use.</p>
 
   <div class="grid">
+    <a href="classical-guides/" class="card">
+      <h2>Classical Music Guides</h2>
+      <p>Movement-by-movement guides to classical works, with score excerpts and links to listen.</p>
+    </a>
+    <a href="classical-companions/" class="card">
+      <h2>Classical Concert Companions</h2>
+      <p>Preparation guides for specific concert programs, with notes on each piece and what to listen for.</p>
+    </a>
     <a href="coffee-brews/" class="card">
       <h2>Coffee Brews</h2>
       <p>Create and adjust coffee brewing methods, recipes, and techniques for dialing in the perfect cup.</p>
@@ -46,14 +53,6 @@
     <a href="pinball-tracker/" class="card">
       <h2>Pinball Tracker</h2>
       <p>Keep track of pinball game scores and strategies to analyze for optimal play.</p>
-    </a>
-    <a href="classical-guides/" class="card">
-      <h2>Classical Music Guides</h2>
-      <p>Readable, movement-by-movement guides to classical works, with score excerpts and links to listen.</p>
-    </a>
-    <a href="classical-companions/" class="card">
-      <h2>Classical Concert Companions</h2>
-      <p>Preparation guides for specific concert programs, with notes on each piece and what to listen for.</p>
     </a>
   </div>
 </main>
