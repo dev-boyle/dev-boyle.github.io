@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Willamette Valley Chamber Music Festival: Pura Fé, Liang &amp; Dvořák — Concert Companion</title>
+<meta name="concert-title" content="Willamette Valley Chamber Music Festival: Pura Fé, Liang &amp; Dvořák">
+<meta name="concert-date" content="2026-08-22">
+<meta name="concert-label" content="Saturday, August 22, 2026">
+<meta name="concert-venue" content="Sokol Blosser Winery">
+<style>
+  :root {
+    --bg: #faf7f2; --ink: #26231f; --muted: #6b645b; --accent: #2f6b4f;
+    --accent-soft: #e4efe8; --rule: #ddd5c8; --card: #fff; --warn: #fff4d6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #17191a; --ink: #ece8e0; --muted: #a39d92; --accent: #7fc4a0;
+            --accent-soft: #22302a; --rule: #34383a; --card: #1f2224; --warn: #3a3320; }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 19px/1.65 Georgia, "Iowan Old Style", serif;
+         padding-bottom: env(safe-area-inset-bottom); }
+  header { padding: 2.5rem 1.25rem 1.25rem; max-width: 46rem; margin: 0 auto; }
+  .back { display: inline-block; font: 600 .95rem -apple-system, system-ui, sans-serif; color: var(--accent);
+          text-decoration: none; padding: .7rem 0; min-height: 44px; }
+  header .kicker { font: 600 .8rem/1 -apple-system, system-ui, sans-serif; letter-spacing: .12em;
+                   text-transform: uppercase; color: var(--accent); }
+  h1 { font-size: 2.1rem; line-height: 1.2; margin: .5rem 0 .4rem; }
+  .sub { color: var(--muted); margin: 0; }
+
+  /* Sticky tap-to-navigate bar */
+  nav.bar { position: sticky; top: 0; z-index: 10; background: var(--bg);
+            border-bottom: 1px solid var(--rule); padding-top: env(safe-area-inset-top); }
+  nav.bar .chips { display: flex; gap: .5rem; overflow-x: auto; padding: .6rem 1.25rem;
+                   max-width: 46rem; margin: 0 auto; -webkit-overflow-scrolling: touch; }
+  nav.bar a { flex: none; font: 600 .95rem/1 -apple-system, system-ui, sans-serif; text-decoration: none;
+              color: var(--ink); background: var(--card); border: 1px solid var(--rule);
+              padding: .8rem 1rem; border-radius: 999px; min-height: 44px; display: inline-flex; align-items: center; }
+  nav.bar a.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  main { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem 4rem; }
+  section { padding-top: 2rem; scroll-margin-top: 4.6rem; }
+  h2 { font-size: 1.55rem; line-height: 1.25; margin: 0 0 .25rem; }
+  .meta { font: .9rem/1.5 -apple-system, system-ui, sans-serif; color: var(--muted); margin: 0 0 1rem; }
+  h3 { font: 700 .85rem/1 -apple-system, system-ui, sans-serif; letter-spacing: .1em; text-transform: uppercase;
+       color: var(--accent); margin: 1.6rem 0 .5rem; }
+
+  .listen { display: flex; flex-wrap: wrap; gap: .6rem; margin: .5rem 0 1.25rem; }
+  .listen a { font: 600 1rem/1 -apple-system, system-ui, sans-serif; text-decoration: none; color: #fff;
+              background: var(--accent); padding: .9rem 1.1rem; border-radius: 12px; min-height: 44px;
+              display: inline-flex; align-items: center; gap: .4rem; }
+  .listen a.alt { background: var(--accent-soft); color: var(--accent); }
+
+  ul.map { list-style: none; padding: 0; margin: 0; border-left: 3px solid var(--accent-soft); }
+  ul.map li { padding: .35rem 0 .35rem 1rem; }
+  ul.map b { font-family: -apple-system, system-ui, sans-serif; font-size: .9rem; color: var(--accent); }
+
+  figure.score { margin: 1.25rem 0; background: var(--card); border: 1px solid var(--rule);
+                 border-radius: 12px; padding: .75rem; }
+  figure.score img { width: 100%; height: auto; display: block; background: #fff; border-radius: 6px; }
+  figure.score .slot { display: none; padding: 1.1rem; background: var(--warn); border-radius: 6px;
+                       font: .9rem/1.5 -apple-system, system-ui, sans-serif; }
+  figure.score.missing img { display: none; }
+  figure.score.missing .slot { display: block; }
+  figcaption { font: .9rem/1.5 -apple-system, system-ui, sans-serif; color: var(--muted); margin-top: .6rem; }
+
+  .callout { background: var(--accent-soft); border-radius: 12px; padding: .9rem 1.1rem; margin: 1.25rem 0;
+             font-size: .98rem; }
+  table { width: 100%; border-collapse: collapse; font: .95rem/1.45 -apple-system, system-ui, sans-serif; }
+  th, td { text-align: left; padding: .6rem .4rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; }
+  td a { color: var(--accent); font-weight: 600; }
+  footer { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem 3rem; color: var(--muted);
+           font: .85rem/1.5 -apple-system, system-ui, sans-serif; }
+  .top { display: inline-block; margin-top: 1.25rem; font: 600 .9rem -apple-system, system-ui, sans-serif;
+         color: var(--accent); text-decoration: none; padding: .6rem 0; }
+  /* companion additions */
+  section ul, section ol { padding-left: 1.3rem; }
+  section li p { margin: .1rem 0; }
+  section h4 { font: 700 1.02rem/1.3 -apple-system, system-ui, sans-serif; margin: 1.3rem 0 .3rem; }
+  blockquote { margin: 1rem 0; padding: .1rem 1rem; border-left: 3px solid var(--rule); color: var(--muted); }
+  aside.callout { background: var(--accent-soft); border-left: 4px solid var(--accent); border-radius: 8px;
+                  padding: .8rem 1rem; margin: 1.2rem 0; font-size: .98rem; }
+  aside.callout p { margin: .4rem 0; }
+  aside.callout ul { margin: .4rem 0; }
+  aside.callout .callout-title { font: 700 .8rem/1.2 -apple-system, system-ui, sans-serif; letter-spacing: .08em;
+                                 text-transform: uppercase; color: var(--accent); margin-bottom: .2rem; }
+  aside.c-quote { background: transparent; border-left-color: var(--rule); font-style: italic; color: var(--muted); }
+  aside.c-important { background: var(--warn); border-left-color: #c58b00; }
+  aside.c-important .callout-title { color: #8a6100; }
+  @media (prefers-color-scheme: dark) { aside.c-important .callout-title { color: #e7b84a; } }
+  label.cb { display: flex; gap: .65rem; align-items: flex-start; min-height: 44px; padding: .3rem 0; cursor: pointer; }
+  label.cb input { width: 1.35rem; height: 1.35rem; margin-top: .25rem; flex: none; accent-color: var(--accent); }
+  section li:has(> label.cb), section li:has(> p > label.cb) { list-style: none; margin-left: -1.3rem; }
+  th, td { text-align: left; }
+
+</style>
+</head>
+<body>
+
+<header id="top">
+  <a class="back" href="../">← All companions</a>
+  <div class="kicker">Willamette Valley Chamber Music Festival</div>
+  <h1>Pura Fé, Liang &amp; Dvořák</h1>
+  <p class="sub">Saturday, August 22, 2026 · 5:30 p.m. · Sokol Blosser Winery — 5000 Sokol Blosser Lane, Dayton, OR 97114</p>
+</header>
+
+<nav class="bar" aria-label="Guide outline">
+  <div class="chips">
+    <a href="#program">Program</a>
+    <a href="#overview">Overview</a>
+    <a href="#listen">Listen</a>
+    <a href="#pura-fe">Pura Fé</a>
+    <a href="#liang">Liang</a>
+    <a href="#dvorak">Dvořák</a>
+    <a href="#journey">Journey</a>
+    <a href="#connections">Connections</a>
+    <a href="#final-thoughts">Final Thoughts</a>
+  </div>
+</nav>
+
+<main>
+
+<section id="program">
+<h3>Program</h3>
+<ol>
+<li>Pura Fé — <em>Rattle Songs</em> (arr. Jerod Impichchaachaaha' Tate), complete 7-song suite (~15–20 min)</li>
+<li>Lei Liang — <em>Song Recollections</em> (~25 min)</li>
+<li>Antonín Dvořák — String Quartet No. 12 in F Major, Op. 96, "American" (1893) (~25–27 min)</li>
+</ol>
+<p><em>Admission includes a complimentary three-wine tasting paired to the program, with food and additional wine available afterward on the winery grounds.</em></p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="overview">
+  <h2>Overview</h2>
+<p>This is the third and final weekend of Season 11, closing out "Inventing America" — the festival's yearlong argument that American music has never been a finished story — above the vineyards of Sokol Blosser as the light goes gold over the Dundee Hills. The whole evening runs a little over an hour of music, and it's built as a single throughline rather than three unrelated pieces: all three works are, in different ways, about what "American" music actually sounds like once you stop assuming it means the concert-hall European tradition transplanted overseas.</p>
+<p>It opens with the quartet playing Tuscarora rattle songs that have been passed down Pura Fé's family's maternal line for nine generations — songs she originally sang herself, now folded into string-quartet writing by Chickasaw composer Jerod Tate. From there, Lei Liang's <em>Song Recollections</em> carries the same idea to Taiwan, translating aboriginal folk song into quartet writing. And then, closing the night, comes the piece the whole season's theme is really pointing at: Dvořák's "American" Quartet, written by a Czech visitor who spent one summer in small-town Iowa convinced that Black and Native American music held the seeds of a real American national sound — the theory this concert spends its first hour answering back to, decades later, in the actual voices Dvořák was listening for.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="listen">
+  <h2>Listen Before the Concert (Apple Music)</h2>
+<ul>
+<li>Pura Fé, <em>Rattle Songs</em> (arr. Tate), quartet version — <a href="https://classical.music.apple.com/us/album/1830549069" target="_blank" rel="noopener">Dover Quartet, <em>Woodland Songs</em> (Apple Music Classical)</a></li>
+<li>Pura Fé, <em>Grammah Easter's Lullaby</em>, original vocal version — <a href="https://music.apple.com/us/album/earthbeat-tribal-collection-20th-anniversary-special/1535869211" target="_blank" rel="noopener">Ulali, <em>Earthbeat! Tribal Collection – 20th Anniversary Special</em> (Apple Music)</a></li>
+<li>Liang, <em>Song Recollections</em> — <a href="https://music.apple.com/us/album/from-hungary-to-taiwan/1446900212" target="_blank" rel="noopener">Formosa Quartet, <em>From Hungary to Taiwan</em> (Apple Music)</a></li>
+<li>Dvořák, String Quartet Op. 96 "American" — <a href="https://classical.music.apple.com/us/album/19579100" target="_blank" rel="noopener">Vlach Quartet Prague (Apple Music Classical)</a> · <a href="https://music.apple.com/us/album/dvo%C5%99%C3%A1k-string-quartet-no-12-in-f-major-op-96-american-ep/1774589098" target="_blank" rel="noopener">Artemis Quartet (Apple Music)</a></li>
+</ul>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="pura-fe">
+  <h2>Pura Fé — <em>Rattle Songs</em> (arr. Jerod Impichchaachaaha' Tate)</h2>
+<div class="listen"><a href="https://classical.music.apple.com/us/album/1830549069" target="_blank" rel="noopener">▶ Listen (Dover Quartet, <em>Woodland Songs</em>, Apple Music Classical)</a></div>
+<p>Pura Fé is the ninth generation of singers in her family's Tuscarora Deer Clan line, and she first brought these songs into the world decades ago as a founding member of Ulali, the Native women's a cappella trio whose 1994 song "Mahk Jchi (Heartbeat Drum Song)" became something of an anthem — performed at Woodstock '94, the Atlanta Olympics opening ceremonies, and on <em>The Tonight Show</em>. Jerod Tate, a Chickasaw composer, has said hearing that Ulali album changed his life and shaped what Native classical music could sound like for him. Roughly thirty years after first hearing it, Tate finally sat down and transcribed <em>Rattle Songs</em> for string quartet — the first time the material has existed in that form.</p>
+<p>The suite gathers a handful of Pura Fé's songs, some drawn from family and community tradition (a lullaby honoring her great-grandmother Easter, a tribute to her great-grandfather's banjo playing) and some newer compositions of her own. Tate's arrangement is written for string quartet alone — the Apple Music recording above (Dover Quartet) has no vocalist on it, so the melodic and rhythmic material that was originally sung and rattled is now carried entirely by the four instruments. If you want to hear the songs in their original vocal form, Ulali's 1994 recording of <em>Grammah Easter's Lullaby</em> (linked in "Listen Before the Concert" above) is the real thing — Pura Fé's own voice, a cappella, singing the tune Tate later arranged for strings. Worth a quick compare: it's a good way to hear exactly what the quartet is standing in for.</p>
+<h3>Song List</h3>
+<p>Tonight's program has room for the full suite — all seven songs, in this order (the suite runs about 15 minutes total). Their titles are largely sung in vocables rather than translated language, so exact meanings for a few of these aren't published anywhere — where that's the case, I've noted it rather than guessing:</p>
+<ul>
+<li><strong>Shanoojhee</strong> — no published translation found; like much of the suite, likely built on vocables (sung syllables) rather than literal lyrics — expect it to read as pure vocal texture rather than "words with a meaning"</li>
+<li><strong>Viri Kuta</strong> — also untranslated in any source I could find; treat it, like Shanoojhee, as vocable-based rather than narrative</li>
+<li><strong>Haweheemo</strong> — same situation — no meaning on record, so let the sound (and Pura Fé's own introduction from the stage, if she gives one) carry it</li>
+<li><strong>Grammah Easter's Lullaby</strong> — a lullaby drawn from Pura Fé's own family tradition, named for a specific grandmother figure</li>
+<li><strong>For the Pepper</strong> (in memory of Jim Pepper) — a tribute to the Kaw/Muscogee saxophonist and jazz composer, best known for fusing Native American melodies (including peyote songs) with jazz — a direct musical ancestor of what this whole suite is doing</li>
+<li><strong>Women's Shuffle</strong> — built around "vocables" sung in close harmony over a bowed upright bass, in a style Pura Fé calls "old Southern Indian soul"; the shuffle itself echoes the Haudenosaunee social dance tradition (the Tuscarora word <em>eskanye</em>, "shuffle around," comes from Haudenosaunee creation stories)</li>
+<li><strong>Great Grandpa's Banjo</strong> — honoring her great-grandfather's playing, and a quiet reminder of the deep, often under-told history of Black and Native banjo tradition in the Southeast</li>
+</ul>
+<p>Since this looks to be a quartet-only performance (no vocalist listed, and the arrangement's own Apple Music recording is purely instrumental), there won't be spoken introductions from Pura Fé herself to fill in the specific stories and translations behind titles like Shanoojhee, Viri Kuta, and Haweheemo — so treat those three as open questions rather than expecting the concert itself to answer them.</p>
+<h3>Listen for</h3>
+<ul>
+<li>Melodies that were originally sung now carried by the violins — the quartet is standing in for Pura Fé's voice, so listen for a vocal, speech-like phrasing in the string lines rather than typical instrumental development</li>
+<li>The shift in scale and function song to song: a lullaby sits next to a dance tune sits next to a tribute to a specific family member</li>
+<li>Rattle and drum-adjacent rhythmic patterns translated into string writing — listen for how the quartet imitates percussion (col legno taps, pizzicato) rather than just melody</li>
+<li>This being the first time this material has existed in classical string-quartet form at all — a genuine act of translation from a living oral tradition into notated concert music</li>
+</ul>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="liang">
+  <h2>Lei Liang — <em>Song Recollections</em></h2>
+<div class="listen"><a href="https://music.apple.com/us/album/from-hungary-to-taiwan/1446900212" target="_blank" rel="noopener">▶ Listen (Formosa Quartet, <em>From Hungary to Taiwan</em>, Apple Music)</a></div>
+<p>Liang encountered the folk music of Taiwan's aboriginal tribes as a college student, introduced to it by friends from Taiwan, and the songs stayed with him for years before becoming this piece. Commissioned by Art of Élan for the Formosa Quartet, <em>Song Recollections</em> treats each borrowed folk melody as its own musical "landscape" — Liang has described the act of composing it as curating a journey, guiding a listener through one song's particular terrain before moving to the next, rather than developing a single theme the way a Western quartet movement usually would.</p>
+<p>That approach shows up directly in the instrumental writing: rather than smoothing the folk material into conventional quartet textures, Liang leans into unusual string techniques — grainy, whispery ponticello bowing, circular and ricochet strokes, pizzicato that trails off into slides, and shimmering natural harmonics — to keep the original songs' vocal, open-air character audible inside the ensemble sound.</p>
+<h3>Listen for</h3>
+<ul>
+<li>Distinct changes in atmosphere as the piece moves between different borrowed folk songs — each one gets its own sound-world rather than blending into a single mood</li>
+<li>Unconventional bowing and plucking techniques (ponticello, ricochet, pizzicato-into-slide) used to evoke voice and open-air folk performance rather than concert-hall polish</li>
+<li>Harmonics and delicate tremolo creating a hazy, "recollected" quality — the sense of hearing something remembered rather than performed straight</li>
+<li>A composer translating oral folk tradition into notated quartet writing, the same basic move Tate makes with Pura Fé's <em>Rattle Songs</em> earlier in the program</li>
+</ul>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="dvorak">
+  <h2>Antonín Dvořák — String Quartet No. 12 in F Major, Op. 96, "American" (1893)</h2>
+<div class="listen"><a href="https://classical.music.apple.com/us/album/19579100" target="_blank" rel="noopener">▶ Listen (Vlach Quartet Prague, Apple Music Classical)</a><a class="alt" href="https://music.apple.com/us/album/dvo%C5%99%C3%A1k-string-quartet-no-12-in-f-major-op-96-american-ep/1774589098" target="_blank" rel="noopener">▶ Artemis Quartet (Apple Music)</a></div>
+<p>Dvořák wrote this quartet in the summer of 1893, on vacation from his post directing New York's National Conservatory, in the small Czech immigrant community of Spillville, Iowa. He'd just finished the "New World" Symphony, and the American Quartet came almost as a release afterward — he sketched it in three days and finished the whole score in thirteen more, closing the manuscript with the note "Thank God! I am content. It was fast."</p>
+<p>Dvořák arrived in America convinced that its future national music should be built from the melodic material already here — Black spirituals and Native American song, both of which he'd been actively seeking out and championing since taking the New York job. The American Quartet doesn't quote specific tunes so much as absorb that theory into its own harmonic language: long pentatonic melodies, open fifths, and a loose, folk-like phrase structure run through all four movements, giving the piece a plainspoken, open-air character very different from Dvořák's denser European quartets. It's also, not incidentally, the piece the whole "Inventing America" season's title argument points back to — a European composer's outsider theory of American music, placed tonight right after two pieces performed by the actual living tradition-holders he was theorizing about.</p>
+<h3>Movement Breakdown</h3>
+<p>The work follows the traditional four-movement quartet form:</p>
+<ul>
+<li><strong>I. Allegro ma non troppo:</strong> Opens with a warm, rolling pentatonic melody first stated in the viola — an unusually prominent role for that instrument at a quartet's opening — before the rest of the ensemble joins in.</li>
+<li><strong>II. Lento:</strong> A long, songlike slow movement often heard as the emotional center of the piece; its main melody has struck many listeners as spiritual-like in its simplicity and yearning, though it's Dvořák's own invention rather than a quotation.</li>
+<li><strong>III. Molto vivace:</strong> A quick scherzo built from a repeating, birdsong-like figure — Dvořák reportedly took the rhythm from a bird he heard singing in Spillville.</li>
+<li><strong>IV. Finale: Vivace ma non troppo:</strong> A bright, dance-driven close in rondo form, cheerful and rhythmically buoyant, sending the piece out on an unambiguously good mood.</li>
+</ul>
+<h3>Listen for</h3>
+<ul>
+<li>The viola opening the whole piece — a deliberately unusual choice that sets the quartet's warm, unpretentious tone from the first bar</li>
+<li>Long pentatonic melodies and open harmonies throughout, giving the music a folk-song simplicity rather than dense classical development</li>
+<li>The scherzo's repeating birdsong figure, reportedly transcribed from an actual bird Dvořák heard in Spillville</li>
+<li>How plainly and quickly this was composed compared to Dvořák's other work — you're hearing a piece that came out almost in one uninterrupted breath</li>
+</ul>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="journey">
+  <h2>The Emotional Arc of the Program</h2>
+<table>
+<thead>
+<tr>
+<th>Work</th>
+<th>Character</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Pura Fé – Rattle Songs</strong></td>
+<td>Rooted, communal, voice-led</td>
+</tr>
+<tr>
+<td><strong>Liang – Song Recollections</strong></td>
+<td>Wandering, atmospheric, remembered</td>
+</tr>
+<tr>
+<td><strong>Dvořák – Op. 96 "American"</strong></td>
+<td>Warm, open-air, unhurried</td>
+</tr>
+</tbody>
+</table>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="connections">
+  <h2>Musical Connections</h2>
+<h3>Two composers translating oral tradition into quartet writing</h3>
+<p>Tate's arrangement of Pura Fé's <em>Rattle Songs</em> and Liang's <em>Song Recollections</em> do essentially the same job from different sides of the world: both take folk material that exists primarily as sung, oral tradition and find a way to carry its character — rhythm, ornament, open-air quality — into notated string-quartet writing without flattening it into generic "classical" sound.</p>
+<h3>Dvořák's theory, heard in reverse order</h3>
+<p>Programming Dvořák last, after Pura Fé and Liang, effectively runs his own argument backward: instead of a European composer imagining what American folk-rooted music might sound like, the audience hears actual tradition-holders first, then Dvořák's outsider version of the same impulse — inviting a direct comparison between the theory and the source.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+<section id="final-thoughts">
+  <h2>Final Thoughts</h2>
+<p>The whole evening is really one long conversation about where American music actually comes from, staged as three answers in ascending remove from the source: Pura Fé's own family songs, translated into string writing by Tate; Liang recollecting a Taiwanese folk tradition he fell in love with as a student; and Dvořák imagining an American sound from the outside, on a borrowed summer in Iowa, convinced he'd found something true. By the time the Dvořák's viola opens that first pentatonic melody, you'll have already heard where that melody's spirit actually lives — and with the last light going down over the vines and a glass of Sokol Blosser Pinot in hand, that's not a bad way to close out a whole season built around the same question.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+</main>
+
+<footer>
+  <a class="back" href="../">← All companions</a>
+</footer>
+
+<script>
+  // Highlight the current section in the sticky bar.
+  var links = {};
+  document.querySelectorAll('nav.bar a').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        Object.values(links).forEach(function (a) { a.classList.remove('on'); });
+        var a = links[e.target.id];
+        if (a) { a.classList.add('on'); a.scrollIntoView({ inline: 'center', block: 'nearest' }); }
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  document.querySelectorAll('main section').forEach(function (s) { io.observe(s); });
+  // Remember checklist ticks on this device (best effort).
+  var boxes = document.querySelectorAll('input[type=checkbox]');
+  var key = 'cb:' + location.pathname;
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(key) || '{}'); } catch (e) {}
+  boxes.forEach(function (b, i) {
+    if (saved[i]) b.checked = true;
+    b.addEventListener('change', function () {
+      saved[i] = b.checked;
+      try { localStorage.setItem(key, JSON.stringify(saved)); } catch (e) {}
+    });
+  });
+</script>
+</body>
+</html>

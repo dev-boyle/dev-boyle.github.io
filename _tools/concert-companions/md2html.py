@@ -30,10 +30,15 @@ def split_frontmatter(text):
     return fm, text[m.end():]
 
 
+def ascii_fold(t):
+    import unicodedata
+    return unicodedata.normalize('NFKD', t).encode('ascii', 'ignore').decode()
+
+
 def slugify(name):
     name = os.path.splitext(os.path.basename(name))[0]
     name = re.sub(r'^[0-9a-f]{8}-(?=\d{4}-)', '', name)  # upload prefix
-    name = name.lower().replace('&', 'and')
+    name = ascii_fold(name).lower().replace('&', 'and')
     name = re.sub(r'[^a-z0-9]+', '-', name).strip('-')
     return name
 
@@ -136,7 +141,8 @@ def chip_label(heading, work=False):
             return v
     if ' \u2014 ' in h or ' - ' in h:
         left, right = re.split(r" \u2014 | - ", h, maxsplit=1)
-        name = left.strip().split()[-1]
+        lw = left.strip().split()
+        name = ' '.join(lw[-2:]) if len(lw) > 1 and len(lw[-1]) <= 2 else lw[-1]   # 'Pura F\u00e9', not 'F\u00e9'
         if work:
             w = right.strip().split()
             k = 2 if (len(w) > 1 and (w[0].isdigit() or len(w[0]) <= 2)) else 1
@@ -205,7 +211,7 @@ def render(md_text, slug, filename, date_override=None, title_override=None):
         label = first_label if sid == first_label.lower() else (
             chip_label(h, work=labels.count(chip_label(h)) > 1))
         if sid is None:
-            base = re.sub(r'[^a-z0-9]+', '-', label.lower()).strip('-')[:30]
+            base = re.sub(r'[^a-z0-9]+', '-', ascii_fold(label).lower()).strip('-')[:30]
             sid, n = base or 's', 2
             while sid in used:
                 sid, n = f'{base}-{n}', n + 1
@@ -225,6 +231,11 @@ def render(md_text, slug, filename, date_override=None, title_override=None):
         chips.append((sid, label))
 
     chips_html = '\n'.join(f'    <a href="#{s}">{html.escape(l)}</a>' for s, l in chips)
+    loc = meta.get('Location', '')
+    if loc and not re.search(r'\s[\u2014\u2013]\s', loc):
+        m_ = re.match(r'^([^\d]+?),\s*(\d.*)$', loc)          # "Venue, 123 Street" -> "Venue \u2014 123 Street"
+        if m_:
+            meta['Location'] = m_.group(1) + ' \u2014 ' + m_.group(2)
     sub_bits = [x for x in (meta.get('Date'), meta.get('Time'), meta.get('Location')) if x]
     sub = ' · '.join(html.escape(x) for x in sub_bits)
     page = TEMPLATE
