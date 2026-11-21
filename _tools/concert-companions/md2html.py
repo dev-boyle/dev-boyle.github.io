@@ -49,14 +49,15 @@ def title_from_filename(name):
 
     def fix(p):
         n = p.count('___')
-        if n >= 2:                       # first one is a dash between show and program
-            p = p.replace('___', ' \u2013 ', 1)
+        if n >= 2:                       # first one separates organisation from program: "Org: Program"
+            p = p.replace('___', ': ', 1)
         p = p.replace('___', ' & ').replace('__', ', ').replace('_', ' ')
         return p.strip()
     parts = [fix(p) for p in parts]
-    if len(parts) > 2:                   # leading organisation/venue is shown in the subtitle
-        parts = parts[1:]
-    return ': '.join(parts) if parts else base
+    if not parts:
+        return base
+    # "Organisation: Performer \u2013 Program" (first separator is a colon, later ones an en dash)
+    return parts[0] + (': ' + ' \u2013 '.join(parts[1:]) if len(parts) > 1 else '')
 
 
 def parse_date(s):
