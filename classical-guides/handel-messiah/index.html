@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Handel: Messiah — Listening Guide</title>
+<style>
+  :root {
+    --bg: #faf7f2; --ink: #26231f; --muted: #6b645b; --accent: #2f6b4f;
+    --accent-soft: #e4efe8; --rule: #ddd5c8; --card: #fff; --warn: #fff4d6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #17191a; --ink: #ece8e0; --muted: #a39d92; --accent: #7fc4a0;
+            --accent-soft: #22302a; --rule: #34383a; --card: #1f2224; --warn: #3a3320; }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 19px/1.65 Georgia, "Iowan Old Style", serif;
+         padding-bottom: env(safe-area-inset-bottom); }
+  header { padding: 2.5rem 1.25rem 1.25rem; max-width: 46rem; margin: 0 auto; }
+  .back { display: inline-block; font: 600 .95rem -apple-system, system-ui, sans-serif; color: var(--accent);
+          text-decoration: none; padding: .7rem 0; min-height: 44px; }
+  header .kicker { font: 600 .8rem/1 -apple-system, system-ui, sans-serif; letter-spacing: .12em;
+                   text-transform: uppercase; color: var(--accent); }
+  h1 { font-size: 2.1rem; line-height: 1.2; margin: .5rem 0 .4rem; }
+  .sub { color: var(--muted); margin: 0; }
+
+  /* Sticky tap-to-navigate bar */
+  nav.bar { position: sticky; top: 0; z-index: 10; background: var(--bg);
+            border-bottom: 1px solid var(--rule); padding-top: env(safe-area-inset-top); }
+  nav.bar .chips { display: flex; gap: .5rem; overflow-x: auto; padding: .6rem 1.25rem;
+                   max-width: 46rem; margin: 0 auto; -webkit-overflow-scrolling: touch; }
+  nav.bar a { flex: none; font: 600 .95rem/1 -apple-system, system-ui, sans-serif; text-decoration: none;
+              color: var(--ink); background: var(--card); border: 1px solid var(--rule);
+              padding: .8rem 1rem; border-radius: 999px; min-height: 44px; display: inline-flex; align-items: center; }
+  nav.bar a.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  main { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem 4rem; }
+  section { padding-top: 2rem; scroll-margin-top: 4.6rem; }
+  h2 { font-size: 1.55rem; line-height: 1.25; margin: 0 0 .25rem; }
+  .meta { font: .9rem/1.5 -apple-system, system-ui, sans-serif; color: var(--muted); margin: 0 0 1rem; }
+  h3 { font: 700 .85rem/1 -apple-system, system-ui, sans-serif; letter-spacing: .1em; text-transform: uppercase;
+       color: var(--accent); margin: 1.6rem 0 .5rem; }
+
+  .listen { display: flex; flex-wrap: wrap; gap: .6rem; margin: .5rem 0 1.25rem; }
+  .listen a { font: 600 1rem/1 -apple-system, system-ui, sans-serif; text-decoration: none; color: #fff;
+              background: var(--accent); padding: .9rem 1.1rem; border-radius: 12px; min-height: 44px;
+              display: inline-flex; align-items: center; gap: .4rem; }
+  .listen a.alt { background: var(--accent-soft); color: var(--accent); }
+
+  ul.map { list-style: none; padding: 0; margin: 0; border-left: 3px solid var(--accent-soft); }
+  ul.map li { padding: .35rem 0 .35rem 1rem; }
+  ul.map b { font-family: -apple-system, system-ui, sans-serif; font-size: .9rem; color: var(--accent); }
+
+  figure.score { margin: 1.25rem 0; background: var(--card); border: 1px solid var(--rule);
+                 border-radius: 12px; padding: .75rem; }
+  figure.score img { width: 100%; height: auto; display: block; background: #fff; border-radius: 6px; }
+  figure.score .slot { display: none; padding: 1.1rem; background: var(--warn); border-radius: 6px;
+                       font: .9rem/1.5 -apple-system, system-ui, sans-serif; }
+  figure.score.missing img { display: none; }
+  figure.score.missing .slot { display: block; }
+  figcaption { font: .9rem/1.5 -apple-system, system-ui, sans-serif; color: var(--muted); margin-top: .6rem; }
+
+  .callout { background: var(--accent-soft); border-radius: 12px; padding: .9rem 1.1rem; margin: 1.25rem 0;
+             font-size: .98rem; }
+  table { width: 100%; border-collapse: collapse; font: .95rem/1.45 -apple-system, system-ui, sans-serif; }
+  th, td { text-align: left; padding: .6rem .4rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; }
+  td a { color: var(--accent); font-weight: 600; }
+  footer { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem 3rem; color: var(--muted);
+           font: .85rem/1.5 -apple-system, system-ui, sans-serif; }
+  .top { display: inline-block; margin-top: 1.25rem; font: 600 .9rem -apple-system, system-ui, sans-serif;
+         color: var(--accent); text-decoration: none; padding: .6rem 0; }
+  ul.map a.t { display: block; text-decoration: none; padding: .6rem 0 .05rem; min-height: 44px; }
+</style>
+</head>
+<body>
+
+<header id="top">
+  <a class="back" href="../">← All guides</a>
+  <div class="kicker">Handel, George Frideric</div>
+  <h1>Messiah, HWV&nbsp;56</h1>
+  <p class="sub">Premiered 13 April 1742, Dublin · three parts, 52 numbers · about 2 hours 15 minutes</p>
+</header>
+
+<nav class="bar" aria-label="Guide outline">
+  <div class="chips">
+    <a href="#intro">Intro</a>
+    <a href="#m1">1 · Part the First</a>
+    <a href="#m2">2 · Part the Second</a>
+    <a href="#m3">3 · Part the Third</a>
+    <a href="#recordings">Recordings</a>
+  </div>
+</nav>
+
+<main>
+
+<section id="intro">
+  <h2>Introduction</h2>
+  <p class="meta">An oratorio with no plot: a long meditation on prophecy, birth, suffering, resurrection and hope, told in the words of the Bible.</p>
+  <p>Handel started work on <i>Messiah</i> in London on 22 August 1741. The text was put together by his friend Charles Jennens from the King James Bible and the Psalter of the Book of Common Prayer. Jennens’s text does not tell a story. It moves from prophecy to the birth of Christ, then the Passion, the resurrection and the hope of life after death. Handel finished the score in 24 days, on 14 September.</p>
+  <p>The first performance was in Dublin on 13 April 1742, at the new music hall on Fishamble Street, where Handel had been giving a season of concerts. It was a charity benefit, for prisoners and for two hospitals, and Handel led it with singers from the choirs of the city’s two cathedrals. About 700 people crowded in, and the notice asked ladies to leave their hoops at home and gentlemen their swords. London was cooler: when Handel brought the work to Covent Garden on 23 March 1743 it was advertised as “A New Sacred Oratorio” and got a mixed welcome. It became a fixture only after 1750, when Handel began giving it every year as a benefit for the Foundling Hospital.</p>
+  <p>There is no single “right” <i>Messiah</i>. Handel kept adjusting it to suit the singers he had, and he wrote alternative versions of several arias. Scores and recordings therefore differ. The numbers in this guide follow the Schering–Soldan score, where alternates are marked a and b, and they match the track numbers on the recording used here.</p>
+  <p>Three things to carry into every number:</p>
+  <ul>
+    <li><b>Recitative, aria, chorus.</b> Each part is a chain of short numbers. Recitatives tell the story quickly, arias dwell on one feeling, and choruses give the crowd’s reaction. Most numbers last only a few minutes.</li>
+    <li><b>Words you can hear.</b> Handel paints single words in the music: “exalted” is lifted in a long run, “gone astray” wanders off, and “trumpet” gets a real trumpet.</li>
+    <li><b>Texture tells you what is happening.</b> Voices entering one after another (a fugue) build excitement, and voices singing together in chords sound like a statement. Listen for which one Handel chooses.</li>
+  </ul>
+  <h3>The sound</h3>
+  <p>The orchestra is small and old-fashioned, nothing like a full Romantic one. The Schering–Soldan score lists two oboes, two bassoons, two trumpets, timpani, strings, harpsichord and organ. There are no flutes, clarinets, horns or trombones. The oboes and bassoons are marked with an asterisk because they appear only in the original orchestral parts, not in Handel’s autograph score. The trumpets and timpani are used sparingly. In the CCARH score, trumpets appear in just five numbers: “Glory to God” (two trumpets), “Hallelujah,” “The trumpet shall sound” (a single trumpet), “Worthy is the Lamb” and “Amen.” Timpani join the trumpets in “Hallelujah,” “Worthy is the Lamb” and “Amen.” That makes each of their entries an event. In the rest of the work the sound is that of the strings, with the harpsichord and organ keeping the harmony going underneath.</p>
+  <div class="callout"><b>Hearing it all in one go:</b> the first part looks ahead to the birth and ends with the shepherds and angels; the second goes through the Passion to the Hallelujah chorus; the third turns to personal faith and ends with a huge Amen.</div>
+  <div class="listen">
+    <a href="https://classical.music.apple.com/us/album/1452299028" target="_blank" rel="noopener">▶ Whole oratorio on Apple Music Classical</a>
+  </div>
+  <p class="meta">The listen buttons play John Eliot Gardiner’s recording with the Monteverdi Choir and English Baroque Soloists. Two things to know: Apple Music plays “O thou that tellest” (the aria and chorus, Nos. 8–9) as one track, and “Worthy is the Lamb” and “Amen” (Nos. 51–52) as one track, so those pairs share a button.</p>
+</section>
+<section id="m1">
+  <h2>Part the First</h2>
+  <p class="meta">Sinfony and Nos. 1–19 · prophecy, the birth of Christ, the shepherds</p>
+  <div class="listen">
+    <a href="https://classical.music.apple.com/us/album/1452299028?i=1452300417" target="_blank" rel="noopener">▶ Listen: Part the First, from the Sinfony</a>
+  </div>
+
+  <h3>Listening map</h3>
+  <ul class="map">
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452300417" target="_blank" rel="noopener"><b>▶ SINFONY</b></a>The overture. A slow, heavy Grave in E minor with dotted rhythms, then a quicker Allegro moderato in which the lines enter one after another, like a fugue.</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452299034" target="_blank" rel="noopener"><b>▶ 1 · COMFORT YE</b></a>The tenor’s first words, over soft strings. After the minor-key overture the key brightens to E major.</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452299457" target="_blank" rel="noopener"><b>▶ 2 · EV’RY VALLEY</b></a>A tenor aria. On “exalted” the voice is stretched into a long run of notes, as if the valley were being lifted.</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452299460" target="_blank" rel="noopener"><b>▶ 3 · AND THE GLORY OF THE LORD</b></a>The first chorus, and the first time the whole choir and orchestra are heard together. Listen for the same few ideas passed from voice to voice.</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452299463" target="_blank" rel="noopener"><b>▶ 4 · THUS SAITH THE LORD</b></a>A bass recitative with the strings joining in, stern and short.</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452299464" target="_blank" rel="noopener"><b>▶ 5 · BUT WHO MAY ABIDE</b></a>An aria that opens with a question. Handel rewrote it more than once; the CCARH score prints versions for bass, alto and soprano.</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452299468" target="_blank" rel="noopener"><b>▶ 6 · AND HE SHALL PURIFY</b></a>A quick chorus. Running notes ripple through the voices.</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452299469" target="_blank" rel="noopener"><b>▶ 7 · BEHOLD, A VIRGIN</b></a>A very short alto recitative that announces “Emmanuel.”</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452299471" target="_blank" rel="noopener"><b>▶ 8–9 · O THOU THAT TELLEST</b></a>An alto aria, then the chorus takes up the same tune. Apple Music plays both as one track.</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452299472" target="_blank" rel="noopener"><b>▶ 10 · FOR BEHOLD, DARKNESS</b></a>A bass recitative on the darkness that covers the earth.</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452299476" target="_blank" rel="noopener"><b>▶ 11 · THE PEOPLE THAT WALKED IN DARKNESS</b></a>A bass aria in which the music seems to feel its way along.</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452299479" target="_blank" rel="noopener"><b>▶ 12 · FOR UNTO US A CHILD IS BORN</b></a>The sopranos enter alone and quietly, and the other voices follow. Later the music bursts into full chords on “Wonderful, Counsellor, the mighty God.” See the first excerpt below.</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452299481" target="_blank" rel="noopener"><b>▶ 13 · PIFA</b></a>The pastoral symphony: no voices, eleven bars of gentle rocking 12/8, over a held bass. The name is usually explained as a reference to the pipers who played in Italy at Christmas.</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452299482" target="_blank" rel="noopener"><b>▶ 14 · THERE WERE SHEPHERDS</b></a>The soprano tells the story in a run of short recitatives. The strings join in at “And suddenly.”</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452299484" target="_blank" rel="noopener"><b>▶ 15 · GLORY TO GOD</b></a>The angels’ chorus, and the first appearance of trumpets in the work. Handel marks them as if heard from far off.</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452299696" target="_blank" rel="noopener"><b>▶ 16 · REJOICE GREATLY</b></a>A bright, bouncing soprano aria with quick runs on “rejoice.”</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452299698" target="_blank" rel="noopener"><b>▶ 17 · THEN SHALL THE EYES OF THE BLIND</b></a>A short recitative. This recording uses the alto version (17a); the score prints a soprano one as well.</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452299700" target="_blank" rel="noopener"><b>▶ 18 · HE SHALL FEED HIS FLOCK</b></a>A gentle, rocking aria. This recording uses the soprano-and-alto duet version (18a).</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452299702" target="_blank" rel="noopener"><b>▶ 19 · HIS YOKE IS EASY</b></a>A light chorus that closes the first part.</li>
+  </ul>
+
+  <figure class="score" id="fig-m1-sinfonia">
+    <img src="img/m1-sinfonia.png" alt="Score excerpt: the Grave and the start of the Allegro moderato in the Sinfony" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> The Sinfony, strings only. Save as <code>img/m1-sinfonia.png</code>.</div>
+    <figcaption>The Sinfony, strings only. The Grave opens with heavy dotted rhythms. The second system starts at bar 8, and the Allegro moderato begins after the double bar at the right edge.</figcaption>
+  </figure>
+
+  <figure class="score" id="fig-m1-unto-us">
+    <img src="img/m1-unto-us.png" alt="Score excerpt: the opening of For unto us a child is born" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> “For unto us a child is born,” bars 1–10. Save as <code>img/m1-unto-us.png</code>.</div>
+    <figcaption>“For unto us a child is born,” bars 1–10. The sopranos enter alone at bar 7. In the next bar the violins and viola drop to a soft, detached figure marked <i>p</i>, and the altos, tenors and basses are still resting. The italic note about oboes is the editors’.</figcaption>
+  </figure>
+
+  <figure class="score" id="fig-m1-pifa">
+    <img src="img/m1-pifa.png" alt="Score excerpt: the whole Pifa" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> The whole Pifa: eleven bars in 12/8, marked Larghetto e mezzo piano, over long-held bass notes and ending on a held chord. Save as <code>img/m1-pifa.png</code>.</div>
+    <figcaption>The whole Pifa: eleven bars in 12/8, marked Larghetto e mezzo piano, over long-held bass notes and ending on a held chord.</figcaption>
+  </figure>
+
+  <figure class="score" id="fig-m1-glory">
+    <img src="img/m1-glory.png" alt="Score excerpt: the opening of Glory to God with trumpets" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> The opening of “Glory to God. Save as <code>img/m1-glory.png</code>.</div>
+    <figcaption>The opening of “Glory to God.” The two trumpets (top two staves) play from the first bar. In the Schering–Soldan score their part is marked <i>da lontano ed un poco piano</i>, “from afar and a little soft.” The voices sing “Glory to God in the highest” in the first system and “and peace on earth” in the second.</figcaption>
+  </figure>
+
+  <h3>What to listen for</h3>
+  <p>Notice how restrained the sound is. Apart from the Sinfony and the Pifa, the first part is voices with strings, and the first trumpets do not arrive until “Glory to God,” where Handel asks for them to sound from a distance. In “For unto us,” notice how the sopranos begin alone, and how the other voices and the orchestra gather behind them.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+<section id="m2">
+  <h2>Part the Second</h2>
+  <p class="meta">Nos. 20–42 · the Passion, the resurrection and the spread of the gospel, ending with the Hallelujah chorus</p>
+  <div class="listen">
+    <a href="https://classical.music.apple.com/us/album/1452299028?i=1452299705" target="_blank" rel="noopener">▶ Listen: Part the Second, from “Behold the Lamb of God”</a>
+    <a class="alt" href="https://classical.music.apple.com/us/album/1452299028?i=1452300116" target="_blank" rel="noopener">▶ Jump to the Hallelujah chorus</a>
+  </div>
+
+  <h3>Listening map</h3>
+  <ul class="map">
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452299705" target="_blank" rel="noopener"><b>▶ 20 · BEHOLD THE LAMB OF GOD</b></a>The mood changes completely. The Passion begins with a slow, weighty chorus (marked Largo).</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452299707" target="_blank" rel="noopener"><b>▶ 21 · HE WAS DESPISED</b></a>The alto aria. A slow, sighing Largo in E-flat major, with a faster, harder middle section on “He gave His back to the smiters.”</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452299708" target="_blank" rel="noopener"><b>▶ 22 · SURELY HE HATH BORNE OUR GRIEFS</b></a>A grave chorus, the voices singing together in thick chords.</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452299710" target="_blank" rel="noopener"><b>▶ 23 · AND WITH HIS STRIPES WE ARE HEALED</b></a>A fugue: the voices enter one after another on the same rising idea.</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452299713" target="_blank" rel="noopener"><b>▶ 24 · ALL WE LIKE SHEEP</b></a>A chorus that scatters on purpose. See the excerpt below.</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452299714" target="_blank" rel="noopener"><b>▶ 25 · ALL THEY THAT SEE HIM</b></a>A tenor recitative: the mocking crowd.</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452299715" target="_blank" rel="noopener"><b>▶ 26 · HE TRUSTED IN GOD</b></a>The crowd’s mockery as a chorus, the voices tossing the words at each other.</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452299717" target="_blank" rel="noopener"><b>▶ 27 · THY REBUKE</b></a>A quiet tenor recitative of grief.</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452299719" target="_blank" rel="noopener"><b>▶ 28 · BEHOLD AND SEE</b></a>A brief tenor arioso.</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452299720" target="_blank" rel="noopener"><b>▶ 29 · HE WAS CUT OFF</b></a>A tenor recitative on the death.</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452299723" target="_blank" rel="noopener"><b>▶ 30 · BUT THOU DIDST NOT LEAVE</b></a>A short, bright tenor aria. The tone turns toward hope.</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452299724" target="_blank" rel="noopener"><b>▶ 31 · LIFT UP YOUR HEADS</b></a>A chorus in which the voices ask “Who is the King of Glory?” and answer.</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452299725" target="_blank" rel="noopener"><b>▶ 32 · UNTO WHICH OF THE ANGELS</b></a>A short tenor recitative.</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452299940" target="_blank" rel="noopener"><b>▶ 33 · LET ALL THE ANGELS OF GOD</b></a>A lively chorus.</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452299941" target="_blank" rel="noopener"><b>▶ 34 · THOU ART GONE UP ON HIGH</b></a>The score prints this aria for bass and for alto. This recording uses the alto version (34a).</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452299943" target="_blank" rel="noopener"><b>▶ 35 · THE LORD GAVE THE WORD</b></a>A chorus.</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452299948" target="_blank" rel="noopener"><b>▶ 36 · HOW BEAUTIFUL ARE THE FEET</b></a>A soprano aria. Handel made several versions of this one, including one with chorus.</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452299949" target="_blank" rel="noopener"><b>▶ 37 · THEIR SOUND IS GONE OUT</b></a>A chorus. The recording’s track title marks it as version 37a.</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452299952" target="_blank" rel="noopener"><b>▶ 38 · WHY DO THE NATIONS</b></a>A bass aria with angry, rushing runs on “rage.”</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452299954" target="_blank" rel="noopener"><b>▶ 39 · LET US BREAK THEIR BONDS ASUNDER</b></a>A chorus.</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452299958" target="_blank" rel="noopener"><b>▶ 40 · HE THAT DWELLETH IN HEAVEN</b></a>A short tenor recitative.</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452299963" target="_blank" rel="noopener"><b>▶ 41 · THOU SHALT BREAK THEM</b></a>A tenor aria. The voice smashes the “potter’s vessel” in a burst of notes.</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452300116" target="_blank" rel="noopener"><b>▶ 42 · HALLELUJAH</b></a>The famous chorus, in D major. Bars 1–3 are strings alone, and the chorus enters at bar 4. “For the Lord God omnipotent reigneth” arrives at bar 12, and the trumpets and timpani, silent until then, join in at bar 14. At bar 33 “The kingdom of this world” begins, and from about bar 50 the sopranos and altos hold “King of Kings” on long notes while the tenors and basses repeat “for ever and ever.” See the two excerpts below.</li>
+  </ul>
+
+  <figure class="score" id="fig-m2-despised">
+    <img src="img/m2-despised.png" alt="Score excerpt: the opening of He was despised" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> “He was despised,” bars 1–11. Save as <code>img/m2-despised.png</code>.</div>
+    <figcaption>“He was despised,” bars 1–11. It is marked Largo. The violins and viola share a short phrase marked with trills, and the alto enters in the second system on “He was despised.”</figcaption>
+  </figure>
+
+  <figure class="score" id="fig-m2-sheep">
+    <img src="img/m2-sheep.png" alt="Score excerpt: the opening of All we like sheep" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> “All we like sheep. Save as <code>img/m2-sheep.png</code>.</div>
+    <figcaption>“All we like sheep.” The voices sing short, broken-off phrases of “All we, like sheep” over a busy string line, then “have gone astray” winds off in long running notes. The second system starts at bar 6.</figcaption>
+  </figure>
+
+  <figure class="score" id="fig-m2-hallelujah">
+    <img src="img/m2-hallelujah.png" alt="Score excerpt: the opening bars of the Hallelujah chorus" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> The start of the Hallelujah chorus, bars 1–5 (Allegro, D major). Save as <code>img/m2-hallelujah.png</code>.</div>
+    <figcaption>The start of the Hallelujah chorus, bars 1–5 (Allegro, D major). The trumpets and timpani (top three staves) rest, the strings play alone for three bars, and the voices enter at bar 4.</figcaption>
+  </figure>
+
+  <figure class="score" id="fig-m2-king-of-kings">
+    <img src="img/m2-king-of-kings.png" alt="Score excerpt: King of Kings in the Hallelujah chorus" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> “King of Kings,” from bar 50. Save as <code>img/m2-king-of-kings.png</code>.</div>
+    <figcaption>“King of Kings,” from bar 50. The sopranos and altos hold “King of Kings” on long notes, while the tenors and basses repeat “for ever and ever” and “Hallelujah” and the trumpets, violins and viola keep a steady figure going.</figcaption>
+  </figure>
+
+  <h3>What to listen for</h3>
+  <p>Listen to how fast the mood turns from the Passion music (the Largo of “Behold the Lamb” and “He was despised”) to the mocking choruses and then to the shout of “Lift up your heads.” In “Hallelujah,” notice how long the trumpets wait before they join in, and how the chorus changes shape: bright shouts, then the plain chords of “The kingdom of this world,” then the layered “King of Kings.” The custom of standing for it is usually traced to George II rising in London, although there is no convincing evidence that he was even there.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+<section id="m3">
+  <h2>Part the Third</h2>
+  <p class="meta">Nos. 43–52 · faith in the resurrection, the last trumpet, and the final Amen</p>
+  <div class="listen">
+    <a href="https://classical.music.apple.com/us/album/1452299028?i=1452300118" target="_blank" rel="noopener">▶ Listen: Part the Third, from “I know that my Redeemer liveth”</a>
+  </div>
+
+  <h3>Listening map</h3>
+  <ul class="map">
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452300118" target="_blank" rel="noopener"><b>▶ 43 · I KNOW THAT MY REDEEMER LIVETH</b></a>A soprano aria that opens the third part.</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452300121" target="_blank" rel="noopener"><b>▶ 44 · SINCE BY MAN CAME DEATH</b></a>A chorus that opens Grave, which is to say slow and solemn.</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452300123" target="_blank" rel="noopener"><b>▶ 45 · BEHOLD, I TELL YOU A MYSTERY</b></a>A bass recitative that sets up the next aria.</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452300126" target="_blank" rel="noopener"><b>▶ 46 · THE TRUMPET SHALL SOUND</b></a>A bass aria with a solo trumpet as its partner. In D major, 3/4, marked Pomposo, ma non allegro. See the excerpt below.</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452300128" target="_blank" rel="noopener"><b>▶ 47 · THEN SHALL BE BROUGHT TO PASS</b></a>A short alto recitative.</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452300130" target="_blank" rel="noopener"><b>▶ 48 · O DEATH, WHERE IS THY STING</b></a>A duet for alto and tenor.</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452300132" target="_blank" rel="noopener"><b>▶ 49 · BUT THANKS BE TO GOD</b></a>A chorus.</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452300134" target="_blank" rel="noopener"><b>▶ 50 · IF GOD BE FOR US</b></a>A slow, unhurried soprano aria.</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452300141" target="_blank" rel="noopener"><b>▶ 51 · WORTHY IS THE LAMB</b></a>A chorus with trumpets and timpani. On this recording the track includes the Amen that follows.</li>
+    <li><a class="t" href="https://classical.music.apple.com/us/album/1452299028?i=1452300141" target="_blank" rel="noopener"><b>▶ 52 · AMEN</b></a>The closing fugue. Bars 1–5 are the bass voice alone, the tenor answers at bar 6, and the trumpets and timpani are still waiting. See the excerpt below.</li>
+  </ul>
+
+  <figure class="score" id="fig-m3-trumpet">
+    <img src="img/m3-trumpet.png" alt="Score excerpt: the opening of The trumpet shall sound" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> “The trumpet shall sound,” bars 1–28. Save as <code>img/m3-trumpet.png</code>.</div>
+    <figcaption>“The trumpet shall sound,” bars 1–28. The solo trumpet is the top staff. In the second system (from bar 10) the violins and viola rest and the trumpet plays over the bass line alone. The bass voice enters on the last beat of bar 28, on “The trumpet shall sound.”</figcaption>
+  </figure>
+
+  <figure class="score" id="fig-m3-amen">
+    <img src="img/m3-amen.png" alt="Score excerpt: the opening of the Amen chorus" loading="lazy">
+    <div class="slot"><b>Score excerpt goes here:</b> The opening of “Amen,” bars 1–8. Save as <code>img/m3-amen.png</code>.</div>
+    <figcaption>The opening of “Amen,” bars 1–8. The bass voice begins alone with the continuo, the tenor answers at bar 6, and the trumpets, timpani, violins, violas, sopranos and altos are all silent throughout this system.</figcaption>
+  </figure>
+
+  <h3>What to listen for</h3>
+  <p>The third part is the shortest, and it turns from the story to personal belief. Notice how the trumpet aria is really a duet between a bass voice and a trumpet, and how long Handel makes the trumpet play before the voice comes in. The ending is the opposite of the Hallelujah’s opening shout: the “Amen” starts with a single voice, and the other voices follow.</p>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+<section id="recordings">
+  <h2>Recommended recordings</h2>
+  <p class="meta">Tap a link to open that album in Apple Music Classical.</p>
+  <table>
+    <tr><th>Conductor · Orchestra</th><th>Character</th></tr>
+    <tr><td><a href="https://classical.music.apple.com/us/album/1452299028" target="_blank" rel="noopener">John Eliot Gardiner · Monteverdi Choir, English Baroque Soloists</a></td><td>Complete, on period instruments (released 1983). Its track numbers match the Schering–Soldan score.</td></tr>
+    <tr><td><a href="https://classical.music.apple.com/us/album/1387816964" target="_blank" rel="noopener">Sir Colin Davis · London Symphony Orchestra</a></td><td>Modern instruments (2007 release): the full-bodied, modern-orchestra way to hear it.</td></tr>
+    <tr><td><a href="https://classical.music.apple.com/us/album/1452251149" target="_blank" rel="noopener">Paul McCreesh · Gabrieli Consort &amp; Players</a></td><td>Period instruments, in a version based on the one Handel directed at the Foundling Hospital in 1754 (1997 release).</td></tr>
+    <tr><td><a href="https://classical.music.apple.com/us/album/1535772477" target="_blank" rel="noopener">John Butt · Dunedin Consort</a></td><td>Period instruments, in the version of the Dublin premiere of 1742 (2006 release).</td></tr>
+  </table>
+  <a class="top" href="#top">↑ Back to top</a>
+</section>
+
+</main>
+
+<footer>
+  <a class="back" href="../">← All guides</a><br>
+  Score excerpts are cropped from the CCARH edition of <i>Messiah</i> (© 2003 Center for Computer Assisted Research in the Humanities, ccarh.org, based primarily on the Chrysander edition) and are shown here for personal, non-commercial study. The Schering–Soldan score (Urtext, scanned on IMSLP) was used for the numbering, the instrumentation list and the marking in “Glory to God”; no excerpts are taken from it. Links open Apple Music Classical (in the app if you have it). Listen buttons play Gardiner’s recording; the table lists other recordings.
+</footer>
+
+<script>
+  // Show a labeled placeholder if a score image hasn't been added yet.
+  document.querySelectorAll('figure.score img').forEach(function (img) {
+    var fig = img.closest('figure');
+    function miss() { fig.classList.add('missing'); }
+    if (img.complete && img.naturalWidth === 0) miss();
+    img.addEventListener('error', miss);
+  });
+  // Highlight the current section in the sticky bar.
+  var links = {};
+  document.querySelectorAll('nav.bar a').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        Object.values(links).forEach(function (a) { a.classList.remove('on'); });
+        var a = links[e.target.id];
+        if (a) { a.classList.add('on'); a.scrollIntoView({ inline: 'center', block: 'nearest' }); }
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  document.querySelectorAll('main section').forEach(function (s) { io.observe(s); });
+</script>
+</body>
+</html>
